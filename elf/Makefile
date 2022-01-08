@@ -26,7 +26,7 @@ routines	= $(all-dl-routines) dl-support dl-iteratephdr \
 		  dl-addr dl-addr-obj enbl-secure dl-profstub \
 		  dl-origin dl-libc dl-sym dl-sysdep dl-error \
 		  dl-reloc-static-pie libc_early_init rtld_static_init \
-		  libc-dl_find_object
+		  libc-dl_find_object libc-abi-dt-relr
 
 # The core dynamic linking functions are in libc for the static and
 # profiled libraries.
@@ -359,6 +359,13 @@ ifeq ($(run-built-tests),yes)
 tests-special += $(objpfx)tst-audit14-cmp.out $(objpfx)tst-audit15-cmp.out \
 		 $(objpfx)tst-audit16-cmp.out $(objpfx)tst-audit14a-cmp.out
 endif
+endif
+ifeq ($(have-relr),yes)
+tests += tst-relr tst-relr-no-pie
+tests-pie += tst-relr
+tests-no-pie += tst-relr-no-pie
+LDFLAGS-tst-relr += -z pack-relative-relocs
+LDFLAGS-tst-relr-no-pie += -z pack-relative-relocs
 endif
 endif
 tests += $(tests-execstack-$(have-z-execstack))
@@ -824,8 +831,10 @@ $(eval $(call include_dsosort_tests,dso-sort-tests-1.def))
 $(eval $(call include_dsosort_tests,dso-sort-tests-2.def))
 endif
 
-check-abi: $(objpfx)check-abi-ld.out
-tests-special += $(objpfx)check-abi-ld.out
+check-abi: $(objpfx)check-abi-ld.out \
+	   $(objpfx)check-libc-abi-dt-relr.out
+tests-special += $(objpfx)check-abi-ld.out \
+	   $(objpfx)check-libc-abi-dt-relr.out
 update-abi: update-abi-ld
 update-all-abi: update-all-abi-ld
 
@@ -2350,3 +2359,7 @@ CFLAGS-tst-dl_find_object-mod6.c += -funwind-tables
 CFLAGS-tst-dl_find_object-mod7.c += -funwind-tables
 CFLAGS-tst-dl_find_object-mod8.c += -funwind-tables
 CFLAGS-tst-dl_find_object-mod9.c += -funwind-tables
+
+$(objpfx)check-libc-abi-dt-relr.out: $(common-objpfx)libc.so
+	LC_ALL=C $(NM) -D $< | grep '__libc_abi_dt_relr_placeholder@@GLIBC_ABI_DT_RELR' > $@; \
+	$(evaluate-test)
