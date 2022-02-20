@@ -1,0 +1,2 @@
+#!/bin/bash
+/build/glibc/build-native/elf/ld-linux-x86-64.so.2 --library-path /build/glibc/build-native:/build/glibc/build-native/math:/build/glibc/build-native/elf:/build/glibc/build-native/dlfcn:/build/glibc/build-native/nss:/build/glibc/build-native/nis:/build/glibc/build-native/rt:/build/glibc/build-native/resolv:/build/glibc/build-native/mathvec:/build/glibc/build-native/support:/build/glibc/build-native/crypt:/build/glibc/build-native/nptl "$@"
