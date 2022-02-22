@@ -1098,6 +1098,21 @@ struct test_Ff_b1_data
     }									\
   while (0);
 
+/* Run tests for a given function in default rounding modes.  */
+#undef ALL_RM_TEST
+#define ALL_RM_TEST(FUNC, EXACT, ARRAY, LOOP_MACRO, END_MACRO, ...)	\
+  do									\
+    {									\
+      do								\
+	{								\
+	  START (FUNC,, EXACT);						\
+	  LOOP_MACRO (FUNC, ARRAY, , ## __VA_ARGS__);			\
+	  END_MACRO;							\
+	}								\
+      while (0);							\
+    }									\
+  while (0)
+
 /* Short description of program.  */
 const char doc[] = "Math test suite: " TEST_MSG ;
 

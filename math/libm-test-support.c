@@ -232,7 +232,7 @@ init_max_error (const char *name, int exact, int testing_ibm128)
        defined for other formats.  */
     max_valid_error = exact ? 3 : 16;
   else
-    max_valid_error = exact ? 0 : 9;
+    max_valid_error = exact ? 0 : 100;
   prev_max_error = (prev_max_error <= max_valid_error
 		    ? prev_max_error
 		    : max_valid_error);
