@@ -93,19 +93,25 @@ struct test
   { L("foo bar"), L("foo bar"), 0 },
   { L("foo bar"), L("foo %d"), 0 },
   { L("foo bar"), L("foon%d"), 0 },
+#ifndef __PICOLIBC__
   { L("foo (nil)"), L("foo %p"), 1},
+#endif
   { L("foo (nil)"), L("foo %4p"), 0},
   { L("foo "), L("foo %n"), 0 },
   { L("foo%bar1"), L("foo%%bar%d"), 1 },
   /* Some OSes skip whitespace here while others don't.  */
+#ifndef __PICOLIBC__
   { L("foo \t %bar1"), L("foo%%bar%d"), 1 }
+#endif
 };
 
 struct test double_tests[] =
 {
   { L("-1"), L("%1g"), 0 },
   { L("-.1"), L("%2g"), 0 },
+#ifndef __PICOLIBC__
   { L("-inf"), L("%3g"), 0 },
+#endif
   { L("+0"), L("%1g"),  },
   { L("-0x1p0"), L("%2g"), 1 },
   { L("-..1"), L("%g"), 0 },
@@ -193,8 +199,8 @@ do_test (void)
       if ((ret = SSCANF (int_tests[i].str, int_tests[i].fmt,
 			 &dummy)) != int_tests[i].retval)
 	{
-	  printf ("int_tests[%d] returned %d != %d\n",
-		  i, ret, int_tests[i].retval);
+	  printf ("int_tests[%d] returned %d != %d (str '%s' fmt '%s'\n",
+		  i, ret, int_tests[i].retval, int_tests[i].str, int_tests[i].fmt);
 	  result = 1;
 	}
     }

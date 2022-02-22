@@ -18,7 +18,11 @@ do_test (void)
       result = 1;
     }
 
+#ifdef __PICOLIBC__
+#define SIZE (1024*700)
+#else
 #define SIZE (1024*70000)
+#endif
 #define STR(x) #x
 
   char *dst = malloc (SIZE + 1);
@@ -46,6 +50,7 @@ do_test (void)
       result = 1;
     }
 
+#ifndef __PICOLIBC__
   /* We are testing a corner case of the sprintf format string here.  */
   DIAG_PUSH_NEEDS_COMMENT;
   DIAG_IGNORE_NEEDS_COMMENT (4.9, "-Wformat");
@@ -82,6 +87,7 @@ do_test (void)
       printf ("sprintf (buf, \"%%.8s\\n\", \"Foo: \\277\") produced '%s' output\n", buf);
       result = 1;
     }
+#endif
 
   return result;
 }

@@ -238,6 +238,8 @@ I am ready for my first lesson today.";
   rfg2 ();
   rfg3 ();
 
+  /* picolibc does not support %n */
+#ifndef __PICOLIBC__
   {
     char bytes[7];
     char buf[20];
@@ -256,6 +258,7 @@ I am ready for my first lesson today.";
 	result = 1;
       }
   }
+#endif
 
   return result != 0;
 }
