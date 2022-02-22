@@ -2,21 +2,49 @@ make_math_test = find_program('make-math-test')
 gen_libm_test = find_program('gen-libm-test.py')
 
 libm_test_ulps_h = custom_target('libm-test-ulps.h',
-				 input: ['../sysdeps/arm/libm-test-ulps'],
+				 input: ['../picolibc/arm/libm-test-ulps'],
 				 output: ['libm-test-ulps.h'],
 				 command: [gen_libm_test, '-u', '@INPUT@', '-H', '@OUTPUT@'])
 
-tests = ['acosh',
-	 'acos',
-	 'asinh',
-	 'asin',
-	 'atan2',
-	 'atanh',
-	 'atan',
-	 'cabs',
-	 'cacosh',
-	 'cacos',
-	 'pow',
+tests = [
+  'acos',
+  'acosh',
+  'asin',
+  'asinh',
+  'atan',
+  'atan2',
+  'atanh',
+  'cabs',
+  'cbrt',
+  'cos',
+  'cosh',
+  'erf',
+  'erfc',
+  'exp',
+  'exp10',
+  'exp2',
+  'expm1',
+  'fma',
+  'hypot',
+  'j0',
+  'j1',
+  'jn',
+  'lgamma',
+  'log',
+  'log10',
+  'log1p',
+  'log2',
+  'pow',
+  'sin',
+  'sincos',
+  'sinh',
+  'sqrt',
+  'tan',
+  'tanh',
+  'tgamma',
+  'y0',
+  'y1',
+  'yn',
 ]
 types = ['float', 'double']
 
@@ -69,7 +97,7 @@ foreach type : types
 		    include_directories: inc,
 		    c_args: c_args,
 		    link_with: [lib_argp, lib_posix]),
-	 env: ['MESON_SOURCE_ROOT=' + meson.source_root()]
+	 env: ['MESON_SOURCE_ROOT=' + meson.source_root()],
 	)
   endforeach
 endforeach
