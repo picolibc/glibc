@@ -16,6 +16,9 @@ c_args = ['-include', '@0@/@1@'.format(meson.current_source_dir(), 'picolibc/hac
 
 inc = include_directories(inc_dirs)
 
+cpu_family = host_machine.cpu_family()
+cpu = host_machine.cpu()
+
 subdir('picolibc')
 subdir('support')
 subdir('argp')

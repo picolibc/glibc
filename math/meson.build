@@ -2,7 +2,7 @@ make_math_test = find_program('make-math-test')
 gen_libm_test = find_program('gen-libm-test.py')
 
 libm_test_ulps_h = custom_target('libm-test-ulps.h',
-				 input: ['../picolibc/arm/libm-test-ulps'],
+				 input: ['../picolibc' / cpu / 'libm-test-ulps'],
 				 output: ['libm-test-ulps.h'],
 				 command: [gen_libm_test, '-u', '@INPUT@', '-H', '@OUTPUT@'])
 
