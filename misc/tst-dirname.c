@@ -57,9 +57,11 @@ do_test (void)
   result |= test ("a////", ".");
   result |= test ("////usr", "/");
   result |= test ("////usr//", "/");
+#ifndef __PICOLIBC__
   result |= test ("//usr", "//");
   result |= test ("//usr//", "//");
   result |= test ("//", "//");
+#endif
 
   /* Other Unix implementations behave like this.  */
   result |= test ("x///y", "x");

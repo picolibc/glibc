@@ -26,9 +26,15 @@
 #define PRINTF_CONVERSION "%f"
 
 #if DBL_MANT_DIG == 53
+#ifdef __PICOLIBC__
+# define EXTRA_ECVT_TESTS \
+  { 0x1p-1074, 3, -323, "500" }, \
+  { -0x1p-1074, 3, -323, "500" },
+#else
 # define EXTRA_ECVT_TESTS \
   { 0x1p-1074, 3, -323, "494" }, \
   { -0x1p-1074, 3, -323, "494" },
+#endif
 #else
 # define EXTRA_ECVT_TESTS
 #endif
