@@ -26,10 +26,6 @@ tests = [
   'expm1',
   'fma',
   'hypot',
-  'j0',
-  'j1',
-  'jn',
-  'lgamma',
   'log',
   'log10',
   'log1p',
@@ -41,11 +37,22 @@ tests = [
   'sqrt',
   'tan',
   'tanh',
+]
+
+# picolibc has terrible implementations of these codes
+# the poor accuracy also leads to missing boundary
+# conditions for over/underflow
+tests_broken = [
+  'j0',
+  'j1',
+  'jn',
+  'lgamma',
   'tgamma',
   'y0',
   'y1',
   'yn',
-]
+  ]
+
 types = ['float', 'double']
 
 foreach type : types
