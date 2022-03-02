@@ -19,7 +19,7 @@ float: 2
 Function: "cos":
 float: 3
 Function: "erfc":
-float: 5
+float: 64
 Function: "exp":
 float: 1
 Function: "erf":
