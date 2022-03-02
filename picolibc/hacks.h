@@ -1,7 +1,7 @@
 #ifndef _HACKS_H
 #define _HACKS_H
 
-#define _GNU_SOURCE
+#define _GNU_SOURCE 1
 
 #if defined __GNUC__ && defined __GNUC_MINOR__
 # define __GNUC_PREREQ(maj, min) \
@@ -32,8 +32,6 @@ static inline int chdir(const char *a) { return 0; }
 #define M_PERTURB -6
 
 struct rlimit { int rlim_cur, rlim_max; };
-
-extern char *program_invocation_short_name;
 
 typedef long long off64_t;
 
