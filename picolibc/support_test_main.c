@@ -85,11 +85,12 @@ usage (const struct option *options)
 }
 
 /* The PID of the test process.  */
-static pid_t test_pid;
+//static pid_t test_pid;
 
 /* The cleanup handler passed to test_main.  */
 static void (*cleanup_function) (void);
 
+#if 0
 static void
 print_timestamp (const char *what, struct timespec tv)
 {
@@ -105,7 +106,6 @@ print_timestamp (const char *what, struct timespec tv)
             tm.tm_hour, tm.tm_min, tm.tm_sec, (long int) tv.tv_nsec);
 }
 
-#if 0
 /* Timeout handler.  We kill the child and exit with an error.  */
 static void
 __attribute__ ((noreturn))
@@ -289,15 +289,17 @@ support_test_main (int argc, char **argv, const struct test_config *config)
   cleanup_function = config->cleanup_function;
 
   int direct = 0;       /* Directly call the test function?  */
-  int status;
+//  int status;
   int opt;
   unsigned int timeoutfactor = TIMEOUTFACTOR;
-  pid_t termpid;
+//  pid_t termpid;
 
   /* If we're debugging the test, we need to disable timeouts and use
      the initial pid (esp if we're running inside a container).  */
   if (getenv("WAIT_FOR_DEBUGGER") != NULL)
     direct = 1;
+
+  (void) direct;
 
   if (!config->no_mallopt)
     {
@@ -410,11 +412,13 @@ support_test_main (int argc, char **argv, const struct test_config *config)
       direct = 1;
     }
 
+#if 0
   bool disable_coredumps;
   {
     const char *coredumps = getenv ("TEST_COREDUMPS");
     disable_coredumps = coredumps == NULL || coredumps[0] == '\0';
   }
+#endif
 
   /* If we are not expected to fork run the function immediately.  */
   return adjust_exit_status (run_test_function (argc, argv, config));
