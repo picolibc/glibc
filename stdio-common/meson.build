@@ -1,6 +1,5 @@
 tests = [
   'tst-printf',
-  'tst-printf-round',
   'tst-sprintf',
   'tst-sprintf2',
   'tst-sprintf3',
