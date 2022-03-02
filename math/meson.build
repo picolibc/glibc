@@ -37,20 +37,20 @@ tests = [
   'sqrt',
   'tan',
   'tanh',
+  'j0',
+  'j1',
+  'y0',
+  'y1',
 ]
 
 # picolibc has terrible implementations of these codes
 # the poor accuracy also leads to missing boundary
 # conditions for over/underflow
 tests_broken = [
-  'j0',
-  'j1',
   'jn',
+  'yn',
   'lgamma',
   'tgamma',
-  'y0',
-  'y1',
-  'yn',
   ]
 
 types = ['float', 'double']

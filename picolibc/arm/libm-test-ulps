@@ -33,7 +33,7 @@ float: 1
 Function: "j0":
 float: 8
 Function: "j1":
-float: 6
+float: 9
 Function: "log":
 float: 1
 Function: "jn":
@@ -53,8 +53,8 @@ float: 1
 Function: "y0":
 float: 8
 Function: "y1":
-Function: "tanh":
 float: 2
+Function: "tanh":
 float: 2
 Function: "yn":
 float: 2
