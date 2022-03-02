@@ -102,6 +102,8 @@ Function: "j0":
 double: 3
 Function: "j1":
 double: 2
+Function: "log":
+double: 1
 Function: "log10":
 double: 2
 Function: "log2":
