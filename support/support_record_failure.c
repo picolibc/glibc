@@ -39,8 +39,9 @@ struct test_failures
   unsigned int counter;
   unsigned int failed;
 };
-static struct test_failures *state;
+static struct test_failures s, *state = &s;
 
+#if 0
 static __attribute__ ((constructor)) void
 init (void)
 {
@@ -54,6 +55,7 @@ init (void)
   /* Zero-initialization of the struct is sufficient.  */
   state = ptr;
 }
+#endif
 
 void
 support_record_failure (void)
