@@ -107,6 +107,10 @@ static const struct argp_option argp_default_options[] =
   {0, 0}
 };
 
+#ifdef __PICOLIBC__
+char *program_invocation_name;
+#endif
+
 static error_t
 argp_default_parser (int key, char *arg, struct argp_state *state)
 {

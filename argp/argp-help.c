@@ -1858,6 +1858,7 @@ __argp_failure_internal (const struct argp_state *state, int status,
 	    {
 	      char buf[200];
 
+	      (void) buf;
 #ifdef _LIBC
 	      __fxprintf (stream, ": %s",
 			  __strerror_r (errnum, buf, sizeof (buf)));
