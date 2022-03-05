@@ -19,7 +19,7 @@ foreach t : tests
        executable(t,
 		  [t + '.c', '../picolibc/support_test_main.c'],
 		  include_directories: inc,
-		  c_args: c_args,
+		  c_args: c_args + ['-Wno-alloc-size-larger-than'],
 		  link_with: [lib_support, lib_posix]
 		 ),
        env: ['MESON_SOURCE_ROOT=' + meson.source_root()]
