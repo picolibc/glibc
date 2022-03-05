@@ -517,6 +517,7 @@ test_exceptions (const char *test_name, int exception)
 	 arithmetic.  */
 #ifdef FE_UNDERFLOW
       if ((exception & UNDERFLOW_EXCEPTION_OK) == 0
+	  && (exception & (INEXACT_EXCEPTION | NO_INEXACT_EXCEPTION)) != 0
 	  && !(test_ibm128
 	       && (exception & UNDERFLOW_EXCEPTION) == 0))
 	test_single_exception (test_name, exception, UNDERFLOW_EXCEPTION,
