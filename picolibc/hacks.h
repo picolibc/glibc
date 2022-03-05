@@ -44,6 +44,8 @@ typedef void (*sighandler_t)(int);
 #define __vsnprintf_internal(s,n,fmt,ap,x) vsnprintf(s,n,fmt,ap)
 
 #define program_invocation_short_name "hello"
+#define HAVE_DECL_PROGRAM_INVOCATION_NAME 1
+extern char *program_invocation_name;
 
 #define fwrite_unlocked fwrite
 #define putc_unlocked putc
@@ -63,6 +65,10 @@ static inline long sysconf(int x) { switch (x) { case 8: return 0x1000; default:
 
 /* XXX arch-specific */
 #define TININESS_AFTER_ROUNDING 0
+
+# define CMPLX(x, y) __builtin_complex ((double) (x), (double) (y))
+# define CMPLXF(x, y) __builtin_complex ((float) (x), (float) (y))
+# define CMPLXL(x, y) __builtin_complex ((long double) (x), (long double) (y))
 
 #include "../misc/sys/cdefs.h"
 #include <math.h>
