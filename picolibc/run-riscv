@@ -34,53 +34,55 @@
 # OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-qemu="qemu-system-arm"
+qemu="qemu-system-riscv32"
 
 # select the program
 elf="$1"
 shift
 
-cpu=cortex-m7
-machine=unknown
-memory=
+# skip FMA on soft float
 
-#
-# Select a QEMU machine based on the CPU
-#
-case $cpu in
-
-    # mps2-an385 offers a cortex-m3 processor
-    cortex-m3)
-	machine=mps2-an385
+case "$elf" in
+    *-float-fma_*[24e]|*-double-fma_*[24ef])
+	exit 77
 	;;
-
-    # Maybe qemu upstream will take this machine
-    # which supports all Cortex-M processors
-    cortex-m*)
-	machine=virtm
-	;;
-
-    cortex-a53)
-	;;
-
-    # The 'none' machine supports all non-M
-    # processors
-    ti925t|arm946|cortex-a*|cortex-r*)
-	machine=none
-	memory="-m 1G"
-	;;
-
 esac
 
-#
-# Make sure the target machine is supported by qemu
-# 
-if $qemu -machine help | grep -q "^$machine "; then
-    :
-else
-    echo "Skipping $elf" unsupported machine
-    exit 77
+case "$elf" in
+    *rv32*_ilp32*)
+	qemu="qemu-system-riscv32"
+	cpu=rv32
+	;;
+    *rv64*_lp64*)
+	qemu="qemu-system-riscv64"
+	cpu=rv64
+	;;
+    *)
+	qemu="qemu-system-riscv64"
+	options="i m a f d c"
+	cpu=rv64
+	;;
+esac
+
+cpu="$cpu,mmu=false,pmp=false"
+
+if [ -z "$options" ]; then
+    options="$(echo "$elf" | sed 's/.*rv[36][24]\([a-z]*\)_.*$/\1/' | sed 's/\(.\)/\1 /g')"
 fi
+
+all_options="i e g m a f d c s u"
+
+for o in $all_options; do
+    if echo "$options" | grep -q "$o"; then
+	value=true
+    else
+	value=false
+    fi
+    cpu="$cpu,$o=$value"
+done
+
+# Set the target machine
+machine=virt,accel=tcg
 
 # Map stdio to a multiplexed character device so we can use it
 # for the monitor and semihosting output
@@ -91,58 +93,32 @@ chardev=stdio,mux=on,id=stdio0
 
 semi=enable=on,chardev=stdio0
 
+arg=""
 input=""
 
 case "$1" in
     --)
-	semi="$semi",arg="$2"
+	arg="$2"
 	shift
 	shift
 	;;
     -*|"")
 	;;
     *)
-	semi="$semi",arg="$1"
+	arg="$1"
 	input="$1"
 	shift
 	;;
 esac
 
-# Disable monitor
+semi="$semi",arg="$arg"
+
+# Point the monitor at the new chardev too
 
 mon=none
 
-# Disable serial
+# Disable the serial port
 
 serial=none
 
-# shellcheck disable=SC2086
-echo "$input" | "$qemu" $memory \
-      -chardev "$chardev" \
-      -semihosting-config "$semi" \
-      -monitor "$mon" \
-      -serial "$serial" \
-      -machine "$machine",accel=tcg \
-      -cpu "$cpu" \
-      -device loader,file="$elf",cpu-num=0 \
-      -nographic \
-      "$@"
-
-result=$?
-
-if [ $result != 0 ]; then
-    case $cpu in
-	# Cortex-a8 qemu has minor floating point errors
-	# when run on i686 processors
-	cortex-a8)
-	    test="$(uname -m)-$elf"
-	    case "$test" in
-		i?86-*math_test)
-		    echo "fp imprecise for $cpu on" "$(uname -m)"
-		    result=77
-		    ;;
-	    esac
-	    ;;
-    esac
-fi
-exit $result
+echo "$input" | $qemu -chardev $chardev -semihosting-config "$semi" -monitor "$mon" -serial "$serial" -machine "$machine" -cpu "$cpu" -kernel "$elf" -nographic "$@" -bios none

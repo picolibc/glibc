@@ -1,3 +1,0 @@
-#!/bin/bash
-DIR=`dirname $0`
-meson setup --cross-file "$DIR"/cross-cortex-m3.txt "$@" "$DIR"/..

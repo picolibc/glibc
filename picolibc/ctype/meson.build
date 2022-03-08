@@ -32,35 +32,35 @@
 #  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 #  OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-srcs_argp = [
-  'argp-ba.c',
-  'argp-eexst.c',
-  'argp-fmtstream.c',
-  'argp-fs-xinl.c',
-  'argp-help.c',
-  'argp-parse.c',
-  'argp-pv.c',
-  'argp-pvh.c',
-  'argp-xinl.c',
+tests = [
+  'test_ctype',
 ]
 
-foreach target : targets
+foreach test_name : tests
+  foreach target : targets
 
-  value = get_variable('target_' + target)
-  
-  _c_args = value[1] + c_args
+    value = get_variable('target_' + target)
+    
+    _c_args = value[1] + c_args
 
-  lib_name = 'argp'
+    if target == ''
+      _test_ext = ''
+    else
+      _test_ext = '_' + target
+    endif
 
-  if target != ''
-    lib_name += '_' + target
-  endif
-
-  set_variable(lib_name,
-	       static_library(lib_name,
-			      srcs_argp,
-			      pic: false,
-			      include_directories: inc,
-			      c_args: _c_args)
-	      )
+    _test_name = test_name + _test_ext
+    _lib_support = get_variable('support' + _test_ext)
+    _lib_posix = get_variable('posix' + _test_ext)
+    
+    test(_test_name,
+	 executable(_test_name,
+		    '../../ctype' / test_name + '.c',
+		    include_directories: inc,
+		    c_args: _c_args,
+		    link_args: _c_args),
+	 env: ['MESON_SOURCE_ROOT=' + meson.source_root()]
+	)
+  endforeach
 endforeach
+	       

@@ -52,6 +52,8 @@ extern char *program_invocation_name;
 #define fputs_unlocked fputs
 #define sleep(x)
 
+#define GL_UNUSED
+
 static inline long sysconf(int x) { switch (x) { case 8: return 0x1000; default: return -1; } }
 
 #define xsysconf sysconf
@@ -63,12 +65,43 @@ static inline long sysconf(int x) { switch (x) { case 8: return 0x1000; default:
 
 #define __USE_ISOC11
 
+#ifdef __riscv
+#if __riscv_flen < 64
+#define DBL_NO_EXCEPT	1
+#endif
+#endif
+
+#ifdef __arm__
+#if defined(__SOFTFP__) || (__ARM_FP & 0x8) == 0
+#define DBL_NO_EXCEPT	1
+#endif
+
+#if defined(__SOFTFP__) || (__ARM_FP & 0x4) == 0
+#define FLT_NO_EXCEPT	1
+#endif
+#endif
+
+#ifndef FLT_NO_EXCEPT
+#define FLT_NO_EXCEPT 0
+#endif
+
+#ifndef DBL_NO_EXCEPT
+#define DBL_NO_EXCEPT 0
+#endif
+
 /* XXX arch-specific */
+#if defined(__riscv)
+#define TININESS_AFTER_ROUNDING 1
+#else
 #define TININESS_AFTER_ROUNDING 0
+#endif
 
 # define CMPLX(x, y) __builtin_complex ((double) (x), (double) (y))
 # define CMPLXF(x, y) __builtin_complex ((float) (x), (float) (y))
 # define CMPLXL(x, y) __builtin_complex ((long double) (x), (long double) (y))
+
+#define __atomic_store_n(loc, val, sem) (*(loc) = (val))
+#define __atomic_add_fetch(loc, val, sem) (*(loc) += (val))
 
 #include "../misc/sys/cdefs.h"
 #include <math.h>

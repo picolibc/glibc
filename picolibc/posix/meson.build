@@ -32,16 +32,8 @@
 #  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 #  OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-srcs_argp = [
-  'argp-ba.c',
-  'argp-eexst.c',
-  'argp-fmtstream.c',
-  'argp-fs-xinl.c',
-  'argp-help.c',
-  'argp-parse.c',
-  'argp-pv.c',
-  'argp-pvh.c',
-  'argp-xinl.c',
+srcs_posix = [
+  'error.c',
 ]
 
 foreach target : targets
@@ -50,7 +42,7 @@ foreach target : targets
   
   _c_args = value[1] + c_args
 
-  lib_name = 'argp'
+  lib_name = 'posix'
 
   if target != ''
     lib_name += '_' + target
@@ -58,9 +50,9 @@ foreach target : targets
 
   set_variable(lib_name,
 	       static_library(lib_name,
-			      srcs_argp,
+			      srcs_posix,
 			      pic: false,
 			      include_directories: inc,
 			      c_args: _c_args)
-	      )
+			     )
 endforeach
