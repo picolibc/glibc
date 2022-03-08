@@ -1,0 +1,6 @@
+option('multilib', type: 'boolean', value: false,
+       description: 'Enable multilib compile')
+
+option('multilib-list', type: 'array', value: [],
+       description: 'List of multilib configurations to build for')
+
