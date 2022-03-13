@@ -44,13 +44,16 @@ cpu=unknown
 machine=unknown
 memory=
 
-# skip FMA on soft float
+# skip FMA and fenv on soft float
 
 case "$elf" in
-    *-fma)
+    *-fma|*_fenvtest)
 	exit 77
 	;;
-    *-fma_*)
+    *-nearbyint-except*_fp_*)
+	exit 77
+	;;
+    *-fma_*|*_fenvtest_*)
 	case "$elf" in
 	    *_v7_*|*_v6_*|*nofp|*_fp_*)
 		exit 77
@@ -207,7 +210,7 @@ chardev=stdio,mux=on,id=stdio0
 
 semi=enable=on,chardev=stdio0
 
-input=""
+input="/dev/null"
 
 case "$1" in
     --)
@@ -233,7 +236,7 @@ mon=none
 serial=none
 
 # shellcheck disable=SC2086
-echo "$input" | "$qemu" $memory \
+"$qemu" $memory \
       -chardev "$chardev" \
       -semihosting-config "$semi" \
       -monitor "$mon" \
@@ -242,7 +245,7 @@ echo "$input" | "$qemu" $memory \
       -cpu "$cpu" \
       -device loader,file="$elf",cpu-num=0 \
       -nographic \
-      "$@"
+      "$@" < "$input"
 
 result=$?
 
