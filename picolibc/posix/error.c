@@ -8,5 +8,6 @@ error(int status, int errnum, const char *message, ...)
 	va_start(ap, message);
 	fprintf(stderr, "status %d errnum %d ", status, errnum);
 	vfprintf(stderr, message, ap);
+	fprintf(stderr, "\n");
 	va_end(ap);
 }
