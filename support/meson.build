@@ -33,10 +33,16 @@
 #  OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 srcs_support = [
+  'blob_repeat.c',
+  'check.c',
   'support_record_failure.c',
   'support_test_compare_failure.c',
+  'support_test_compare_string.c',
   'support_test_verify_impl.c',
+  'temp_file.c',
   'write_message.c',
+  'xnewlocale.c',
+  'xuselocale.c',
 ]
 
 foreach target : targets
