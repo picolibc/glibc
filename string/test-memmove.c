@@ -340,7 +340,9 @@ test_main (void)
 
   do_random_tests ();
 
+#ifndef __PICOLIBC__
   do_test2 ();
+#endif
 
   return ret;
 }
