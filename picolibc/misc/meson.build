@@ -43,7 +43,7 @@ foreach test_name : tests
 
     value = get_variable('target_' + target)
     
-    _c_args = value[1] + c_args
+    _c_args = value[1]
 
     if target == ''
       _test_ext = ''

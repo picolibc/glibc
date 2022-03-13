@@ -53,7 +53,7 @@ foreach test_name : tests
 
     value = get_variable('target_' + target)
     
-    _c_args = value[1] + c_args + ['-Wno-alloc-size-larger-than']
+    _c_args = value[1] + ['-Wno-alloc-size-larger-than=18446744073709551615']
 
     if target == ''
       _test_ext = ''
