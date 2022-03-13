@@ -1,7 +1,10 @@
 #ifndef _HACKS_H
 #define _HACKS_H
 
+#ifndef NO_GNU_SOURCE
 #define _GNU_SOURCE 1
+#endif
+#define __STDC_WANT_IEC_60559_BFP_EXT__
 
 #if defined __GNUC__ && defined __GNUC_MINOR__
 # define __GNUC_PREREQ(maj, min) \
@@ -23,6 +26,34 @@
 #define clock_gettime(a,b)
 #define nanosleep(a,b)
 #define setrlimit(a,b)
+#define getrlimit(a,b)	((void) (a), (void) (b), 0)
+#define sigsetjmp(a,b)	setjmp(a)
+#define siglongjmp(a,b) longjmp(a,b)
+#define sigjmp_buf jmp_buf
+
+extern void *check_malloc(unsigned long size);
+
+#define mmap(base, size, prot, parm, a, b) check_malloc(size)
+#define MAP_FAILED NULL
+#define MAP_SHARED 0
+#define MAP_PRIVATE 0
+#define MAP_FIXED 0
+#define MAP_FILE 0
+#define MAP_ANONYMOUS 0
+#define PROT_READ 1
+#define PROT_WRITE 2
+
+#define mprotect(base, size, prot) ((void) (base), (void) (size), 0)
+#define posix_fallocate(a, b, c) 0
+#define munmap(base, size) (free(base), (void) (size), 0)
+#define __BIG_ENDIAN BIG_ENDIAN
+#define __LITTLE_ENDIAN LITTLE_ENDIAN
+#define __BYTE_ORDER BYTE_ORDER
+#define MERGE(w0, sh_1, w1, sh_2) (((w0) >> (sh_1)) | ((w1) << (sh_2)))
+
+#define RLIMIT_STACK	0
+
+#define IS_IN(x)	0
 
 static inline int chdir(const char *a) { return 0; }
 
@@ -52,12 +83,20 @@ extern char *program_invocation_name;
 #define fputs_unlocked fputs
 #define sleep(x)
 
+#define mtrace()
+#define remove(x) unlink(x)
+
 #define GL_UNUSED
 
 static inline long sysconf(int x) { switch (x) { case 8: return 0x1000; default: return -1; } }
 
 #define xsysconf sysconf
 #define xmalloc malloc
+#define xcalloc calloc
+#define xsetlocale setlocale
+#define _setjmp setjmp
+#define copysignf32x copysignf
+#define strfromf32x strfromf
 
 #define powerof2(x)	(((x) & ((x)-1)) == 0)
 
