@@ -1,0 +1,3 @@
+#!/bin/bash
+DIR=`dirname $0`
+$DIR/do-arm-configure -Dextra-c-args="['-mcpu=cortex-m7', '-mfloat-abi=softfp']" -Dmultilib=false
