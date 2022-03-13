@@ -69,14 +69,18 @@ NAME (void)								\
 
 TEST_FUNC (float_test, float, f)
 TEST_FUNC (double_test, double, )
+#ifndef __PICOLIBC__
 TEST_FUNC (ldouble_test, long double, l)
+#endif
 
 static int
 do_test (void)
 {
   int result = float_test ();
   result |= double_test ();
+#ifndef __PICOLIBC__
   result |= ldouble_test ();
+#endif
   if (!any_supported)
     return 77;
   return result;
