@@ -310,6 +310,9 @@ test_locale (const char *locale, int extra_tests)
   if (setlocale (LC_CTYPE, locale) == NULL)
     {
       error (0, 0, "cannot set locale \"%s\"", locale);
+#ifdef __PICOLIBC__
+      return;
+#endif
       ret = 1;
     }
 
