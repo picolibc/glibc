@@ -440,6 +440,7 @@ test_main (void)
 
   do_random_tests ();
 
+#ifndef __PICOLIBC__
   do_test2 (0);
   do_test2 (33);
   do_test2 (0x200000 - 1);
@@ -451,6 +452,8 @@ test_main (void)
   do_test2 (0x4000000 - 1);
   do_test2 (0x4000000);
   do_test2 (0x4000000 + 1);
+#endif
+
 
   /* Copy 16KB data.  */
   do_test3 (16384, 3);
@@ -472,7 +475,6 @@ test_main (void)
       do_test4 (i, 0, 127);
       do_test4 (i, 0, 129);
     }
-
 
   return ret;
 }
