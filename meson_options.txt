@@ -4,3 +4,11 @@ option('multilib', type: 'boolean', value: false,
 option('multilib-list', type: 'array', value: [],
        description: 'List of multilib configurations to build for')
 
+option('picolibc-buildtype', type: 'string',
+       description: 'Picolibc buildtype subdir value (default: none)')
+
+option('extra-c-args', type: 'array',
+       description: 'Extra flags to pass to compiler and linker')
+
+option('target-name', type: 'string',
+       description: 'Name of non-multilib target')

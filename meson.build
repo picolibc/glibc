@@ -44,21 +44,29 @@ project('glibc-test', 'c',
 cc = meson.get_compiler('c')
 fs = import('fs')
 
+cpu_family = host_machine.cpu_family()
+cpu = host_machine.cpu()
+
 enable_multilib = get_option('multilib')
 multilib_list = get_option('multilib-list')
 
 ldbl_eq_dbl = cc.sizeof('double') == cc.sizeof('long double')
 
-inc_dirs = ['sysdeps/wordsize-32', 'support', '.', 'picolibc', 'sysdeps/generic']
+inc_dirs = ['sysdeps/wordsize-32', 'support', '.', 'picolibc', 'sysdeps' / cpu_family, 'sysdeps/generic']
 
 c_args = ['-include', '@0@/@1@'.format(meson.current_source_dir(), 'picolibc/hacks.h')]
 
+c_args += get_option('extra-c-args')
+
 c_args += cc.get_supported_arguments(['-frounding-math', '-fsignaling-nans', '-fno-builtin'])
 
-inc = include_directories(inc_dirs)
+picolibc_buildtype = get_option('picolibc-buildtype')
 
-cpu_family = host_machine.cpu_family()
-cpu = host_machine.cpu()
+if picolibc_buildtype != ''
+  c_args += '--picolibc-buildtype=' + picolibc_buildtype
+endif
+
+inc = include_directories(inc_dirs)
 
 targets = []
 
@@ -115,15 +123,33 @@ if enable_multilib
     endforeach
   endif
 else
-  targets = ['']
-  target_ = ['.', c_args]
+  target_name = get_option('target-name')
+  if target_name == ''
+    multi_dir = run_command(cc, c_args + '--print-multi-directory', check : false)
+    target_name = multi_dir.stdout().strip().split('\n')[0].underscorify()
+    message('Target name computed as "' + target_name + '"')
+  endif
+  targets = [target_name]
+  set_variable('target_' + target_name,
+	       ['.', c_args])
 endif
 
+# support libraries
 subdir('picolibc/posix')
 subdir('support')
 subdir('argp')
+
+# directories with tests
+subdir('benchtests')
+subdir('gnulib')
 subdir('malloc')
+subdir('picolibc/ctype')
+subdir('picolibc/iconv')
+subdir('picolibc/libio')
 subdir('picolibc/math')
 subdir('picolibc/misc')
-subdir('picolibc/ctype')
+subdir('picolibc/setjmp')
+subdir('picolibc/stdlib')
+subdir('picolibc/string')
+subdir('picolibc/wcsmbs')
 subdir('stdio-common')
