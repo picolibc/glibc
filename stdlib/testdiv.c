@@ -19,11 +19,14 @@
 #include <stdio.h>
 
 int
-main (void)
+main (int argc, char **argv)
 {
+  FILE *f = stdin;
   int err = 0;
   int i, j;
-  while (scanf ("%d %d\n", &i, &j) == 2)
+  if (argc > 1)
+    f = fopen(argv[1], "r");
+  while (fscanf (f, "%d %d\n", &i, &j) == 2)
     {
       div_t d = div (i, j);
       printf ("%d / %d = %d + %d/%d", i, j, d.quot, d.rem, j);
