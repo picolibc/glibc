@@ -130,6 +130,7 @@ do_test (void)
 
   const char input[] = "3752432815e-39";
 
+#ifndef __PICOLIBC__
   float f1 = strtold (input, NULL);
   float f2;
   float f3 = strtof (input, NULL);
@@ -175,6 +176,7 @@ do_test (void)
       }
 
   status |= long_dbl ();
+#endif
 
   return status ? EXIT_FAILURE : EXIT_SUCCESS;
 }

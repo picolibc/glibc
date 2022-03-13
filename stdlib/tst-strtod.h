@@ -79,6 +79,19 @@
 /* Provide an extra parameter expansion for mfunc.  */
 #define MMFUNC(mmfunc, ...) mmfunc (__VA_ARGS__)
 
+#ifdef __PICOLIBC__
+#define GEN_TEST_STRTOD_FOREACH(mfunc, ...)				      \
+  mfunc (  f,       float, strfromf, f, f, ##__VA_ARGS__)		      \
+  mfunc (  d,      double, strfromd,  ,  , ##__VA_ARGS__)
+#define STRTOD_TEST_FOREACH(mfunc, ...)				\
+({								\
+   int result = 0;						\
+   result |= mfunc ## f  (__VA_ARGS__);				\
+   result |= mfunc ## d  (__VA_ARGS__);				\
+   result;							\
+})
+#else
+
 /* Splat n variants of the same test for the various strtod functions.  */
 #define GEN_TEST_STRTOD_FOREACH(mfunc, ...)				      \
   mfunc (  f,       float, strfromf, f, f, ##__VA_ARGS__)		      \
@@ -123,6 +136,8 @@
    IF_FLOAT128X (result |= mfunc ## f128x (__VA_ARGS__));	\
    result;							\
 })
+
+#endif
 
 
 #endif
