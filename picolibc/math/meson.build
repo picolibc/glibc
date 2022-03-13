@@ -40,7 +40,7 @@ libm_test_ulps_h = custom_target('libm-test-ulps.h',
 				 output: ['libm-test-ulps.h'],
 				 command: [gen_libm_test, '-u', '@INPUT@', '-H', '@OUTPUT@'])
 
-tests = [
+libm_tests = [
   'acos',
   'acosh',
   'asin',
@@ -111,23 +111,131 @@ tests = [
   'y1',
 ]
 
-tests_ldbl = [
+libm_tests_ldbl = [
   'nexttoward',
   ]
 
 if ldbl_eq_dbl
-  tests += tests_ldbl
+  libm_tests += libm_tests_ldbl
 endif
 
 # picolibc has terrible implementations of these codes
 # the poor accuracy also leads to missing boundary
 # conditions for over/underflow
-tests_broken = [
+libm_tests_broken = [
   'jn',
   'yn',
   'lgamma',
   'tgamma',
   ]
+
+fenv_tests = [
+  'test-femode',
+  'test-femode-traps',
+  'test-fenv-clear',
+  'test-fenv-preserve',
+  'test-fenv-return',
+  'test-fesetexcept',
+  'test-fesetexcept-traps',
+  'test-fexcept',
+  'test-fexcept-traps',
+  ]
+
+bare_tests = [
+  'test-flt-eval-method',
+  'test-fp-ilogb-constants',
+  'test-fpucw',
+  'test-fpucw-ieee',
+  'test-fpucw-ieee-static',
+  'test-fpucw-static',
+  'test-iseqsig-excess-precision',
+  'test-iszero-excess-precision',
+  'test-nan-overflow',
+  'test-narrow-macros',
+  'test-nearbyint-except-2',
+  'test-nearbyint-except',
+  'test-signgam-uchar',
+  'test-signgam-uchar-init',
+  'test-signgam-uchar-static',
+  'test-signgam-uint',
+  'test-signgam-uint-init',
+  'test-signgam-uint-static',
+  'test-signgam-ullong',
+  'test-signgam-ullong-init',
+  'test-signgam-ullong-static',
+  'test-snan',
+  ] + fenv_tests
+
+broken_bare_tests = [
+  'test-nan-const', # expects nanf to do something with the payload
+  'test-nan-payload', # expects strtof to also do something with payload
+  ]
+  
+extra_c_flags = {
+		  'test-signgam-uchar' : ['-std=c99', '-DNO_GNU_SOURCE'],
+		  'test-signgam-uchar-init' : ['-std=c99', '-DNO_GNU_SOURCE'],
+		  'test-signgam-uchar-static' : ['-std=c99', '-DNO_GNU_SOURCE'],
+		  'test-signgam-uint' : ['-std=c99', '-DNO_GNU_SOURCE'],
+		  'test-signgam-uint-init' : ['-std=c99', '-DNO_GNU_SOURCE'],
+		  'test-signgam-uint-static' : ['-std=c99', '-DNO_GNU_SOURCE'],
+		  'test-signgam-ullong' : ['-std=c99', '-DNO_GNU_SOURCE'],
+		  'test-signgam-ullong-init' : ['-std=c99', '-DNO_GNU_SOURCE'],
+		  'test-signgam-ullong-static' : ['-std=c99', '-DNO_GNU_SOURCE'],
+		}
+
+
+foreach test_name : bare_tests
+
+  test_src = '../../math' / test_name + '.c'
+
+  foreach target : targets
+
+    value = get_variable('target_' + target)
+    
+    _c_args = value[1]
+
+    if target == ''
+      _test_ext = ''
+    else
+      _test_ext = '_' + target
+    endif
+
+    _type = ''
+
+    if fenv_tests.contains(test_name)
+      _type = '_fenvtest'
+    endif
+
+    _test_name = test_name + _type + _test_ext
+
+    _lib_argp = get_variable('argp' + _test_ext)
+    
+    _test_c_args = []
+
+    if test_name in extra_c_flags
+      _test_c_args = extra_c_flags[test_name]
+    endif
+
+    support_name = 'support_test_main' + test_name + _test_ext
+
+    support_test_main_lib = static_library(support_name,
+					   '../support_test_main.c',
+					   include_directories: inc,
+					   c_args: _c_args)
+
+    support_test_main_o = support_test_main_lib.extract_all_objects(recursive: true)
+
+    test(_test_name,
+	 executable(_test_name,
+		    [test_src],
+		    objects: support_test_main_o,
+		    include_directories: inc,
+		    c_args: _c_args + _test_c_args,
+		    link_args: _c_args),
+	 env: ['MESON_SOURCE_ROOT=' + meson.source_root()]
+	)
+  endforeach
+endforeach
 
 types = ['float', 'double']
 
@@ -142,18 +250,18 @@ foreach type : types
 			    output: [support_src],
 			    command: [make_math_test, '@OUTPUT@', '@INPUT@'])
 
-  foreach test : tests
+  foreach libm_test : libm_tests
 
-    libm_test_head = 'libm-test-' + test
+    libm_test_head = 'libm-test-' + libm_test
 
     libm_test_src = libm_test_head + '.c'
 
     libm_test_inc = '../../math' / libm_test_head + '.inc'
 
-    gen_test_name = 'gen_test_' + test
+    gen_test_name = 'gen_test_' + libm_test
 
     if type == types[0]
-      auto_file = '../../math' / 'auto-libm-test-out-' + test
+      auto_file = '../../math' / 'auto-libm-test-out-' + libm_test
       if fs.is_file(auto_file)
 	gen_test = custom_target(libm_test_src,
 				 input: [libm_test_inc, auto_file],
@@ -173,7 +281,7 @@ foreach type : types
 
     gen_test = get_variable(gen_test_name)
 
-    test_name = 'test-' + type + '-' + test
+    test_name = 'test-' + type + '-' + libm_test
 
     test_src = test_name + '.c'
 
@@ -187,7 +295,7 @@ foreach type : types
 
       value = get_variable('target_' + target)
       
-      _c_args = value[1] + c_args
+      _c_args = value[1]
 
       if target == ''
 	_test_ext = ''
@@ -209,4 +317,5 @@ foreach type : types
 	  )
     endforeach
   endforeach
+
 endforeach
