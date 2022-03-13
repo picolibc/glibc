@@ -271,6 +271,60 @@ adjust_exit_status (int status)
   return status;
 }
 
+void *
+check_malloc(unsigned long size)
+{
+	void *ret = malloc((size_t) size);
+	if (!ret) {
+		printf("out of memory asking for %lu\n", size);
+		exit(77);
+	}
+	return ret;
+}
+
+char *
+mkdtemp(char *x)
+{
+	return "/tmp";
+}
+
+char *
+xasprintf(const char *format, ...)
+{
+	va_list ap;
+	va_start(ap, format);
+	char *result;
+	if (vasprintf (&result, format, ap) < 0) {
+		printf("memory exhausted");
+		exit(77);
+	}
+	va_end (ap);
+	return result;
+}
+
+char *
+support_quote_blob (const void *blob, size_t length)
+{
+	return (char *) blob;
+}
+
+int
+xmunmap(void *addr, size_t length)
+{
+	free(addr);
+	return 0;
+}
+
+int xclose(int fd)
+{
+	return close(fd);
+}
+
+int xunlink(const char *path)
+{
+	return unlink(path);
+}
+
 int
 support_test_main (int argc, char **argv, const struct test_config *config)
 {
