@@ -194,6 +194,14 @@ struct test {
 #define STR(x) STRX (x)
 #define FNPFXS STR (FNPFX)
 
+#ifdef __PICOLIBC__
+#undef FE_INEXACT
+#undef FE_DOWNWARD
+#undef FE_UPWARD
+#undef FE_TOWARDZERO
+#undef FE_OVERFLOW
+#endif
+
 #ifndef FE_INEXACT
 # define FE_INEXACT 0
 #endif
