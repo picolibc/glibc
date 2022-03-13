@@ -91,17 +91,18 @@ foreach test_name : tests
     _lib_support = get_variable('support' + _test_ext)
     _lib_posix = get_variable('posix' + _test_ext)
     
-    benchmark(_test_name,
-	      executable(_test_name,
-			 [test_name + '.c', '../picolibc/support_test_main.c', 'json-lib.c'],
-			 include_directories: inc,
-			 c_args: _c_args,
-			 link_args: _c_args,
-			 link_with: [_lib_support, _lib_posix]
-			),
-	      env: ['MESON_SOURCE_ROOT=' + meson.source_root()],
-	      workdir: meson.current_source_dir(),
-	      timeout: 6000
-	     )
+    test(_test_name,
+	 executable(_test_name,
+		    [test_name + '.c', '../picolibc/support_test_main.c', 'json-lib.c'],
+		    include_directories: inc,
+		    c_args: _c_args,
+		    link_args: _c_args,
+		    link_with: [_lib_support, _lib_posix]
+		   ),
+	 env: ['MESON_SOURCE_ROOT=' + meson.source_root()],
+	 workdir: meson.current_source_dir(),
+	 timeout: 6000,
+	 suite: 'benchmark'
+	)
   endforeach
 endforeach
