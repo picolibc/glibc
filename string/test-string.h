@@ -63,6 +63,7 @@ extern impl_t __start_impls[], __stop_impls[];
 #include <errno.h>
 #include <time.h>
 #include <ifunc-impl-list.h>
+#include <limits.h>
 #define GL(x) _##x
 #define GLRO(x) _##x
 
