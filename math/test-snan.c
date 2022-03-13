@@ -123,7 +123,9 @@ NAME (void)								      \
 
 TEST_FUNC (float_test, float, f)
 TEST_FUNC (double_test, double, )
+#ifndef __PICOLIBC__
 TEST_FUNC (ldouble_test, long double, l)
+#endif
 
 static int
 do_test (void)
@@ -132,7 +134,9 @@ do_test (void)
 
   float_test ();
   double_test ();
+#ifndef __PICOLIBC__
   ldouble_test ();
+#endif
 
   return errors != 0;
 }

@@ -63,6 +63,8 @@ main (void)
   int result = 0;
   RUN_TESTS (lgammaf, float);
   RUN_TESTS (lgamma, double);
+#ifndef __PICOLIBC__
   RUN_TESTS (lgammal, long double);
+#endif
   return result;
 }

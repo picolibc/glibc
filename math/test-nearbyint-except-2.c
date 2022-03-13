@@ -46,7 +46,9 @@ NAME (void)								\
 
 TEST_FUNC (float_test, float, f)
 TEST_FUNC (double_test, double, )
+#ifndef __PICOLIBC__
 TEST_FUNC (ldouble_test, long double, l)
+#endif
 
 static int
 do_test (void)
@@ -59,8 +61,10 @@ do_test (void)
   int result = float_test ();
   feenableexcept (FE_INEXACT);
   result |= double_test ();
+#ifndef __PICOLIBC__
   feenableexcept (FE_INEXACT);
   result |= ldouble_test ();
+#endif
   return result;
 }
 
