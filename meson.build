@@ -54,7 +54,7 @@ ldbl_eq_dbl = cc.sizeof('double') == cc.sizeof('long double')
 
 inc_dirs = ['sysdeps/wordsize-32', 'support', '.', 'picolibc', 'sysdeps' / cpu_family, 'sysdeps/generic']
 
-c_args = ['-include', '@0@/@1@'.format(meson.current_source_dir(), 'picolibc/hacks.h')]
+c_args = ['-include', '@0@/@1@'.format(meson.current_source_dir(), 'picolibc/hacks.h'), '-g']
 
 c_args += get_option('extra-c-args')
 
