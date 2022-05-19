@@ -33,9 +33,25 @@
 #  OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 tests = [
+  'test-fseek',
+  'test_rdwr',
+  'tst-fdopen',
+  'tst-fgets',
+  'tst-fphex',
+  'tst-fseek',
+  'tst-fwrite',
+  'tst-gets',
   'tst-printf',
+  'tst-printf-fp-free',
+  'tst-printf-fp-leak',
+  'tst-put-error',
+  'tst-rndseek',
+  'tstscanf',
+  'tst-scanf-round',
+  'tst-setvbuf1',
   'tst-sprintf',
   'tst-sscanf',
+  'tst-ungetc',
   ]
 
 tests_ldbl = [
@@ -52,11 +68,19 @@ tests_slow = [
   ]
 
 foreach test_name : tests
+
+  args = []
+
+  test_input = test_name + '.input'
+  if fs.is_file(test_input)
+    args += [meson.current_source_dir() / test_input]
+  endif
+
   foreach target : targets
 
     value = get_variable('target_' + target)
     
-    _c_args = value[1]
+    _c_args = value[1] + ['-DOBJPFX="' + meson.current_source_dir() + '"']
 
     if target == ''
       _test_ext = ''
@@ -76,6 +100,7 @@ foreach test_name : tests
 		    link_args: _c_args,
 		    link_with: [_lib_support, _lib_posix]
 		   ),
+	 args: args,
 	 env: ['MESON_SOURCE_ROOT=' + meson.source_root()]
 	)
   endforeach
