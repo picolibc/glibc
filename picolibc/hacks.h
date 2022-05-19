@@ -51,6 +51,8 @@ extern void *check_malloc(unsigned long size);
 #define __BYTE_ORDER BYTE_ORDER
 #define MERGE(w0, sh_1, w1, sh_2) (((w0) >> (sh_1)) | ((w1) << (sh_2)))
 
+#define TEMP_FAILURE_RETRY(x) (x)
+
 #define RLIMIT_STACK	0
 
 #define IS_IN(x)	0
@@ -81,7 +83,12 @@ extern char *program_invocation_name;
 #define fwrite_unlocked fwrite
 #define putc_unlocked putc
 #define fputs_unlocked fputs
-#define sleep(x)
+#define fgetc_unlocked fgetc
+#define fgets_unlocked fgets
+#define fopen64 fopen
+
+#define FILENAME_MAX	512
+#define P_tmpdir "/tmp"
 
 #define mtrace()
 #define remove(x) unlink(x)
