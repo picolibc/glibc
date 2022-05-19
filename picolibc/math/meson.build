@@ -305,6 +305,7 @@ foreach type : types
 
       _test_name = test_name + _test_ext
       _lib_argp = get_variable('argp' + _test_ext)
+      _lib_posix = get_variable('posix' + _test_ext)
       
       test(_test_name,
 	   executable(_test_name,
@@ -312,7 +313,7 @@ foreach type : types
 		      include_directories: inc,
 		      c_args: _c_args,
 		      link_args: _c_args,
-		      link_with: [_lib_argp]),
+		      link_with: [_lib_argp, _lib_posix]),
 	   env: ['MESON_SOURCE_ROOT=' + meson.source_root()],
 	  )
     endforeach
