@@ -60,6 +60,10 @@ main (int argc, char **argv)
       result = 1;
     }
 
+#ifdef __PICOLIBC__
+  if (argc == 2)
+    in = fopen(argv[1], "r");
+#else
   if (argc == 2 && !strcmp (argv[1], "-opipe"))
     {
       out = popen ("/bin/cat", "w");
@@ -79,6 +83,7 @@ main (int argc, char **argv)
 	  result = 1;
 	}
     }
+#endif
 
   {
     char name[50];
@@ -194,8 +199,10 @@ main (int argc, char **argv)
       result = 1;
     }
 
+#ifndef __PICOLIBC__
   if (out != stdout)
     pclose (out);
+#endif
 
   fputs ("Test 4:\n", out);
   {
@@ -348,14 +355,14 @@ main (int argc, char **argv)
     int res;
 
     res = sscanf ("-InF", "%f", &value);
-    if (res != 1 || isinf (value) != -1)
+    if (res != 1 || !isinf (value))
       {
 	fputs ("test failed!\n", stdout);
 	result = 1;
       }
 
     res = sscanf ("+InfiNiTY", "%f", &value);
-    if (res != 1 || isinf (value) != 1)
+    if (res != 1 || !isinf (value))
       {
 	fputs ("test failed!\n", stdout);
 	result = 1;

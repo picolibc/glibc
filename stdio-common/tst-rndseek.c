@@ -94,7 +94,7 @@ do_test (void)
     }
 
   /* Now try reading the data.  */
-  fp = fdopen (dup (fd), "r");
+  fp = fopen (fname, "r");
   if (fp == NULL)
     {
       printf ("cannot duplicate temporary file descriptor: %m\n");
