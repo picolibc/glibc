@@ -34,6 +34,7 @@
 #
 srcs_posix = [
   'error.c',
+  'sleep.c',
 ]
 
 foreach target : targets
