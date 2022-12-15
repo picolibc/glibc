@@ -115,11 +115,15 @@ static inline long sysconf(int x) { switch (x) { case 8: return 0x1000; default:
 #if __riscv_flen < 64
 #define DBL_NO_EXCEPT	1
 #endif
+#if __riscv_flen < 128
+#define LDBL_NO_EXCEPT	1
+#endif
 #endif
 
 #ifdef __arm__
 #if defined(__SOFTFP__) || (__ARM_FP & 0x8) == 0
 #define DBL_NO_EXCEPT	1
+#define LDBL_NO_EXCEPT	1
 #endif
 
 #if defined(__SOFTFP__) || (__ARM_FP & 0x4) == 0
@@ -133,6 +137,10 @@ static inline long sysconf(int x) { switch (x) { case 8: return 0x1000; default:
 
 #ifndef DBL_NO_EXCEPT
 #define DBL_NO_EXCEPT 0
+#endif
+
+#ifndef DBL_NO_EXCEPT
+#define DBL_NO_EXCEPT 1
 #endif
 
 /* XXX arch-specific */

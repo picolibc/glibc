@@ -51,6 +51,7 @@ tests = [
   'tst-setvbuf1',
   'tst-sprintf',
   'tst-sscanf',
+  'tst-tmpnam',
   'tst-ungetc',
   ]
 
