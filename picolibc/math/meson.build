@@ -78,8 +78,6 @@ libm_tests = [
   'isunordered',
   'hypot',
   'ilogb',
-  'j0',
-  'j1',
   'log',
   'log10',
   'log1p',
@@ -107,17 +105,20 @@ libm_tests = [
   'tan',
   'tanh',
   'trunc',
+]
+
+libm_tests_float_double = [
+  'j0',
+  'j1',
   'y0',
   'y1',
-]
+  ]
 
 libm_tests_ldbl = [
   'nexttoward',
   ]
 
-if ldbl_eq_dbl
-  libm_tests += libm_tests_ldbl
-endif
+libm_tests += libm_tests_ldbl
 
 # picolibc has terrible implementations of these codes
 # the poor accuracy also leads to missing boundary
@@ -237,7 +238,7 @@ foreach test_name : bare_tests
   endforeach
 endforeach
 
-types = ['float', 'double']
+types = ['float', 'double', 'ldouble']
 
 foreach type : types
 
@@ -250,7 +251,13 @@ foreach type : types
 			    output: [support_src],
 			    command: [make_math_test, '@OUTPUT@', '@INPUT@'])
 
-  foreach libm_test : libm_tests
+  tests = libm_tests
+
+  if type != 'ldouble'
+    tests += libm_tests_float_double
+  endif
+
+  foreach libm_test : tests
 
     libm_test_head = 'libm-test-' + libm_test
 
