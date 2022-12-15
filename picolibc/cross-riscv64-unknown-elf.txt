@@ -13,7 +13,7 @@ cpu = 'riscv'
 endian = 'little'
 
 [properties]
-c_args = [ '--specs=picolibc.specs', '-nostdlib', '-msave-restore', '-fno-common' ]
+c_args = [ '--specs=picolibc.specs', '-nostdlib', '-msave-restore', '-fno-common', '-mcmodel=medany' ]
 # default multilib is 64 bit
 c_args_ = [ '-mcmodel=medany' ]
 c_link_args = [ '--specs=picolibc.specs', '-fno-common', '-L/build/glibc/picolibc', '-Ttest-riscv.ld', '--oslib=semihost', '--crt0=semihost']
