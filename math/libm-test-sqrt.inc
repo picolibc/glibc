@@ -40,7 +40,7 @@ static const struct test_f_f_data sqrt_test_data[] =
 static void
 sqrt_test (void)
 {
-  ALL_RM_TEST (sqrt, 1, sqrt_test_data, RUN_TEST_LOOP_f_f, END);
+  ALL_RM_TEST (sqrt, 0, sqrt_test_data, RUN_TEST_LOOP_f_f, END);
 }
 
 static void

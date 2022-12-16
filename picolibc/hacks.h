@@ -128,6 +128,8 @@ static inline long sysconf(int x) { switch (x) { case 8: return 0x1000; default:
 
 #if defined(__SOFTFP__) || (__ARM_FP & 0x4) == 0
 #define FLT_NO_EXCEPT	1
+#define DBL_NO_EXCEPT	1
+#define LDBL_NO_EXCEPT	1
 #endif
 #endif
 
@@ -139,8 +141,8 @@ static inline long sysconf(int x) { switch (x) { case 8: return 0x1000; default:
 #define DBL_NO_EXCEPT 0
 #endif
 
-#ifndef DBL_NO_EXCEPT
-#define DBL_NO_EXCEPT 1
+#ifndef LDBL_NO_EXCEPT
+#define LDBL_NO_EXCEPT 0
 #endif
 
 /* XXX arch-specific */
