@@ -345,7 +345,7 @@ static const struct test_fff_f_data fma_test_data[] =
 static void
 fma_test (void)
 {
-  ALL_RM_TEST (fma, 1, fma_test_data, RUN_TEST_LOOP_fff_f, END);
+  ALL_RM_TEST (fma, 0, fma_test_data, RUN_TEST_LOOP_fff_f, END);
 }
 
 static void

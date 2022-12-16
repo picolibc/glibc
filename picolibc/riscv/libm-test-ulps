@@ -224,3 +224,5 @@ Function: "sqrt":
 ldouble: 1
 Function: "cbrt":
 ldouble: 1
+Function: "fma":
+ldouble: 1
