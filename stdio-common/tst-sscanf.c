@@ -25,6 +25,8 @@
 # define CHAR char
 # define L(str) str
 # define SSCANF sscanf
+# define PRINTF printf
+# define SFMT "%s"
 #endif
 
 const CHAR *str_double[] =
@@ -199,7 +201,7 @@ do_test (void)
       if ((ret = SSCANF (int_tests[i].str, int_tests[i].fmt,
 			 &dummy)) != int_tests[i].retval)
 	{
-	  printf ("int_tests[%d] returned %d != %d (str '%s' fmt '%s'\n",
+	  PRINTF (L("int_tests[%d] returned %d != %d (str '" SFMT "' fmt '" SFMT "'\n"),
 		  i, ret, int_tests[i].retval, int_tests[i].str, int_tests[i].fmt);
 	  result = 1;
 	}
