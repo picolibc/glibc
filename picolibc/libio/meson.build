@@ -34,17 +34,17 @@
 #
 tests = [
   'tst-eof',
+  'tst-fseek',
   ]
 
 tests_broken = [
   'tst-ext',# requires setvbuf
   'tst-ext2', # tests __freading and __fwriting
   'tst-fgetc-after-eof',# requires ptys
-  'tst-fseek',# requires fputws
   'tst-fwrite-error', # relies on setvbuf clearing buffering
+  'tst-sscanf', # relies on wchar support in scanf/printf too
   'tst-sprintf-chk-ub',# depends on glibc UB
   'tst-sprintf-ub', # depends on glibc UB
-  'tst-sscanf', # depends on wchar support
 ]
 
 foreach test_name : tests
