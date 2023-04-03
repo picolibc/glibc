@@ -16,26 +16,28 @@
    <https://www.gnu.org/licenses/>.  */
 
 #include <stdio.h>
-
-#define TESTFILE OBJPFX "test.dat"
+#include <stdlib.h>
 
 static int
 do_test (void)
 {
   FILE *fp;
   int i, j;
+  int fd;
+  char template[] = "tfXXXXXX";
 
   puts ("\nFile seek test");
-  fp = fopen (TESTFILE, "w");
+  fd = mkstemp(template);
+  fp = fdopen (fd, "w");
   if (fp == NULL)
     {
-      perror (TESTFILE);
+      perror (template);
       return 1;
     }
 
   for (i = 0; i < 256; i++)
     putc (i, fp);
-  if (freopen (TESTFILE, "r", fp) != fp)
+  if (freopen (template, "r", fp) != fp)
     {
       perror ("Cannot open file for reading");
       return 1;
@@ -77,7 +79,7 @@ do_test (void)
 	}
     }
   fclose (fp);
-  remove (TESTFILE);
+  remove (template);
 
   puts ((i > 255) ? "Test succeeded." : "Test FAILED!");
   return (i > 255) ? 0 : 1;

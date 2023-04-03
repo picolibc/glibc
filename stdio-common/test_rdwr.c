@@ -28,11 +28,15 @@ main (int argc, char **argv)
   static const char replace[] = "Hewwo, world.\n";
   static const size_t replace_from = 2, replace_to = 4;
   char filename[FILENAME_MAX];
-  char *name = strrchr (*argv, '/');
+  char *name;
   char buf[BUFSIZ];
   FILE *f;
   int lose = 0;
 
+  if (argv[1])
+	  argv++;
+
+  name = strrchr (*argv, '/');
   if (name != NULL)
     ++name;
   else
