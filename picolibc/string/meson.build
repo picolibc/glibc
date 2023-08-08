@@ -100,8 +100,9 @@ foreach test_name : tests
     value = get_variable('target_' + target)
     
     _c_args = value[1]
+    _link_args = value[2]
 
-    if target == ''
+    if target == '' or target == '_'
       _test_ext = ''
     else
       _test_ext = '_' + target
@@ -120,12 +121,12 @@ foreach test_name : tests
 	 executable(_test_name,
 		    ['../../string' / test_name + '.c', '../../picolibc/support_test_main.c'],
 		    include_directories: inc,
-		    c_args: _c_args,
-		    link_args: _c_args,
+		    c_args: _c_args, link_args: _link_args,
 		    link_with: [_lib_support, _lib_posix]
 		   ),
 	 args: _args,
 	 timeout: 6000,
+	 suite: 'string',
 	 env: ['MESON_SOURCE_ROOT=' + meson.source_root()]
 	)
   endforeach

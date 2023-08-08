@@ -42,18 +42,20 @@ foreach target : targets
   value = get_variable('target_' + target)
   
   _c_args = value[1]
+  _link_args = value[1]
 
-  lib_name = 'posix'
+  _lib_name = 'posix'
 
-  if target != ''
-    lib_name += '_' + target
+  if target != '' and target != '_'
+    _lib_name += '_' + target
   endif
 
-  set_variable(lib_name,
-	       static_library(lib_name,
+  set_variable(_lib_name,
+	       static_library(_lib_name,
 			      srcs_posix,
 			      pic: false,
 			      include_directories: inc,
-			      c_args: _c_args)
+			      c_args: _c_args,
+			      link_args: _link_args)
 			     )
 endforeach
