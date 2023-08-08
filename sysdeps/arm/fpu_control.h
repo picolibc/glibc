@@ -43,7 +43,11 @@ extern fpu_control_t __fpu_control;
 
 /* Some bits in the FPSCR are not yet defined.  They must be preserved when
    modifying the contents.  */
+#ifdef __ARM_ARCH_8M_MAIN__
+#define _FPU_RESERVED	0x000F6060
+#else
 #define _FPU_RESERVED	0x00086060
+#endif
 #define _FPU_DEFAULT    0x00000000
 
 /* Default + exceptions enabled.  */
