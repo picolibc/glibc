@@ -109,7 +109,11 @@ test_main (void)
   json_array_end (&json_ctx);
 
   json_array_begin (&json_ctx, "results");
+#ifdef __PICOLIBC__
+  for (i = 0; i < 2; ++i)
+#else
   for (i = 0; i < 18; ++i)
+#endif
     {
       do_test (&json_ctx, 0, 0, 1 << i);
       do_test (&json_ctx, i, 0, 1 << i);
@@ -117,6 +121,7 @@ test_main (void)
       do_test (&json_ctx, i, i, 1 << i);
     }
 
+  printf("line %d\n", __LINE__);
   for (i = 0; i < 32; ++i)
     {
       do_test (&json_ctx, 0, 0, i);
@@ -125,6 +130,7 @@ test_main (void)
       do_test (&json_ctx, i, i, i);
     }
 
+  printf("line %d\n", __LINE__);
   for (i = 3; i < 32; ++i)
     {
       if ((i & (i - 1)) == 0)
@@ -135,6 +141,7 @@ test_main (void)
       do_test (&json_ctx, i, i, 16 * i);
     }
 
+  printf("line %d\n", __LINE__);
   for (i = 32; i < 64; ++i)
     {
       do_test (&json_ctx, 0, 0, 32 * i);
@@ -143,6 +150,7 @@ test_main (void)
       do_test (&json_ctx, i, i, 32 * i);
     }
 
+  printf("line %d\n", __LINE__);
   do_test (&json_ctx, 0, 0, getpagesize ());
 
   json_array_end (&json_ctx);
@@ -150,6 +158,7 @@ test_main (void)
   json_attr_object_end (&json_ctx);
   json_document_end (&json_ctx);
 
+  printf("line %d\n", __LINE__);
   return ret;
 }
 
