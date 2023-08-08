@@ -219,9 +219,10 @@ case "$1" in
 	shift
 	;;
     -*|"")
+	semi="$semi"
 	;;
     *)
-	semi="$semi",arg="$1"
+	semi="$semi",arg="$elf $1"
 	input="$1"
 	shift
 	;;
