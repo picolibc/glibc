@@ -194,8 +194,9 @@ foreach test_name : bare_tests
     value = get_variable('target_' + target)
     
     _c_args = value[1]
+    _link_args = value[2]
 
-    if target == ''
+    if target == '' or target == '_'
       _test_ext = ''
     else
       _test_ext = '_' + target
@@ -232,7 +233,7 @@ foreach test_name : bare_tests
 		    objects: support_test_main_o,
 		    include_directories: inc,
 		    c_args: _c_args + _test_c_args,
-		    link_args: _c_args),
+		    link_args: _link_args + _test_c_args),
 	 env: ['MESON_SOURCE_ROOT=' + meson.source_root()]
 	)
   endforeach
@@ -303,8 +304,9 @@ foreach type : types
       value = get_variable('target_' + target)
       
       _c_args = value[1]
+      _link_args = value[2]
 
-      if target == ''
+      if target == '' or target == '_'
 	_test_ext = ''
       else
 	_test_ext = '_' + target
@@ -319,9 +321,10 @@ foreach type : types
 		      [test_wrap, support_c, libm_test_ulps_h],
 		      include_directories: inc,
 		      c_args: _c_args,
-		      link_args: _c_args,
+		      link_args: _link_args,
 		      link_with: [_lib_argp, _lib_posix]),
 	   env: ['MESON_SOURCE_ROOT=' + meson.source_root()],
+	   suite: 'math'
 	  )
     endforeach
   endforeach

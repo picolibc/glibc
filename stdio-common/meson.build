@@ -86,7 +86,7 @@ foreach test_name : tests
 
     value = get_variable('target_' + target)
     
-    if target == ''
+    if target == '' or target == '_'
       _test_ext = ''
     else
       _test_ext = '_' + target
@@ -97,13 +97,14 @@ foreach test_name : tests
     _lib_posix = get_variable('posix' + _test_ext)
     
     _c_args = value[1] + ['-DOBJPFX="' + meson.current_source_dir() / _test_name + '_"']
+    _link_args = value[2]
 
     test(_test_name,
 	 executable(_test_name,
 		    [test_name + '.c', '../picolibc/support_test_main.c'],
 		    include_directories: inc,
 		    c_args: _c_args,
-		    link_args: _c_args,
+		    link_args: _link_args,
 		    link_with: [_lib_support, _lib_posix]
 		   ),
 	 args: args,

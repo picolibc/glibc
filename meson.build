@@ -76,23 +76,23 @@ if enable_multilib
   # Ask the compiler for the set of available multilib configurations,
   # set up the build system to compile for all desired ones
   foreach target : run_command(cc, '--print-multi-lib', check : true).stdout().strip().split('\n')
-    tmp = target.split(';')
-    flags = c_args
+    _tmp = target.split(';')
 
+    _arch_flags = []
     # Let the user specify a subset of the possible multilib
     # configurations to build for
-    if multilib_list == [] or tmp[0] in multilib_list
-      used_libs += tmp[0]
-      if tmp.length() > 1
-	foreach flag : tmp[1].strip('@').split('@')
+    if multilib_list == [] or _tmp[0] in multilib_list
+      used_libs += _tmp[0]
+      if _tmp.length() > 1
+	foreach flag : _tmp[1].strip('@').split('@')
 	  if flag != ''
-	    flags += '-' + flag
+	    _arch_flags += '-' + flag
 	  endif
 	endforeach
-	if tmp[0] == '.'
+	if _tmp[0] == '.'
 	  name = ''
 	else
-	  name = tmp[0].underscorify()
+	  name = _tmp[0].underscorify()
 	endif
       else
 	name = ''
@@ -102,14 +102,15 @@ if enable_multilib
       # rv64 needs to use a non-default mcmodel so that variables can
       # live in a broader range of memory addresses
       if name.startswith('rv64')
-	flags += [ '-mcmodel=medany' ]
+	_arch_flags += [ '-mcmodel=medany' ]
       endif
 
-      # Add any extra flags for this target from the cross file
-      flags += meson.get_cross_property('c_args_' + name, [])
+      _link_flags = _arch_flags + meson.get_cross_property('link_args_' + name, [])
 
-      value = [tmp[0], flags]
-      set_variable('target_' + name, value)
+      # Add any extra flags for this target from the cross file
+      _c_flags = c_args + _arch_flags + meson.get_cross_property('c_args_' + name, [])
+
+      set_variable('target_' + name, [_tmp[0], _c_flags, _link_flags])
     endif
   endforeach
 

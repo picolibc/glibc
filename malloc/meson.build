@@ -54,8 +54,9 @@ foreach test_name : tests
     value = get_variable('target_' + target)
     
     _c_args = value[1] + ['-Wno-alloc-size-larger-than=18446744073709551615']
+    _link_args = value[2]
 
-    if target == ''
+    if target == '' or target == '_'
       _test_ext = ''
     else
       _test_ext = '_' + target
@@ -70,7 +71,7 @@ foreach test_name : tests
 		    [test_name + '.c', '../picolibc/support_test_main.c'],
 		    include_directories: inc,
 		    c_args: _c_args,
-		    link_args: _c_args,
+		    link_args: _link_args,
 		    link_with: [_lib_support, _lib_posix]
 		   ),
 	 env: ['MESON_SOURCE_ROOT=' + meson.source_root()]

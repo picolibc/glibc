@@ -50,10 +50,11 @@ foreach target : targets
   value = get_variable('target_' + target)
   
   _c_args = value[1]
+  _link_args = value[1]
 
   lib_name = 'support'
 
-  if target != ''
+  if target != '' and target != '_'
     lib_name += '_' + target
   endif
 
@@ -62,6 +63,7 @@ foreach target : targets
 			      srcs_support,
 			      pic: false,
 			      include_directories: inc,
-			      c_args: _c_args)
+			      c_args: _c_args,
+			      link_args: _link_args)
 	      )
 endforeach

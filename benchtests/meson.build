@@ -36,7 +36,6 @@ tests = [
   'bench-memccpy',
   'bench-memchr',
   'bench-memcmp',
-  'bench-memcpy',
   'bench-memcpy-random',
   'bench-memcpy-walk',
   'bench-mempcpy',
@@ -71,6 +70,7 @@ tests = [
   ]
 
 tests_skip = [
+  'bench-memcpy', # just takes too long and doesn't generate useful data
   'bench-strcoll',# requires several locales picolibc doesn't support
   ]
 
@@ -80,8 +80,9 @@ foreach test_name : tests
     value = get_variable('target_' + target)
     
     _c_args = value[1]
+    _link_args = value[2]
 
-    if target == ''
+    if target == '' or target == '_'
       _test_ext = ''
     else
       _test_ext = '_' + target
@@ -96,7 +97,7 @@ foreach test_name : tests
 		    [test_name + '.c', '../picolibc/support_test_main.c', 'json-lib.c'],
 		    include_directories: inc,
 		    c_args: _c_args,
-		    link_args: _c_args,
+		    link_args: _link_args,
 		    link_with: [_lib_support, _lib_posix]
 		   ),
 	 env: ['MESON_SOURCE_ROOT=' + meson.source_root()],
