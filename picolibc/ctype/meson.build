@@ -59,7 +59,8 @@ foreach test_name : tests
 		    '../../ctype' / test_name + '.c',
 		    include_directories: inc,
 		    c_args: _c_args, link_args: _link_args),
-	 env: ['MESON_SOURCE_ROOT=' + meson.source_root()]
+	 env: ['MESON_SOURCE_ROOT=' + meson.source_root()],
+	 suite: 'ctype'
 	)
   endforeach
 endforeach

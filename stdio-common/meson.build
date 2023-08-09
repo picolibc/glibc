@@ -108,7 +108,8 @@ foreach test_name : tests
 		    link_with: [_lib_support, _lib_posix]
 		   ),
 	 args: args,
-	 env: ['MESON_SOURCE_ROOT=' + meson.source_root()]
+	 env: ['MESON_SOURCE_ROOT=' + meson.source_root()],
+	 suite: 'stdio-common'
 	)
   endforeach
 endforeach
