@@ -63,7 +63,8 @@ foreach test_name : tests
 		    c_args: _c_args, link_args: _link_args,
 		    link_with: [_lib_support, _lib_posix]
 		   ),
-	 env: ['MESON_SOURCE_ROOT=' + meson.source_root()]
+	 env: ['MESON_SOURCE_ROOT=' + meson.source_root()],
+	 suite: 'setjmp'
 	)
   endforeach
 endforeach

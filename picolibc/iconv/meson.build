@@ -70,7 +70,8 @@ foreach test_name : tests
 		    include_directories: inc,
 		    c_args: _c_args, link_args: _link_args,
 		    link_with: [_lib_support]),
-	 env: ['MESON_SOURCE_ROOT=' + meson.source_root()]
+	 env: ['MESON_SOURCE_ROOT=' + meson.source_root()],
+	 suite: 'iconv'
 	)
   endforeach
 endforeach
