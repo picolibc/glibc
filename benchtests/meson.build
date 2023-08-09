@@ -37,7 +37,6 @@ tests = [
   'bench-memchr',
   'bench-memcmp',
   'bench-memcpy-random',
-  'bench-memcpy-walk',
   'bench-mempcpy',
   'bench-memrchr',
   'bench-memset',
