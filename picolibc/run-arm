@@ -219,14 +219,14 @@ case $cpu in
     cortex-a57)
         machine=none
         cpu=max
-	memory="-m 1G"
+	memory="-m 3G"
         ;;
 
     # The 'none' machine supports many non-M
     # processors
     ti925t|arm*|cortex-a*|cortex-r*)
 	machine=none
-	memory="-m 1G"
+	memory="-m 3G"
 	;;
 
 esac
