@@ -124,11 +124,19 @@ extern impl_t __start_impls[], __stop_impls[];
 # define OPT_RANDOM 10001
 # define OPT_SEED 10002
 
+#ifdef __PICOLIBC__
+# define INNER_LOOP_ITERS 2
+# define INNER_LOOP_ITERS8 16
+# define INNER_LOOP_ITERS_LARGE 16
+# define INNER_LOOP_ITERS_MEDIUM 8
+# define INNER_LOOP_ITERS_SMALL 8
+#else
 # define INNER_LOOP_ITERS 8192
 # define INNER_LOOP_ITERS8 32768
 # define INNER_LOOP_ITERS_LARGE 131072
 # define INNER_LOOP_ITERS_MEDIUM 2048
 # define INNER_LOOP_ITERS_SMALL 256
+#endif
 
 int ret, do_srandom;
 unsigned int seed;

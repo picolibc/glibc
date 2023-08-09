@@ -30,7 +30,11 @@
 #ifndef MEMCPY_RESULT
 # define MEMCPY_RESULT(dst, len) dst
 # define START_SIZE 128
+#ifdef __PICOLIBC__
+# define MIN_PAGE_SIZE (getpagesize () + 1024 * 1024)
+#else
 # define MIN_PAGE_SIZE (getpagesize () + 32 * 1024 * 1024)
+#endif
 # define TEST_MAIN
 # define TEST_NAME "memcpy"
 # define TIMEOUT (20 * 60)
