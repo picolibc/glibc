@@ -75,13 +75,6 @@ tests_slow = [
 
 foreach test_name : tests
 
-  args = []
-
-  test_input = test_name + '.input'
-  if fs.is_file(test_input)
-    args += [meson.current_source_dir() / test_input]
-  endif
-
   foreach target : targets
 
     value = get_variable('target_' + target)
@@ -98,6 +91,13 @@ foreach test_name : tests
     
     _c_args = value[1] + ['-DOBJPFX="' + meson.current_source_dir() / _test_name + '_"']
     _link_args = value[2]
+
+    test_input = test_name + '.input'
+    if fs.is_file(test_input)
+      args = [meson.current_source_dir() / test_input]
+    else
+      args = ['--', _test_name + ' ' + _test_name]
+    endif
 
     test(_test_name,
 	 executable(_test_name,

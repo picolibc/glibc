@@ -28,12 +28,17 @@
 static int
 do_test (void)
 {
-  char *name = NULL;
+  static char name[128];
   FILE *fp = NULL;
   int c;
   char buffer[64];
+  char *fname_base = "rndseek";
 
-  int fd = create_temp_file ("tst-ungetc.", &name);
+  if (argv[1])
+	  fname_base = argv[1];
+
+  snprintf(name, sizeof(name), "%50.50s.XXXXXX", fname_base);
+  int fd = mkstemp (name);
   if (fd == -1)
     FAIL_EXIT1 ("cannot create temporary file: %m");
   xclose (fd);

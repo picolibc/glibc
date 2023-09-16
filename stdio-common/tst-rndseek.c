@@ -4,12 +4,10 @@
 #include <unistd.h>
 
 
-static char fname[] = "/tmp/rndseek.XXXXXX";
 static char tempdata[65 * 1024];
 
 
-static int do_test (void);
-#define TEST_FUNCTION do_test ()
+static int do_test (int argc, char **argv);
 
 #include "../test-skeleton.c"
 
@@ -61,15 +59,28 @@ fp_test (const char *name, FILE *fp)
 }
 
 
+static char fname_base_default[] = "rndseek";
+
 static int
-do_test (void)
+do_test (int argc, char **argv)
 {
   int fd;
   FILE *fp;
   size_t i;
   int result;
+  char *fname_base = fname_base_default;
+  static char fname[128];
+
+  if (argv[1])
+	  fname_base = argv[1];
+
+  for (i = 0; i < argc; i++)
+	  printf("argv[%d] = %s\n", i, argv[i]);
+
+  snprintf(fname, sizeof(fname), "%50.50s.XXXXXX", fname_base);
 
   fd = mkstemp (fname);
+  printf("filename %s\n", fname);
   if (fd == -1)
     {
       printf ("cannot open temporary file: %m\n");
