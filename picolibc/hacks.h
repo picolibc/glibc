@@ -59,9 +59,6 @@ extern void *check_malloc(unsigned long size);
 
 static inline int chdir(const char *a) { return 0; }
 
-#define stat64 stat
-#define fstat64 fstat
-
 #define M_PERTURB -6
 
 struct rlimit { int rlim_cur, rlim_max; };
@@ -161,4 +158,9 @@ static inline long sysconf(int x) { switch (x) { case 8: return 0x1000; default:
 
 #include "../misc/sys/cdefs.h"
 #include <math.h>
+#include <fcntl.h>
+#include <stdio.h>
+
+#define stat64 stat
+#define fstat64 fstat
 #endif
