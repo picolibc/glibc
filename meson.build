@@ -83,6 +83,9 @@ if enable_multilib
     # configurations to build for
     if multilib_list == [] or _tmp[0] in multilib_list
       used_libs += _tmp[0]
+      if _tmp[0].contains('pacbti')
+	continue
+      endif
       if _tmp.length() > 1
 	foreach flag : _tmp[1].strip('@').split('@')
 	  if flag != ''
