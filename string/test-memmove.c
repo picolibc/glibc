@@ -246,6 +246,7 @@ do_random_tests (void)
     }
 }
 
+#ifndef __PICOLIBC__
 static void
 do_test2 (void)
 {
@@ -299,6 +300,7 @@ do_test2 (void)
 
   munmap ((void *) large_buf, size);
 }
+#endif
 
 int
 test_main (void)

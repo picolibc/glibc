@@ -49,17 +49,21 @@ const double val_double[] =
 const CHAR *str_long[] =
 {
   L("-12345678987654321123456789987654321123456789987654321"),
+#ifdef _GLIBC_
   L("-12345678987654321123456789987654321123456789987654321"),
   L("-12,345,678987,654,321123,456,789987,654,321123,456,789987,654,321"),
   L("-12,345,678987,654,321123,456,789987,654,321123,456,789987,654,321")
+#endif
 };
 
 const CHAR *fmt_long[] =
 {
   L("%9ld%9ld%9ld%9ld%9ld%9ld"),
+#ifdef _GLIBC_
   L("%I9ld%I9ld%I9ld%I9ld%I9ld%I9ld"),
   L("%'11ld%'11ld%'11ld%'11ld%'11ld%'11ld"),
   L("%I'11ld%I'11ld%I'11ld%I'11ld%I'11ld%I'11ld")
+#endif
 };
 
 const long int val_long[] =
@@ -111,9 +115,7 @@ struct test double_tests[] =
 {
   { L("-1"), L("%1g"), 0 },
   { L("-.1"), L("%2g"), 0 },
-#ifndef __PICOLIBC__
   { L("-inf"), L("%3g"), 0 },
-#endif
   { L("+0"), L("%1g"),  },
   { L("-0x1p0"), L("%2g"), 1 },
   { L("-..1"), L("%g"), 0 },
@@ -170,7 +172,7 @@ do_test (void)
 	    }
     }
 
-  for (i = 0; i < 4; ++i)
+  for (i = 0; i < sizeof(str_long)/sizeof(str_long[0]); ++i)
     {
       if (SSCANF (str_long[i], fmt_long[i],
 		  &l[0], &l[1], &l[2], &l[3], &l[4], &l[5]) != 6)

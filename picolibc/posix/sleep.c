@@ -33,7 +33,7 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include <sys/time.h>
+#include <time.h>
 #include <unistd.h>
 
 unsigned int

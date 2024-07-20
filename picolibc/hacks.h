@@ -26,7 +26,8 @@
 #define clock_gettime(a,b)
 #define nanosleep(a,b)
 #define setrlimit(a,b)
-#define getrlimit(a,b)	((void) (a), (void) (b), 0)
+struct rlimit;
+static inline int getrlimit(int resource, struct rlimit *rlim) { (void) resource; (void) rlim; return 0; }
 #define sigsetjmp(a,b)	setjmp(a)
 #define siglongjmp(a,b) longjmp(a,b)
 #define sigjmp_buf jmp_buf
@@ -45,7 +46,7 @@ extern void *check_malloc(unsigned long size);
 
 #define mprotect(base, size, prot) ((void) (base), (void) (size), 0)
 #define posix_fallocate(a, b, c) 0
-#define munmap(base, size) (free(base), (void) (size), 0)
+static inline int munmap(void *addr, unsigned long len) { (void) addr, (void) len; return 0; }
 #define __BIG_ENDIAN BIG_ENDIAN
 #define __LITTLE_ENDIAN LITTLE_ENDIAN
 #define __BYTE_ORDER BYTE_ORDER
@@ -149,10 +150,6 @@ static inline long sysconf(int x) { switch (x) { case 8: return 0x1000; default:
 #define TININESS_AFTER_ROUNDING 0
 #endif
 
-# define CMPLX(x, y) __builtin_complex ((double) (x), (double) (y))
-# define CMPLXF(x, y) __builtin_complex ((float) (x), (float) (y))
-# define CMPLXL(x, y) __builtin_complex ((long double) (x), (long double) (y))
-
 #define __atomic_store_n(loc, val, sem) (*(loc) = (val))
 #define __atomic_add_fetch(loc, val, sem) (*(loc) += (val))
 
@@ -161,6 +158,4 @@ static inline long sysconf(int x) { switch (x) { case 8: return 0x1000; default:
 #include <fcntl.h>
 #include <stdio.h>
 
-#define stat64 stat
-#define fstat64 fstat
 #endif
