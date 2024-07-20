@@ -142,8 +142,7 @@ do_test (void)
 
   const char input[] = "3752432815e-39";
 
-#ifndef __PICOLIBC__
-  float f1 = strtold (input, NULL);
+  float f1 = strtod (input, NULL);
   float f2;
   float f3 = strtof (input, NULL);
   sscanf (input, "%g", &f2);
@@ -164,6 +163,7 @@ do_test (void)
       status = 1;
     }
 
+#ifndef __PICOLIBC__
   const char input2[] = "+1.000000000116415321826934814453125";
   if (strtold (input2, NULL) != +1.000000000116415321826934814453125L)
     {
@@ -187,8 +187,8 @@ do_test (void)
 	status = 1;
       }
 
-  status |= long_dbl ();
 #endif
+  status |= long_dbl ();
 
   return status ? EXIT_FAILURE : EXIT_SUCCESS;
 }

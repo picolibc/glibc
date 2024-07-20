@@ -245,6 +245,7 @@ do_random_tests (void)
     }
 }
 
+#ifndef __PICOLIBC__
 static void
 do_test2 (size_t offset)
 {
@@ -354,6 +355,7 @@ do_test3 (size_t bytes_move, size_t offset)
 
   munmap ((void *) buf, size);
 }
+#endif
 
 static void
 do_test4 (size_t bytes_move, size_t offset1, size_t offset2)
