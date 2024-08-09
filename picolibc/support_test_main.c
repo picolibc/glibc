@@ -36,6 +36,7 @@
 #include <sys/wait.h>
 #include <time.h>
 #include <unistd.h>
+#include <stdarg.h>
 
 #include <xstdio.h>
 

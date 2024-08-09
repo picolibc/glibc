@@ -48,6 +48,7 @@ char *alloca ();
 #include <stdarg.h>
 #include <ctype.h>
 #include <limits.h>
+#include <stdint.h>
 #ifdef _LIBC
 # include <../libio/libioP.h>
 # include <wchar.h>
@@ -83,9 +84,6 @@ char *strerror (int errnum);
 #include <argp-fmtstream.h>
 #include "argp-namefrob.h"
 
-#ifndef SIZE_MAX
-# define SIZE_MAX ((size_t) -1)
-#endif
 
 /* ========================================================================== */
 
