@@ -33,6 +33,8 @@
 #  OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 tests = [
+  'test-mbrtoc8',
+  'test-c8rtomb',
   'test-wcpcpy',
   'test-wcpncpy',
   'test-wcscat',

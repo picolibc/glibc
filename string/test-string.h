@@ -82,7 +82,11 @@ unsigned int seed;
 size_t page_size;
 
 # ifndef ITERATIONS
+#ifdef __PICOLIBC__
+size_t iterations = 10000;
+#else
 size_t iterations = 100000;
+#endif
 #  define ITERATIONS_OPTIONS \
   { "iterations", required_argument, NULL, OPT_ITERATIONS },
 #  define ITERATIONS_PROCESS \

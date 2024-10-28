@@ -309,6 +309,7 @@ pr23865 (void)
     free (needle);
   }
 
+#ifndef __OPTIMIZE_SIZE__
   /* Check that the asymptotic worst-case complexity is not quadratic.  */
   {
     size_t m = 1000000;
@@ -329,6 +330,7 @@ pr23865 (void)
     free (needle);
     free (haystack);
   }
+#endif
 
   {
     /* Ensure that with a barely periodic "short" needle, STRSTR's

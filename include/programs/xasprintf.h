@@ -18,7 +18,7 @@
 #ifndef _XASPRINTF_H
 #define _XASPRINTF_H	1
 
-extern char *xasprintf (const char *format, ...)
+extern char *xasprintf (const char *format, ...) _attr_dealloc_free
     __attribute__ ((__format__ (__printf__, 1, 2), __warn_unused_result__));
 
 #endif /* xasprintf.h */

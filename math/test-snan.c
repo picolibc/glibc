@@ -126,6 +126,8 @@ TEST_FUNC (float_test, float, f)
 TEST_FUNC (double_test, double, )
 TEST_FUNC (ldouble_test, long double, l)
 
+#endif /* __SUPPORT_SNAN__ */
+
 static int
 do_test (void)
 {

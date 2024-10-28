@@ -59,12 +59,11 @@ static inline int munmap(void *addr, unsigned long len) { (void) addr, (void) le
 #define IS_IN(x)	0
 
 static inline int chdir(const char *a) { return 0; }
+static inline int mkdir(const char *pathname, unsigned long mode) { return -1; }
 
 #define M_PERTURB -6
 
 struct rlimit { int rlim_cur, rlim_max; };
-
-typedef long long off64_t;
 
 #define TIMEOUTFACTOR 1
 
@@ -102,6 +101,10 @@ static inline long sysconf(int x) { switch (x) { case 8: return 0x1000; default:
 #define _setjmp setjmp
 #define copysignf32x copysignf
 #define strfromf32x strfromf
+
+char 	*stpcpy (char *__restrict, const char *__restrict);
+static inline char *__stpcpy(char *dst, char *src) { return stpcpy(dst, src); }
+static inline const char *strerrorname_np(int i) { return "ERROR"; }
 
 #define powerof2(x)	(((x) & ((x)-1)) == 0)
 

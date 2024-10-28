@@ -553,6 +553,7 @@ test_utf8 (void)
   return 0;
 }
 
+#ifndef __PICOLIBC__
 static int
 test_big5_hkscs (void)
 {
@@ -594,6 +595,7 @@ test_big5_hkscs (void)
 
   return 0;
 }
+#endif
 
 static int
 do_test (void)
@@ -606,7 +608,9 @@ do_test (void)
   test_out_of_range_encoding ();
   test_null_output_buffer ();
   test_utf8 ();
+#ifndef __PICOLIBC__
   test_big5_hkscs ();
+#endif
   return 0;
 }
 

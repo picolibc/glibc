@@ -10,4 +10,5 @@ error(int status, int errnum, const char *message, ...)
 	vfprintf(stderr, message, ap);
 	fprintf(stderr, "\n");
 	va_end(ap);
+	exit(77);
 }

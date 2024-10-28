@@ -108,10 +108,19 @@ if enable_multilib
 	_arch_flags += [ '-mcmodel=medany' ]
       endif
 
-      _link_flags = _arch_flags + meson.get_cross_property('link_args_' + name, [])
-
       # Add any extra flags for this target from the cross file
-      _c_flags = c_args + _arch_flags + meson.get_cross_property('c_args_' + name, [])
+
+      _link_flags = []
+      _c_flags = []
+      name_part = ''
+      foreach part : name.split('_')
+        name_part += '_' + part
+	_link_flags = meson.get_cross_property('link_args' + name_part, _link_flags)
+	_c_flags = meson.get_cross_property('c_args' + name_part, _c_flags)
+      endforeach
+
+      _link_flags = _arch_flags + _link_flags
+      _c_flags = c_args + _arch_flags + _c_flags
 
       set_variable('target_' + name, [_tmp[0], _c_flags, _link_flags])
     endif

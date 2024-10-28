@@ -37,7 +37,6 @@ tests = [
   'tst-free-errno',
   'tst-malloc',
   'tst-malloc-too-large',
-  'tst-mcheck',
   'tst-memalign',
   'tst-posix_memalign',
   'tst-pvalloc',

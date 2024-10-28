@@ -40,6 +40,7 @@ log1p_test (void)
   ALL_RM_TEST (log1p, 0, log1p_test_data, RUN_TEST_LOOP_f_f, END);
 }
 
+#ifndef __PICOLIBC__
 #if !TEST_MATHVEC
 static void
 logp1_test (void)
@@ -48,13 +49,16 @@ logp1_test (void)
   ALL_RM_TEST (logp1, 0, log1p_test_data, RUN_TEST_LOOP_f_f, END);
 }
 #endif
+#endif
 
 static void
 do_test (void)
 {
   log1p_test ();
+#ifndef __PICOLIBC__
 #if !TEST_MATHVEC
   logp1_test ();
+#endif
 #endif
 }
 

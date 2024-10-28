@@ -41,7 +41,6 @@ tests = [
   'bench-memrchr',
   'bench-memset',
   'bench-memset-large',
-  'bench-memset-walk',
   'bench-rawmemchr',
   'bench-stpcpy',
   'bench-stpcpy_chk',

@@ -41,6 +41,11 @@ srcs_support = [
   'support_test_verify_impl.c',
   'temp_file.c',
   'write_message.c',
+  'xchdir.c',
+  'xfgets.c',
+  'xfopen.c',
+  'xfclose.c',
+  'xmmap.c',
   'xnewlocale.c',
   'xuselocale.c',
 ]

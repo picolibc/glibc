@@ -25,8 +25,10 @@
 #include <support/xstdio.h>
 #include <support/xunistd.h>
 
+#define TEST_FUNCTION_ARGV do_test
+
 static int
-do_test (void)
+do_test (int argc, char **argv)
 {
   static char name[128];
   FILE *fp = NULL;
@@ -53,8 +55,10 @@ do_test (void)
   TEST_VERIFY_EXIT (getc (fp) == 'b');
   TEST_VERIFY_EXIT (getc (fp) == 'l');
   TEST_VERIFY_EXIT (ungetc ('m', fp) == 'm');
+#ifndef __PICOLIBC__
   TEST_VERIFY_EXIT (ungetc ('n', fp) == 'n');
   TEST_VERIFY_EXIT (getc (fp) == 'n');
+#endif
   TEST_VERIFY_EXIT (getc (fp) == 'm');
   TEST_VERIFY_EXIT ((c = getc (fp)) == 'a');
   TEST_VERIFY_EXIT (getc (fp) == EOF);

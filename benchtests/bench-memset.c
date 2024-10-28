@@ -23,7 +23,11 @@
 # define TEST_NAME "wmemset"
 # define generic_memset generic_wmemset
 #endif /* WIDE */
+#ifdef __PICOLIBC__
+#define MIN_PAGE_SIZE 2048
+#else
 #define MIN_PAGE_SIZE 131072
+#endif
 #include "bench-string.h"
 
 #include "json-lib.h"
