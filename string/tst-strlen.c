@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <string.h>
 
+#pragma GCC diagnostic ignored "-Wstringop-overread"
+
 int
 do_test (void)
 {

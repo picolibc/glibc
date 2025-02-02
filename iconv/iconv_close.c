@@ -25,7 +25,7 @@
 int
 iconv_close (iconv_t cd)
 {
-  if (__glibc_unlikely (cd == (iconv_t *) -1L))
+  if (__glibc_unlikely (cd == (iconv_t) -1L))
     {
       __set_errno (EBADF);
       return -1;

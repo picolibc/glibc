@@ -52,12 +52,12 @@ static int
 convert (const char *tocode, const char *fromcode, char *inbufp,
 	 size_t inbytesleft, char *outbufp, size_t outbytesleft)
 {
-  iconv_t *ic;
+  iconv_t ic;
   size_t outbytes = outbytesleft;
   int ret;
 
   ic = iconv_open (tocode, fromcode);
-  if (ic == (iconv_t *) - 1)
+  if (ic == (iconv_t) - 1)
     {
       printf ("iconv_open failed: from: %s, to: %s: %s",
 	      fromcode, tocode, strerror (errno));

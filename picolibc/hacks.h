@@ -20,6 +20,8 @@
 # define __glibc_clang_prereq(maj, min) 0
 #endif
 
+#define _PICOLIBC_USE_DEPRECATED_GETS
+
 /* Whether to use feature set F.  */
 #define __GLIBC_USE(F)	__GLIBC_USE_ ## F
 
@@ -103,7 +105,7 @@ static inline long sysconf(int x) { switch (x) { case 8: return 0x1000; default:
 #define strfromf32x strfromf
 
 char 	*stpcpy (char *__restrict, const char *__restrict);
-static inline char *__stpcpy(char *dst, char *src) { return stpcpy(dst, src); }
+static inline char *__stpcpy(char *__restrict dst, const char *__restrict src) { return stpcpy(dst, src); }
 static inline const char *strerrorname_np(int i) { return "ERROR"; }
 
 #define powerof2(x)	(((x) & ((x)-1)) == 0)

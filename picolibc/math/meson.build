@@ -35,6 +35,8 @@
 make_math_test = find_program('make-math-test')
 gen_libm_test = find_program('../../math/gen-libm-test.py')
 
+math_c_args = ['-fno-builtin']
+
 libm_test_ulps_h = custom_target('libm-test-ulps.h',
 				 input: ['..' / cpu / 'libm-test-ulps'],
 				 output: ['libm-test-ulps.h'],
@@ -223,7 +225,7 @@ foreach test_name : bare_tests
     support_test_main_lib = static_library(support_name,
 					   '../support_test_main.c',
 					   include_directories: inc,
-					   c_args: _c_args)
+					   c_args: _c_args + math_c_args)
 
     support_test_main_o = support_test_main_lib.extract_all_objects(recursive: true)
 
@@ -232,8 +234,8 @@ foreach test_name : bare_tests
 		    [test_src],
 		    objects: support_test_main_o,
 		    include_directories: inc,
-		    c_args: _c_args + _test_c_args,
-		    link_args: _link_args + _test_c_args),
+		    c_args: _c_args + math_c_args + _test_c_args,
+		    link_args: _link_args + math_c_args + _test_c_args),
 	 env: ['MESON_SOURCE_ROOT=' + meson.source_root()]
 	)
   endforeach
@@ -320,8 +322,8 @@ foreach type : types
 	   executable(_test_name,
 		      [test_wrap, support_c, libm_test_ulps_h],
 		      include_directories: inc,
-		      c_args: _c_args,
-		      link_args: _link_args,
+		      c_args: _c_args + math_c_args,
+		      link_args: _link_args + math_c_args,
 		      link_with: [_lib_argp, _lib_posix]),
 	   env: ['MESON_SOURCE_ROOT=' + meson.source_root()],
 	   suite: 'math'

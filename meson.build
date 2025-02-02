@@ -58,7 +58,7 @@ c_args = ['-include', '@0@/@1@'.format(meson.current_source_dir(), 'picolibc/hac
 
 c_args += get_option('extra-c-args')
 
-c_args += cc.get_supported_arguments(['-frounding-math', '-fsignaling-nans', '-fno-builtin'])
+c_args += cc.get_supported_arguments(['-frounding-math', '-fsignaling-nans'])
 
 picolibc_buildtype = get_option('picolibc-buildtype')
 
