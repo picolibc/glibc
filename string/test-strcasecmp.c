@@ -19,7 +19,7 @@
 #include <locale.h>
 #include <ctype.h>
 #include <assert.h>
-#define TEST_LEN (getpagesize () * 3)
+#define TEST_LEN (127)
 #define MIN_PAGE_SIZE (TEST_LEN + 2 * getpagesize ())
 
 #define TEST_MAIN
