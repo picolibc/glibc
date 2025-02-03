@@ -119,7 +119,7 @@ if enable_multilib
 	_c_flags = meson.get_cross_property('c_args' + name_part, _c_flags)
       endforeach
 
-      _link_flags = _arch_flags + _link_flags
+      _link_flags = c_args + _arch_flags + _link_flags
       _c_flags = c_args + _arch_flags + _c_flags
 
       set_variable('target_' + name, [_tmp[0], _c_flags, _link_flags])
