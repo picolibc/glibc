@@ -195,8 +195,8 @@ do_test (size_t align1, size_t align2, size_t len, int max_char,
 static void
 do_random_tests (void)
 {
-	UCHAR *p1 = (UCHAR *) (buf1 + page_size - 512 * CHARBYTES);
-	UCHAR *p2 = (UCHAR *) (buf2 + page_size - 512 * CHARBYTES);
+	UCHAR *p1 = (UCHAR *) (buf1 + page_size - (page_size/8) * CHARBYTES);
+	UCHAR *p2 = (UCHAR *) (buf2 + page_size - (page_size/8) * CHARBYTES);
 
 	for (size_t n = 0; n < ITERATIONS; n++)
 	  {

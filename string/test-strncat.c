@@ -216,8 +216,8 @@ static void
 do_random_tests (void)
 {
   size_t i, j, n, align1, align2, len1, len2, N;
-  UCHAR *p1 = (UCHAR *) (buf1 + page_size) - 512;
-  UCHAR *p2 = (UCHAR *) (buf2 + page_size) - 512;
+  UCHAR *p1 = (UCHAR *) (buf1 + page_size) - (page_size/8);
+  UCHAR *p2 = (UCHAR *) (buf2 + page_size) - (page_size/8);
   UCHAR *p3 = (UCHAR *) buf1;
   UCHAR *res;
   fprintf (stdout, "Number of iterations in random test = %zd\n",

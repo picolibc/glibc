@@ -92,7 +92,7 @@ static void
 do_random_tests (void)
 {
   size_t i, j, n, align, len;
-  CHAR *p = (CHAR *) (buf1 + page_size - 512 * sizeof (CHAR));
+  CHAR *p = (CHAR *) (buf1 + page_size - (page_size/8) * sizeof (CHAR));
 
   for (n = 0; n < ITERATIONS; n++)
     {

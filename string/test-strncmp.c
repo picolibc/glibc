@@ -274,8 +274,8 @@ do_random_tests (void)
   size_t i, j, n, align1, align2, pos, len1, len2, size;
   int result;
   long r;
-  UCHAR *p1 = (UCHAR *) (buf1 + page_size - 512 * CHARBYTES);
-  UCHAR *p2 = (UCHAR *) (buf2 + page_size - 512 * CHARBYTES);
+  UCHAR *p1 = (UCHAR *) (buf1 + page_size - (page_size/8) * CHARBYTES);
+  UCHAR *p2 = (UCHAR *) (buf2 + page_size - (page_size/8) * CHARBYTES);
 
   for (n = 0; n < ITERATIONS; n++)
     {

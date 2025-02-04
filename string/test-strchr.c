@@ -176,7 +176,7 @@ do_random_tests (void)
   size_t i, j, n, align, pos, len;
   int seek_char;
   CHAR *result;
-  UCHAR *p = (UCHAR *) (buf1 + page_size - 512 * sizeof (CHAR));
+  UCHAR *p = (UCHAR *) (buf1 + page_size - (page_size/8) * sizeof (CHAR));
 
   for (n = 0; n < ITERATIONS; n++)
     {

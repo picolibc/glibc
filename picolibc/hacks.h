@@ -170,5 +170,5 @@ static inline const char *strerrorname_np(int i) { return "ERROR"; }
 #include <fcntl.h>
 #include <stdio.h>
 #include <unistd.h>
-#define getpagesize() 512
+#define getpagesize() 2048
 #endif

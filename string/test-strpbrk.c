@@ -143,7 +143,7 @@ do_random_tests (void)
   size_t i, j, n, align, pos, len, rlen;
   RES_TYPE result;
   int c;
-  UCHAR *p = (UCHAR *) (buf1 + page_size) - 512;
+  UCHAR *p = (UCHAR *) (buf1 + page_size) - (page_size/8);
   UCHAR *rej;
 
   for (n = 0; n < ITERATIONS; n++)

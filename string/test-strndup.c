@@ -88,7 +88,7 @@ static void
 do_random_tests (void)
 {
   size_t i, j, n, align1, align2, len, size, mode;
-  char *p1 = (char *) (buf1 + page_size) - 512;
+  char *p1 = (char *) (buf1 + page_size) - (page_size/8);
   char *res;
 
   for (n = 0; n < ITERATIONS; n++)

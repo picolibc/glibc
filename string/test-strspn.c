@@ -123,7 +123,7 @@ static void
 do_random_tests (void)
 {
   size_t i, j, n, align, pos, alen, len;
-  UCHAR *p = (UCHAR *) (buf1 + page_size) - 512;
+  UCHAR *p = (UCHAR *) (buf1 + page_size) - (page_size/8);
   UCHAR *acc;
 
   for (n = 0; n < ITERATIONS; n++)
