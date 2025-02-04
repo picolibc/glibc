@@ -77,6 +77,9 @@ do_test (int argc, char **argv)
   TEST_VERIFY_EXIT (buffer[1] == 'a');
   xfclose (fp);
 
+  /* Make sure the file gets removed.  */
+  unlink (name);
+
   return 0;
 }
 

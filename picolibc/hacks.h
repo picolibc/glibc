@@ -61,7 +61,14 @@ static inline int munmap(void *addr, unsigned long len) { (void) addr, (void) le
 #define IS_IN(x)	0
 
 static inline int chdir(const char *a) { return 0; }
-static inline int mkdir(const char *pathname, unsigned long mode) { return -1; }
+
+#define __machine_mode_t_defined
+typedef unsigned int __mode_t;
+
+extern __inline int __attribute((gnu_inline, always_inline))
+mkdir(const char *a, __mode_t mode) {
+	return -1;
+}
 
 #define M_PERTURB -6
 
@@ -162,5 +169,6 @@ static inline const char *strerrorname_np(int i) { return "ERROR"; }
 #include <math.h>
 #include <fcntl.h>
 #include <stdio.h>
-
+#include <unistd.h>
+#define getpagesize() 512
 #endif

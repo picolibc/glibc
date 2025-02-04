@@ -40,17 +40,6 @@ qemu="qemu-system-riscv32"
 elf="$1"
 shift
 
-# skip FMA and fenv on soft float
-
-case "$elf" in
-    *-float-fma_*[24e]|*-double-fma_*[24ef])
-	exit 77
-	;;
-    *_fenvtest_*[24e])
-	exit 77
-	;;
-esac
-
 case "$elf" in
     *rv32*_ilp32*)
 	qemu="qemu-system-riscv32"

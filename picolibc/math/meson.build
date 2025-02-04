@@ -326,7 +326,7 @@ foreach type : types
 		      link_args: _link_args + math_c_args,
 		      link_with: [_lib_argp, _lib_posix]),
 	   env: ['MESON_SOURCE_ROOT=' + meson.source_root()],
-	   suite: 'math'
+	   suite: ['math', type]
 	  )
     endforeach
   endforeach

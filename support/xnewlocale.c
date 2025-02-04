@@ -19,6 +19,7 @@
 #include <support/check.h>
 
 #include <locale.h>
+#include <stdint.h>
 
 locale_t
 xnewlocale (int category_mask, const char *locale, locale_t base)
@@ -26,6 +27,6 @@ xnewlocale (int category_mask, const char *locale, locale_t base)
   locale_t r = newlocale (category_mask, locale, base);
   if (r == (locale_t) 0)
     FAIL_EXIT1 ("error: newlocale (%d, \"%s\", %p)\n", category_mask,
-		locale, (void *) base);
+		locale, (void *) (intptr_t) base);
   return r;
 }

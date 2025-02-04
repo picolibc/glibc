@@ -19,12 +19,13 @@
 #include <support/check.h>
 
 #include <locale.h>
+#include <stdint.h>
 
 locale_t
 xuselocale (locale_t newloc)
 {
   locale_t r = uselocale (newloc);
   if (r == (locale_t) 0)
-    FAIL_EXIT1 ("error: uselocale (%p)\n", (void *) newloc);
+    FAIL_EXIT1 ("error: uselocale (%p)\n", (void *) (intptr_t) newloc);
   return r;
 }

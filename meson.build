@@ -70,6 +70,8 @@ inc = include_directories(inc_dirs)
 
 targets = []
 
+test_link_args = cc.get_supported_link_arguments(['-Wl,--gc-sections', '-Wl,--no-warn-rwx-segments'])
+
 if enable_multilib
   used_libs = []
 
@@ -110,7 +112,7 @@ if enable_multilib
 
       # Add any extra flags for this target from the cross file
 
-      _link_flags = []
+      _link_flags = test_link_args
       _c_flags = []
       name_part = ''
       foreach part : name.split('_')
