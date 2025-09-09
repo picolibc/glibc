@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # SPDX-License-Identifier: BSD-3-Clause
 #
@@ -48,94 +48,70 @@ memory=
 # Map ELF information to required core type
 #
 
-cpu_arch=`arm-none-eabi-readelf -A "$elf" | awk '/Tag_CPU_arch:/ { print $2 }'`
-cpu_profile=`arm-none-eabi-readelf -A "$elf" | awk '/Tag_CPU_arch_profile:/ { print $2 }'`
-fp_arch=`arm-none-eabi-readelf -A "$elf" | awk '/Tag_FP_arch/ { print $2 }'`
-fp_use=`arm-none-eabi-readelf -A "$elf" | awk '/Tag_ABI_HardFP_use/ { print $2 }'`
-mve_arch=`arm-none-eabi-readelf -A "$elf" | awk '/Tag_MVE_arch/ { print $2 }'`
-
-case "$fp_arch" in
-    "")
-	FP=none
-	FMA=none
-	;;
-    VFPv[23]*)
-	# FMA not added until VFPv4
-	FMA=none
-	case "$fp_use" in
-	    *SP*)
-		FP=SP
-		;;
-	    *)
-		FP=DP
-		;;
-	esac
-	;;
-    *)
-	case "$fp_use" in
-	    *SP*)
-		FMA=SP
-		FP=SP
-		;;
-	    *)
-		FMA=DP
-		FP=DP
-		;;
-	esac
-	;;
-esac
-
-# skip FMA and fenv on soft float
-
-case "$elf" in
-    *double-fma|*double-fma_*)
-	if [ $FMA != DP ]; then
-	    echo "double FMA without hardware, skip"
-	    exit 77
-	fi
-	;;
-    *float-fma|*float-fma_*)
-	if [ $FMA = none ]; then
-	    echo "single FMA without hardware, skip"
-	    exit 77
-	fi
-	;;
-    *double*_fenvtest_*)
-	if [ $FP = SP ]; then
-	    echo "double fenv test with float hardware, skip"
-	    exit 77
-	fi
-	;;
-    *test-nearbyint-except*)
-	if [ $FP = SP ]; then
-	    echo "nearbyint test with float hardware, skip"
-	    exit 77
-	fi
-	;;
-esac
+cpu_arch=`readelf -A "$elf" | awk '/Tag_CPU_arch:/ { print $2 }'`
+cpu_profile=`readelf -A "$elf" | awk '/Tag_CPU_arch_profile:/ { print $2 }'`
+fp_arch=`readelf -A "$elf" | awk '/Tag_FP_arch/ { print $2 }'`
+fp_use=`readelf -A "$elf" | awk '/Tag_ABI_HardFP_use/ { print $2 }'`
+ram_addr=`readelf -l "$elf" | awk '/LOAD.*RW/ { if (min_va == 0 || $3 < min_va) min_va = $3; } END { print(min_va); }'`
 
 case "$cpu_arch"/"$cpu_profile" in
     v4T/)
         cpu=ti925t
         ;;
-    v5TE/)
+    v5TE/|v5T/)
         cpu=arm926
         ;;
     v6S-M/Microcontroller)
         cpu=cortex-m0
         ;;
-    v7/Application|v7/)
+    v7/Application)
         case "$fp_arch" in
+            VFPv3)
+                cpu=cortex-a9
+                ;;
             VFPv3-D16)
                 cpu=cortex-a8
+                ;;
+            VFPv4)
+                cpu=cortex-a7
                 ;;
             *)
                 cpu=cortex-a7
                 ;;
         esac
-        ;;        
+        ;;
+    v7/)
+        case "$fp_arch" in
+            VFPv3)
+                cpu=cortex-r5
+                ;;
+            VFPv3-D16)
+                cpu=cortex-r5f
+                ;;
+            *)
+                cpu=cortex-r5
+                ;;
+        esac
+        ;;
     v7/Microcontroller)
-        cpu=cortex-m3
+        case "$fp_arch" in
+            FPv5/FP-D16)
+                case "$fp_use" in
+                    SP)
+                        cpu=cortex-m4
+                        ;;
+                    *)
+                        cpu=cortex-m7
+                        ;;
+                esac
+                ;;
+            VFPv4-D16)
+                cpu=cortex-m7
+                ;;
+            *)
+                cpu=cortex-m3
+                ;;
+        esac
         ;;
     v7/Realtime)
         cpu=cortex-r5f
@@ -149,6 +125,9 @@ case "$cpu_arch"/"$cpu_profile" in
                         cpu=cortex-m4
                         ;;
                 esac
+                ;;
+            VFPv4-D16)
+                cpu=cortex-m7
                 ;;
             *)
                 cpu=cortex-m4
@@ -219,14 +198,27 @@ case $cpu in
     cortex-a57)
         machine=none
         cpu=max
-	memory="-m 3G"
+	memory="-m 1G"
         ;;
 
+    cortex-a?)
+        case "$ram_addr" in
+            0x48*)
+                machine=vexpress-a9
+                cpu=cortex-a9
+                ;;
+            *)
+	        machine=none
+                ;;
+        esac
+	memory="-m 1G"
+        ;;
+        
     # The 'none' machine supports many non-M
     # processors
     ti925t|arm*|cortex-a*|cortex-r*)
 	machine=none
-	memory="-m 3G"
+	memory="-m 1G"
 	;;
 
 esac
@@ -253,25 +245,41 @@ chardev=stdio,mux=on,id=stdio0
 
 # Point the semihosting driver at our new chardev
 
-semi=enable=on,chardev=stdio0
+cmdline="program-name"
+input=""
+input_file=""
+done=0
 
-input="/dev/null"
+while [ "$done" != "1" ]; do
+    case "$1" in
+        --)
+            shift
+            done=1
+            ;;
+        -s|"")
+            done=1
+            ;;
+        -i)
+            input_file="$2"
+            shift
+            shift
+            ;;
+        *)
+            cmdline="$cmdline $1"
+            case "$input" in
+                "")
+                    input="$1"
+                    ;;
+                *)
+                    input="$input $1"
+                    ;;
+            esac
+            shift
+            ;;
+    esac
+done
 
-case "$1" in
-    --)
-	semi="$semi",arg="$2"
-	shift
-	shift
-	;;
-    -*|"")
-	semi="$semi"
-	;;
-    *)
-	semi="$semi",arg="$elf $1"
-	input="$1"
-	shift
-	;;
-esac
+semi=enable=on,chardev=stdio0,arg="$cmdline"
 
 # Disable monitor
 
@@ -281,7 +289,16 @@ mon=none
 
 serial=none
 
-# shellcheck disable=SC2086
+export QEMU_AUDIO_DRV=none
+
+case "$input_file" in
+    "")
+        input_file=`mktemp`
+        trap 'rm "$input_file"' 0
+        echo "$input" > "$input_file"
+        ;;
+esac        
+
 "$qemu" $memory \
       -chardev "$chardev" \
       -semihosting-config "$semi" \
@@ -291,7 +308,7 @@ serial=none
       -cpu "$cpu" \
       -device loader,file="$elf",cpu-num=0 \
       -nographic \
-      "$@" < "$input"
+      "$@" < $input_file 
 
 result=$?
 
@@ -302,7 +319,7 @@ if [ $result != 0 ]; then
 	cortex-a8)
 	    test="$(uname -m)-$elf"
 	    case "$test" in
-		i?86-*math_test)
+		i?86-*math_test|i?86-*math_test_?|i?86-*math_test_??)
 		    echo "fp imprecise for $cpu on" "$(uname -m)"
 		    result=77
 		    ;;

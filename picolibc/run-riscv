@@ -40,21 +40,36 @@ qemu="qemu-system-riscv32"
 elf="$1"
 shift
 
-case "$elf" in
-    *rv32*_ilp32*)
-	qemu="qemu-system-riscv32"
-	cpu=rv32
-	;;
-    *rv64*_lp64*)
-	qemu="qemu-system-riscv64"
-	cpu=rv64
-	;;
-    *)
-	qemu="qemu-system-riscv64"
-	options="i m a f d c"
-	cpu=rv64
-	;;
-esac
+archstring=""
+# If readelf is installed, we can use the .riscv.attributes section
+# in the file to determine required extensions that we need in QEMU.
+# This will give us a string such as "rv64i2p0_m2p0_a2p0_f2p0_d2p0_c2p0"
+if command -v readelf >/dev/null 2>/dev/null; then
+    # LLVM-based toolchains readelf produces different output from GNU, so
+    # check --version output first.
+    if readelf --version | grep LLVM >/dev/null; then
+        archstring=$(readelf --arch-specific "$elf" | grep "Value: rv" | cut -d: -f2)
+    else
+        archstring=$(readelf --arch-specific "$elf" | grep Tag_RISCV_arch | cut -d: -f2 | tr -d '"')
+    fi
+fi
+if [ -z "$archstring" ]; then
+    echo "Could not determine architecture for $elf, is readelf installed?" >&2
+    exit 1
+fi
+if [ "${archstring#*rv64}" != "$archstring" ]; then
+    qemu="qemu-system-riscv64"
+    cpu="rv64"
+elif [ "${archstring#*rv32}" != "$archstring" ]; then
+    qemu="qemu-system-riscv32"
+    cpu="rv32"
+else
+    echo "Unknown architecture for $elf: $archstring" >&2
+    exit 1
+fi
+options="$(echo "$archstring" | sed 's/rv[36][24]//' | sed 's/_/ /g' | sed 's/[0-9]p[0-9]\>//g')"
+
+qemu_version="$("$qemu" --version | grep version | sed 's/.*version \([0-9][0-9.]*\).*/\1/')"
 
 cpu="$cpu,mmu=false,pmp=false"
 
@@ -62,24 +77,57 @@ if [ -z "$options" ]; then
     options="$(echo "$elf" | sed 's/.*rv[36][24]\([a-z]*\)_.*$/\1/' | sed 's/\(.\)/\1 /g')"
 fi
 
-all_options="i e g m a f d c s u"
-
-if $qemu --version | grep -q 'version [789]'; then
-    all_options="h $all_options"
-fi
-
-if $qemu --version | grep -q 'version [89]'; then
-    all_options="zawrs zfa $all_options"
-fi
-
-for o in $all_options; do
-    if echo "$options" | grep -q "$o"; then
-	value=true
-    else
-	value=false
-    fi
-    cpu="$cpu,$o=$value"
+for o in $options; do
+    # Old versions of qemu don't have new extension subsets
+    case "$qemu_version" in
+        8*|7*)
+            case "$o" in
+                zmmul)
+                    o=m
+                    ;;
+                zaamo|zalrsc|zawrs)
+                    o=a
+                    ;;
+            esac
+            ;;
+    esac
+    case "$o" in
+        zvl*)
+            # qemu doesn't list zvl extensions
+            ;;
+        *)
+            cpu="$cpu,$o=true"
+            ;;
+    esac
 done
+
+# qemu enables some options by defualt; we need to explicitly
+# disable them when not selected
+enabled_options="i h e g m a f d c s u v zifencei zihintpause"
+
+# Add default enabled options for newer qemu versions
+case "$qemu_version" in
+    8.[01]*|7*)
+        ;;
+    *)
+        enabled_options="$enabled_options zawrs zfa zihintntl"
+        ;;
+esac
+
+for enabled in $enabled_options; do
+    if echo "$options" | grep -q -w $enabled; then
+        :
+    else
+        cpu="$cpu,$enabled=false"
+    fi
+done
+
+# Map lower case options to upper case for qemu version 8.1 and earlier
+case "$qemu_version" in
+    8.[01]*|7*)
+        cpu="$(echo "$cpu" | sed 's/\<z/Z/g')"
+        ;;
+esac
 
 # Set the target machine
 machine=virt,accel=tcg
@@ -91,27 +139,43 @@ chardev=stdio,mux=on,id=stdio0
 
 # Point the semihosting driver at our new chardev
 
-semi=enable=on,chardev=stdio0
+cmdline="program-name"
+input=""
+input_file=""
+done=0
 
-input="/dev/null"
+while [ "$done" != "1" ]; do
+    case "$1" in
+        --)
+            shift
+            done=1
+            ;;
+        -s|"")
+            done=1
+            ;;
+        -i)
+            input_file="$2"
+            shift
+            shift
+            ;;
+        *)
+            cmdline="$cmdline $1"
+            case "$input" in
+                "")
+                    input="$1"
+                    ;;
+                *)
+                    input="$input $1"
+                    ;;
+            esac
+            shift
+            ;;
+    esac
+done
 
-case "$1" in
-    --)
-	semi="$semi",arg="$2"
-	shift
-	shift
-	;;
-    -*|"")
-	semi="$semi"
-	;;
-    *)
-	semi="$semi",arg="$elf $1"
-	input="$1"
-	shift
-	;;
-esac
+semi=enable=on,chardev=stdio0,arg="$cmdline"
 
-# Disable mon
+# Disable monitor
 
 mon=none
 
@@ -119,15 +183,22 @@ mon=none
 
 serial=none
 
-# shellcheck disable=SC2086
+case "$input_file" in
+    "")
+        input_file=`mktemp`
+        trap 'rm "$input_file"' 0
+        echo "$input" > "$input_file"
+        ;;
+esac        
+
 "$qemu" \
     -chardev $chardev \
     -semihosting-config "$semi" \
     -monitor "$mon" \
     -serial "$serial" \
     -machine "$machine" \
-    -m 2G \
     -cpu "$cpu" \
     -kernel "$elf" \
+    -nographic \
     -bios none \
-    -nographic "$@" < "$input"
+    -m 2G "$@" < "$input_file"
