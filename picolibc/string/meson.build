@@ -127,7 +127,7 @@ foreach test_name : tests
 	 args: _args,
 	 timeout: 6000,
 	 suite: 'string',
-	 env: ['MESON_SOURCE_ROOT=' + meson.source_root()]
+	 env: ['MESON_SOURCE_ROOT=' + meson.project_source_root()]
 	)
   endforeach
 endforeach

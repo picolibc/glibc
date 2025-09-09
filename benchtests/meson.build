@@ -98,7 +98,7 @@ foreach test_name : tests
 		    link_args: _link_args,
 		    link_with: [_lib_support, _lib_posix]
 		   ),
-	 env: ['MESON_SOURCE_ROOT=' + meson.source_root()],
+	 env: ['MESON_SOURCE_ROOT=' + meson.project_source_root()],
 	 workdir: meson.current_source_dir(),
 	 timeout: 6000,
 	 suite: 'benchmark'

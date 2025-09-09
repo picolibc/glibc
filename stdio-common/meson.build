@@ -94,9 +94,9 @@ foreach test_name : tests
 
     test_input = test_name + '.input'
     if fs.is_file(test_input)
-      args = [meson.current_source_dir() / test_input]
+      args = ['-i', meson.current_source_dir() / test_input, meson.current_source_dir() / test_input]
     else
-      args = ['--', _test_name + ' ' + _test_name]
+      args = []
     endif
 
     test(_test_name,
@@ -108,7 +108,7 @@ foreach test_name : tests
 		    link_with: [_lib_support, _lib_posix]
 		   ),
 	 args: args,
-	 env: ['MESON_SOURCE_ROOT=' + meson.source_root()],
+	 env: ['MESON_SOURCE_ROOT=' + meson.project_source_root()],
 	 suite: 'stdio-common'
 	)
   endforeach
