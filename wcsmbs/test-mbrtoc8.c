@@ -139,7 +139,7 @@ test_utf8 (void)
 
   /* First character in the code point range that maps to three code units.  */
   {
-    const char *mbs = u8"\xE0\xA0\x80"; /* 0xE0 0xA0 0x80 => U+0800 */
+    const char *mbs = "\xE0\xA0\x80"; /* 0xE0 0xA0 0x80 => U+0800 */
     char8_t buf[1] = { 0 };
     mbstate_t s = { 0 };
 
@@ -155,7 +155,7 @@ test_utf8 (void)
 
   /* Same as last test, but one code unit at a time.  */
   {
-    const char *mbs = u8"\xE0\xA0\x80"; /* 0xE0 0xA0 0x80 => U+0800 */
+    const char *mbs = "\xE0\xA0\x80"; /* 0xE0 0xA0 0x80 => U+0800 */
     char8_t buf[1] = { 0 };
     mbstate_t s = { 0 };
 

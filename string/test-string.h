@@ -28,7 +28,7 @@ typedef struct
 extern impl_t __start_impls[], __stop_impls[];
 
 #define IMPL(name, test) \
-  impl_t tst_ ## name							\
+  const impl_t tst_ ## name							\
   __attribute__ ((section ("impls"), aligned (sizeof (void *))))	\
        = { __STRING (name), (void (*) (void))name, test };
 
