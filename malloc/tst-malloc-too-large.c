@@ -67,7 +67,7 @@ test_setup (void)
     - reallocarray (PTR_FOR_REALLOC, SIZE/NMEMB, NMEMB)
    and precedes each of these tests with a small malloc/free before it.  */
 static void
-test_large_allocations (size_t size)
+test_large_allocations (volatile size_t size)
 {
   void * ptr_to_realloc;
 
@@ -158,7 +158,7 @@ static long pagesize;
    small malloc/free before it:
    memalign, posix_memalign, aligned_alloc, valloc, pvalloc.  */
 static void
-test_large_aligned_allocations (size_t size)
+test_large_aligned_allocations (volatile size_t size)
 {
   /* ptr stores the result of posix_memalign but since all those calls
      should fail, posix_memalign should never change ptr.  We set it to
