@@ -172,3 +172,15 @@ static inline const char *strerrorname_np(int i) { return "ERROR"; }
 #include <unistd.h>
 #define getpagesize() 2048
 #endif
+
+struct argp_fmtstream;
+
+extern int argp_fmtstream_putc (struct argp_fmtstream * __fs, int __ch);
+extern size_t argp_fmtstream_point (struct argp_fmtstream * __fs);
+extern size_t argp_fmtstream_set_lmargin (struct argp_fmtstream * __fs,
+					  size_t __lmargin);
+extern size_t argp_fmtstream_set_wmargin (struct argp_fmtstream * __fs,
+					  size_t __wmargin);
+extern int argp_fmtstream_puts (struct argp_fmtstream * __fs, const char *__str);
+extern size_t argp_fmtstream_write (struct argp_fmtstream * __fs,
+				    const char *__str, size_t __len);

@@ -26,10 +26,11 @@
 #define __OPTIMIZE__ 1
 #include <argp-fmtstream.h>
 
-#if 0
+#if 1
 /* Not exported.  */
 /* Add weak aliases.  */
 #if _LIBC - 0 && !defined (ARGP_FMTSTREAM_USE_LINEWRAP) && defined (weak_alias)
+#error adding weak aliases
 
 weak_alias (__argp_fmtstream_putc, argp_fmtstream_putc)
 weak_alias (__argp_fmtstream_puts, argp_fmtstream_puts)
