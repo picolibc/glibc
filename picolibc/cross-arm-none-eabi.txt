@@ -15,6 +15,7 @@ endian = 'little'
 [properties]
 c_args = [ '--specs=picolibc.specs' ]
 link_args_ = [ '-Tpicolibc_none.ld' ]
+link_args_space = [ '-Tpicolibc_none.ld' ]
 link_args_arm_v5te_hard = [ '-Tpicolibc_none.ld' ]
 link_args_arm_v5te_softfp = [ '-Tpicolibc_none.ld' ]
 link_args_thumb_nofp = [ '-Tpicolibc_none.ld' ]
