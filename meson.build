@@ -95,11 +95,14 @@ if enable_multilib
 	  endif
 	endforeach
 	if _tmp[0] == '.'
+          dir = ''
 	  name = ''
 	else
+          dir = _tmp[0]
 	  name = _tmp[0].underscorify()
 	endif
       else
+        dir = ''
 	name = ''
       endif
       targets += name
@@ -122,6 +125,7 @@ if enable_multilib
       endforeach
 
       _link_flags = c_args + _arch_flags + _link_flags
+
       _c_flags = c_args + _arch_flags + _c_flags
 
       set_variable('target_' + name, [_tmp[0], _c_flags, _link_flags])

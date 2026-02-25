@@ -35,6 +35,7 @@
 srcs_support = [
   'blob_repeat.c',
   'check.c',
+  'lock-valid.c',
   'support_record_failure.c',
   'support_test_compare_failure.c',
   'support_test_compare_string.c',

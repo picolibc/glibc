@@ -16,6 +16,6 @@ endian = 'little'
 c_args = [ '--specs=picolibc.specs', '-msave-restore', '-fno-common', '-mcmodel=medany' ]
 # default multilib is 64 bit
 c_args_ = [ '-mcmodel=medany' ]
-c_link_args = [ '--specs=picolibc.specs', '-fno-common', '-L/build/glibc/picolibc', '-Ttest-riscv.ld', '--oslib=semihost', '--crt0=semihost']
+c_link_args = [ '--specs=picolibc.specs', '-fno-common', '-L/build/glibc/picolibc', '-Ttest-riscv.ld', '--oslib=semihost', '--crt0=semihost', '-u__lock___libc_recursive_mutex' ]
 needs_exe_wrapper = true
 skip_sanity_check = true

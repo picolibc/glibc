@@ -1,0 +1,453 @@
+ 114/1995 malloc - glibc-test:tst-calloc_lp64_space                      FAIL              0.73s   exit status 1
+ 115/1995 malloc - glibc-test:tst-calloc_ilp32                           FAIL              0.99s   exit status 1
+ 120/1995 malloc - glibc-test:tst-calloc_ilp32_space                     FAIL              1.07s   exit status 1
+ 124/1995 malloc - glibc-test:tst-calloc_space                           FAIL              1.72s   exit status 1
+ 222/1995 gnulib - glibc-test:tst-gcc                                    TIMEOUT          31.07s   killed by signal 15 SIGTERM
+ 223/1995 malloc - glibc-test:tst-calloc                                 TIMEOUT          30.72s   killed by signal 15 SIGTERM
+ 224/1995 malloc - glibc-test:tst-free-errno                             TIMEOUT          30.40s   killed by signal 15 SIGTERM
+ 226/1995 malloc - glibc-test:tst-malloc                                 TIMEOUT          30.35s   killed by signal 15 SIGTERM
+ 228/1995 malloc - glibc-test:tst-memalign                               TIMEOUT          30.15s   killed by signal 15 SIGTERM
+ 230/1995 malloc - glibc-test:tst-malloc-too-large                       TIMEOUT          30.67s   killed by signal 15 SIGTERM
+ 234/1995 malloc - glibc-test:tst-posix_memalign                         TIMEOUT          30.38s   killed by signal 15 SIGTERM
+ 239/1995 malloc - glibc-test:tst-pvalloc                                TIMEOUT          30.30s   killed by signal 15 SIGTERM
+ 242/1995 malloc - glibc-test:tst-pvalloc-fortify                        TIMEOUT          30.10s   killed by signal 15 SIGTERM
+ 250/1995 malloc - glibc-test:tst-valloc                                 TIMEOUT          30.68s   killed by signal 15 SIGTERM
+ 253/1995 ctype - glibc-test:test_ctype                                  TIMEOUT          30.36s   killed by signal 15 SIGTERM
+ 256/1995 iconv - glibc-test:tst-iconv1                                  TIMEOUT          30.10s   killed by signal 15 SIGTERM
+ 263/1995 iconv - glibc-test:tst-iconv3                                  TIMEOUT          30.22s   killed by signal 15 SIGTERM
+ 265/1995 iconv - glibc-test:tst-iconv5                                  TIMEOUT          30.45s   killed by signal 15 SIGTERM
+ 272/1995 libio - glibc-test:tst-eof                                     TIMEOUT          30.54s   killed by signal 15 SIGTERM
+ 275/1995 libio - glibc-test:tst-fseek                                   TIMEOUT          30.36s   killed by signal 15 SIGTERM
+ 278/1995 glibc-test:test-flt-eval-method                                TIMEOUT          30.20s   killed by signal 15 SIGTERM
+ 285/1995 glibc-test:test-fp-ilogb-constants                             TIMEOUT          30.51s   killed by signal 15 SIGTERM
+ 290/1995 glibc-test:test-fpucw                                          TIMEOUT          30.19s   killed by signal 15 SIGTERM
+ 293/1995 glibc-test:test-fpucw-ieee                                     TIMEOUT          30.23s   killed by signal 15 SIGTERM
+ 301/1995 glibc-test:test-fpucw-ieee-static                              TIMEOUT          30.77s   killed by signal 15 SIGTERM
+ 308/1995 glibc-test:test-fpucw-static                                   TIMEOUT          30.29s   killed by signal 15 SIGTERM
+ 321/1995 glibc-test:test-iseqsig-excess-precision                       TIMEOUT          30.29s   killed by signal 15 SIGTERM
+ 343/1995 glibc-test:test-iszero-excess-precision                        TIMEOUT          30.24s   killed by signal 15 SIGTERM
+ 357/1995 glibc-test:test-nan-overflow                                   TIMEOUT          30.15s   killed by signal 15 SIGTERM
+ 366/1995 glibc-test:test-narrow-macros                                  TIMEOUT          30.27s   killed by signal 15 SIGTERM
+ 369/1995 glibc-test:test-nearbyint-except-2                             TIMEOUT          30.38s   killed by signal 15 SIGTERM
+ 370/1995 glibc-test:test-nearbyint-except                               TIMEOUT          30.25s   killed by signal 15 SIGTERM
+ 372/1995 glibc-test:test-signgam-uchar                                  TIMEOUT          30.26s   killed by signal 15 SIGTERM
+ 376/1995 glibc-test:test-signgam-uchar-init                             TIMEOUT          30.19s   killed by signal 15 SIGTERM
+ 379/1995 glibc-test:test-signgam-uchar-static                           TIMEOUT          30.19s   killed by signal 15 SIGTERM
+ 380/1995 glibc-test:test-signgam-uint                                   TIMEOUT          30.26s   killed by signal 15 SIGTERM
+ 384/1995 glibc-test:test-signgam-uint-init                              TIMEOUT          30.27s   killed by signal 15 SIGTERM
+ 386/1995 glibc-test:test-signgam-uint-static                            TIMEOUT          30.33s   killed by signal 15 SIGTERM
+ 391/1995 glibc-test:test-signgam-ullong                                 TIMEOUT          30.33s   killed by signal 15 SIGTERM
+ 396/1995 glibc-test:test-signgam-ullong-init                            TIMEOUT          30.52s   killed by signal 15 SIGTERM
+ 398/1995 glibc-test:test-signgam-ullong-static                          TIMEOUT          30.29s   killed by signal 15 SIGTERM
+ 401/1995 glibc-test:test-snan                                           TIMEOUT          30.15s   killed by signal 15 SIGTERM
+ 406/1995 glibc-test:test-femode_fenvtest                                TIMEOUT          30.33s   killed by signal 15 SIGTERM
+ 411/1995 glibc-test:test-femode-traps_fenvtest                          TIMEOUT          30.24s   killed by signal 15 SIGTERM
+ 418/1995 glibc-test:test-fenv-clear_fenvtest                            TIMEOUT          30.75s   killed by signal 15 SIGTERM
+ 422/1995 glibc-test:test-fenv-preserve_fenvtest                         TIMEOUT          30.60s   killed by signal 15 SIGTERM
+ 425/1995 glibc-test:test-fenv-return_fenvtest                           TIMEOUT          30.24s   killed by signal 15 SIGTERM
+ 426/1995 glibc-test:test-fesetexcept_fenvtest                           TIMEOUT          30.15s   killed by signal 15 SIGTERM
+ 427/1995 glibc-test:test-fesetexcept-traps_fenvtest                     TIMEOUT          30.14s   killed by signal 15 SIGTERM
+ 436/1995 glibc-test:test-fexcept_fenvtest                               TIMEOUT          30.22s   killed by signal 15 SIGTERM
+ 439/1995 glibc-test:test-fexcept-traps_fenvtest                         TIMEOUT          30.28s   killed by signal 15 SIGTERM
+ 448/1995 math+float - glibc-test:test-float-acos                        TIMEOUT          30.36s   killed by signal 15 SIGTERM
+ 456/1995 math+float - glibc-test:test-float-acosh                       TIMEOUT          30.48s   killed by signal 15 SIGTERM
+ 460/1995 math+float - glibc-test:test-float-asin                        TIMEOUT          30.20s   killed by signal 15 SIGTERM
+ 471/1995 math+float - glibc-test:test-float-asinh                       TIMEOUT          30.47s   killed by signal 15 SIGTERM
+ 480/1995 math+float - glibc-test:test-float-atan                        TIMEOUT          30.24s   killed by signal 15 SIGTERM
+ 491/1995 math+float - glibc-test:test-float-atan2                       TIMEOUT          30.40s   killed by signal 15 SIGTERM
+ 494/1995 math+float - glibc-test:test-float-atanh                       TIMEOUT          30.46s   killed by signal 15 SIGTERM
+ 501/1995 math+float - glibc-test:test-float-cabs                        TIMEOUT          30.15s   killed by signal 15 SIGTERM
+ 507/1995 math+float - glibc-test:test-float-cbrt                        TIMEOUT          30.30s   killed by signal 15 SIGTERM
+ 510/1995 math+float - glibc-test:test-float-ceil                        TIMEOUT          30.22s   killed by signal 15 SIGTERM
+ 515/1995 math+float - glibc-test:test-float-copysign                    TIMEOUT          30.27s   killed by signal 15 SIGTERM
+ 519/1995 math+float - glibc-test:test-float-cos                         TIMEOUT          30.35s   killed by signal 15 SIGTERM
+ 525/1995 math+float - glibc-test:test-float-cosh                        TIMEOUT          30.77s   killed by signal 15 SIGTERM
+ 526/1995 math+float - glibc-test:test-float-erf                         TIMEOUT          30.41s   killed by signal 15 SIGTERM
+ 532/1995 math+float - glibc-test:test-float-erfc                        TIMEOUT          30.47s   killed by signal 15 SIGTERM
+ 534/1995 math+float - glibc-test:test-float-exp                         TIMEOUT          30.22s   killed by signal 15 SIGTERM
+ 539/1995 math+float - glibc-test:test-float-exp10                       TIMEOUT          30.37s   killed by signal 15 SIGTERM
+ 545/1995 math+float - glibc-test:test-float-exp2                        TIMEOUT          30.44s   killed by signal 15 SIGTERM
+ 546/1995 math+float - glibc-test:test-float-expm1                       TIMEOUT          30.30s   killed by signal 15 SIGTERM
+ 555/1995 math+float - glibc-test:test-float-fabs                        TIMEOUT          30.45s   killed by signal 15 SIGTERM
+ 556/1995 math+float - glibc-test:test-float-fdim                        TIMEOUT          30.25s   killed by signal 15 SIGTERM
+ 557/1995 math+float - glibc-test:test-float-floor                       TIMEOUT          30.17s   killed by signal 15 SIGTERM
+ 563/1995 math+float - glibc-test:test-float-fma                         TIMEOUT          30.72s   killed by signal 15 SIGTERM
+ 567/1995 math+float - glibc-test:test-float-fmax                        TIMEOUT          30.37s   killed by signal 15 SIGTERM
+ 570/1995 math+float - glibc-test:test-float-fmin                        TIMEOUT          30.34s   killed by signal 15 SIGTERM
+ 576/1995 math+float - glibc-test:test-float-fmod                        TIMEOUT          30.24s   killed by signal 15 SIGTERM
+ 580/1995 math+float - glibc-test:test-float-fpclassify                  TIMEOUT          30.23s   killed by signal 15 SIGTERM
+ 584/1995 math+float - glibc-test:test-float-frexp                       TIMEOUT          30.35s   killed by signal 15 SIGTERM
+ 589/1995 math+float - glibc-test:test-float-getpayload                  TIMEOUT          30.24s   killed by signal 15 SIGTERM
+ 596/1995 math+float - glibc-test:test-float-isfinite                    TIMEOUT          30.65s   killed by signal 15 SIGTERM
+ 601/1995 math+float - glibc-test:test-float-isinf                       TIMEOUT          30.19s   killed by signal 15 SIGTERM
+ 606/1995 math+float - glibc-test:test-float-isnan                       TIMEOUT          30.28s   killed by signal 15 SIGTERM
+ 613/1995 math+float - glibc-test:test-float-isnormal                    TIMEOUT          30.14s   killed by signal 15 SIGTERM
+ 624/1995 math+float - glibc-test:test-float-issubnormal                 TIMEOUT          30.28s   killed by signal 15 SIGTERM
+ 630/1995 math+float - glibc-test:test-float-isunordered                 TIMEOUT          30.30s   killed by signal 15 SIGTERM
+ 634/1995 math+float - glibc-test:test-float-hypot                       TIMEOUT          30.26s   killed by signal 15 SIGTERM
+ 639/1995 math+float - glibc-test:test-float-ilogb                       TIMEOUT          30.24s   killed by signal 15 SIGTERM
+ 644/1995 math+float - glibc-test:test-float-log                         TIMEOUT          30.26s   killed by signal 15 SIGTERM
+ 653/1995 math+float - glibc-test:test-float-log10                       TIMEOUT          30.26s   killed by signal 15 SIGTERM
+ 658/1995 math+float - glibc-test:test-float-log1p                       TIMEOUT          30.49s   killed by signal 15 SIGTERM
+ 664/1995 math+float - glibc-test:test-float-log2                        TIMEOUT          30.43s   killed by signal 15 SIGTERM
+ 667/1995 math+float - glibc-test:test-float-logb                        TIMEOUT          30.31s   killed by signal 15 SIGTERM
+ 672/1995 math+float - glibc-test:test-float-lrint                       TIMEOUT          30.30s   killed by signal 15 SIGTERM
+ 677/1995 math+float - glibc-test:test-float-lround                      TIMEOUT          30.53s   killed by signal 15 SIGTERM
+ 681/1995 math+float - glibc-test:test-float-modf                        TIMEOUT          30.23s   killed by signal 15 SIGTERM
+ 686/1995 math+float - glibc-test:test-float-nearbyint                   TIMEOUT          30.29s   killed by signal 15 SIGTERM
+ 690/1995 math+float - glibc-test:test-float-nextafter                   TIMEOUT          30.33s   killed by signal 15 SIGTERM
+ 696/1995 math+float - glibc-test:test-float-pow                         TIMEOUT          30.50s   killed by signal 15 SIGTERM
+ 698/1995 math+float - glibc-test:test-float-remainder                   TIMEOUT          30.35s   killed by signal 15 SIGTERM
+ 703/1995 math+float - glibc-test:test-float-remquo                      TIMEOUT          30.23s   killed by signal 15 SIGTERM
+ 709/1995 math+float - glibc-test:test-float-rint                        TIMEOUT          30.40s   killed by signal 15 SIGTERM
+ 711/1995 math+float - glibc-test:test-float-round                       TIMEOUT          30.17s   killed by signal 15 SIGTERM
+ 719/1995 math+float - glibc-test:test-float-scalb                       TIMEOUT          30.27s   killed by signal 15 SIGTERM
+ 722/1995 math+float - glibc-test:test-float-scalbn                      TIMEOUT          30.19s   killed by signal 15 SIGTERM
+ 729/1995 math+float - glibc-test:test-float-scalbln                     TIMEOUT          30.56s   killed by signal 15 SIGTERM
+ 731/1995 math+float - glibc-test:test-float-signbit                     TIMEOUT          30.14s   killed by signal 15 SIGTERM
+ 735/1995 math+float - glibc-test:test-float-significand                 TIMEOUT          30.14s   killed by signal 15 SIGTERM
+ 742/1995 math+float - glibc-test:test-float-sin                         TIMEOUT          30.33s   killed by signal 15 SIGTERM
+ 746/1995 math+float - glibc-test:test-float-sincos                      TIMEOUT          30.28s   killed by signal 15 SIGTERM
+ 750/1995 math+float - glibc-test:test-float-sinh                        TIMEOUT          30.17s   killed by signal 15 SIGTERM
+ 757/1995 math+float - glibc-test:test-float-sqrt                        TIMEOUT          30.20s   killed by signal 15 SIGTERM
+ 763/1995 math+float - glibc-test:test-float-tan                         TIMEOUT          30.45s   killed by signal 15 SIGTERM
+ 768/1995 math+float - glibc-test:test-float-tanh                        TIMEOUT          30.41s   killed by signal 15 SIGTERM
+ 774/1995 math+float - glibc-test:test-float-trunc                       TIMEOUT          30.18s   killed by signal 15 SIGTERM
+ 778/1995 math+float - glibc-test:test-float-nexttoward                  TIMEOUT          30.37s   killed by signal 15 SIGTERM
+ 783/1995 math+float - glibc-test:test-float-j0                          TIMEOUT          30.19s   killed by signal 15 SIGTERM
+ 791/1995 math+float - glibc-test:test-float-j1                          TIMEOUT          30.41s   killed by signal 15 SIGTERM
+ 794/1995 math+float - glibc-test:test-float-y0                          TIMEOUT          30.14s   killed by signal 15 SIGTERM
+ 800/1995 math+float - glibc-test:test-float-y1                          TIMEOUT          30.22s   killed by signal 15 SIGTERM
+ 807/1995 math+double - glibc-test:test-double-acos                      TIMEOUT          30.53s   killed by signal 15 SIGTERM
+ 809/1995 math+double - glibc-test:test-double-acosh                     TIMEOUT          30.16s   killed by signal 15 SIGTERM
+ 816/1995 math+double - glibc-test:test-double-asin                      TIMEOUT          30.25s   killed by signal 15 SIGTERM
+ 822/1995 math+double - glibc-test:test-double-asinh                     TIMEOUT          30.44s   killed by signal 15 SIGTERM
+ 824/1995 math+double - glibc-test:test-double-atan                      TIMEOUT          30.16s   killed by signal 15 SIGTERM
+ 830/1995 math+double - glibc-test:test-double-atan2                     TIMEOUT          30.14s   killed by signal 15 SIGTERM
+ 836/1995 math+double - glibc-test:test-double-atanh                     TIMEOUT          30.42s   killed by signal 15 SIGTERM
+ 838/1995 math+double - glibc-test:test-double-cabs                      TIMEOUT          30.15s   killed by signal 15 SIGTERM
+ 841/1995 math+double - glibc-test:test-double-cbrt                      TIMEOUT          30.38s   killed by signal 15 SIGTERM
+ 848/1995 math+double - glibc-test:test-double-ceil                      TIMEOUT          30.26s   killed by signal 15 SIGTERM
+ 851/1995 math+double - glibc-test:test-double-copysign                  TIMEOUT          30.15s   killed by signal 15 SIGTERM
+ 858/1995 math+double - glibc-test:test-double-cos                       TIMEOUT          30.32s   killed by signal 15 SIGTERM
+ 864/1995 math+double - glibc-test:test-double-cosh                      TIMEOUT          30.20s   killed by signal 15 SIGTERM
+ 867/1995 math+double - glibc-test:test-double-erf                       TIMEOUT          30.34s   killed by signal 15 SIGTERM
+ 871/1995 math+double - glibc-test:test-double-erfc                      TIMEOUT          30.12s   killed by signal 15 SIGTERM
+ 876/1995 math+double - glibc-test:test-double-exp                       TIMEOUT          30.19s   killed by signal 15 SIGTERM
+ 881/1995 math+double - glibc-test:test-double-exp10                     TIMEOUT          30.28s   killed by signal 15 SIGTERM
+ 888/1995 math+double - glibc-test:test-double-exp2                      TIMEOUT          30.33s   killed by signal 15 SIGTERM
+ 896/1995 math+double - glibc-test:test-double-expm1                     TIMEOUT          30.39s   killed by signal 15 SIGTERM
+ 901/1995 math+double - glibc-test:test-double-fabs                      TIMEOUT          30.37s   killed by signal 15 SIGTERM
+ 906/1995 math+double - glibc-test:test-double-fdim                      TIMEOUT          30.21s   killed by signal 15 SIGTERM
+ 911/1995 math+double - glibc-test:test-double-floor                     TIMEOUT          30.34s   killed by signal 15 SIGTERM
+ 915/1995 math+double - glibc-test:test-double-fma                       TIMEOUT          30.26s   killed by signal 15 SIGTERM
+ 919/1995 math+double - glibc-test:test-double-fmax                      TIMEOUT          30.18s   killed by signal 15 SIGTERM
+ 926/1995 math+double - glibc-test:test-double-fmin                      TIMEOUT          30.43s   killed by signal 15 SIGTERM
+ 931/1995 math+double - glibc-test:test-double-fmod                      TIMEOUT          30.49s   killed by signal 15 SIGTERM
+ 936/1995 math+double - glibc-test:test-double-fpclassify                TIMEOUT          30.24s   killed by signal 15 SIGTERM
+ 943/1995 math+double - glibc-test:test-double-frexp                     TIMEOUT          30.31s   killed by signal 15 SIGTERM
+ 950/1995 math+double - glibc-test:test-double-getpayload                TIMEOUT          30.21s   killed by signal 15 SIGTERM
+ 955/1995 math+double - glibc-test:test-double-isfinite                  TIMEOUT          30.47s   killed by signal 15 SIGTERM
+ 959/1995 math+double - glibc-test:test-double-isinf                     TIMEOUT          30.21s   killed by signal 15 SIGTERM
+ 965/1995 math+double - glibc-test:test-double-isnan                     TIMEOUT          30.40s   killed by signal 15 SIGTERM
+ 971/1995 math+double - glibc-test:test-double-isnormal                  TIMEOUT          30.29s   killed by signal 15 SIGTERM
+ 975/1995 math+double - glibc-test:test-double-issubnormal               TIMEOUT          30.18s   killed by signal 15 SIGTERM
+ 979/1995 math+double - glibc-test:test-double-isunordered               TIMEOUT          30.30s   killed by signal 15 SIGTERM
+ 984/1995 math+double - glibc-test:test-double-hypot                     TIMEOUT          30.35s   killed by signal 15 SIGTERM
+ 988/1995 math+double - glibc-test:test-double-ilogb                     TIMEOUT          30.30s   killed by signal 15 SIGTERM
+ 993/1995 math+double - glibc-test:test-double-log                       TIMEOUT          30.36s   killed by signal 15 SIGTERM
+ 998/1995 math+double - glibc-test:test-double-log10                     TIMEOUT          30.44s   killed by signal 15 SIGTERM
+1003/1995 math+double - glibc-test:test-double-log1p                     TIMEOUT          30.43s   killed by signal 15 SIGTERM
+1008/1995 math+double - glibc-test:test-double-log2                      TIMEOUT          30.47s   killed by signal 15 SIGTERM
+1012/1995 math+double - glibc-test:test-double-logb                      TIMEOUT          30.38s   killed by signal 15 SIGTERM
+1014/1995 math+double - glibc-test:test-double-lrint                     TIMEOUT          30.14s   killed by signal 15 SIGTERM
+1021/1995 math+double - glibc-test:test-double-lround                    TIMEOUT          30.28s   killed by signal 15 SIGTERM
+1026/1995 math+double - glibc-test:test-double-modf                      TIMEOUT          30.18s   killed by signal 15 SIGTERM
+1028/1995 math+double - glibc-test:test-double-nearbyint                 TIMEOUT          30.24s   killed by signal 15 SIGTERM
+1029/1995 math+ldouble - glibc-test:test-ldouble-acos_space              FAIL              1.37s   exit status 1
+1030/1995 math+ldouble - glibc-test:test-ldouble-acos_ilp32              FAIL              1.46s   exit status 1
+1033/1995 math+ldouble - glibc-test:test-ldouble-acos_ilp32_space        FAIL              1.55s   exit status 1
+1034/1995 math+double - glibc-test:test-double-nextafter                 TIMEOUT          30.22s   killed by signal 15 SIGTERM
+1035/1995 math+ldouble - glibc-test:test-ldouble-acos_lp64_space         FAIL              2.75s   exit status 1
+1036/1995 math+ldouble - glibc-test:test-ldouble-acosh_space             FAIL              1.64s   exit status 1
+1037/1995 math+ldouble - glibc-test:test-ldouble-acosh_lp64_space        FAIL              1.79s   exit status 1
+1038/1995 math+ldouble - glibc-test:test-ldouble-asin_ilp32              FAIL              1.54s   exit status 1
+1039/1995 math+ldouble - glibc-test:test-ldouble-acosh_ilp32             FAIL              2.34s   exit status 1
+1040/1995 math+double - glibc-test:test-double-pow                       TIMEOUT          30.24s   killed by signal 15 SIGTERM
+1041/1995 math+ldouble - glibc-test:test-ldouble-asin_lp64_space         FAIL              0.94s   exit status 1
+1042/1995 math+ldouble - glibc-test:test-ldouble-asin_space              FAIL              1.24s   exit status 1
+1043/1995 math+ldouble - glibc-test:test-ldouble-acosh_ilp32_space       FAIL              2.52s   exit status 1
+1044/1995 math+double - glibc-test:test-double-remainder                 TIMEOUT          30.10s   killed by signal 15 SIGTERM
+1045/1995 math+ldouble - glibc-test:test-ldouble-asinh_space             FAIL              1.20s   exit status 1
+1046/1995 math+ldouble - glibc-test:test-ldouble-atan_ilp32              FAIL              1.61s   exit status 1
+1047/1995 math+ldouble - glibc-test:test-ldouble-asin_ilp32_space        FAIL              2.74s   exit status 1
+1048/1995 math+double - glibc-test:test-double-remquo                    TIMEOUT          30.24s   killed by signal 15 SIGTERM
+1049/1995 math+ldouble - glibc-test:test-ldouble-asinh_ilp32_space       FAIL              2.23s   exit status 1
+1050/1995 math+ldouble - glibc-test:test-ldouble-asinh_lp64_space        FAIL              2.44s   exit status 1
+1051/1995 math+ldouble - glibc-test:test-ldouble-atan_space              FAIL              1.98s   exit status 1
+1052/1995 math+ldouble - glibc-test:test-ldouble-asinh_ilp32             FAIL              3.31s   exit status 1
+1053/1995 math+ldouble - glibc-test:test-ldouble-atan_lp64_space         FAIL              2.32s   exit status 1
+1054/1995 math+double - glibc-test:test-double-rint                      TIMEOUT          30.18s   killed by signal 15 SIGTERM
+1055/1995 math+ldouble - glibc-test:test-ldouble-atan2_ilp32             FAIL              1.67s   exit status 1
+1056/1995 math+ldouble - glibc-test:test-ldouble-atan_ilp32_space        FAIL              2.12s   exit status 1
+1057/1995 math+ldouble - glibc-test:test-ldouble-atan2_space             FAIL              2.00s   exit status 1
+1058/1995 math+double - glibc-test:test-double-round                     TIMEOUT          30.34s   killed by signal 15 SIGTERM
+1059/1995 math+ldouble - glibc-test:test-ldouble-atan2_ilp32_space       FAIL              2.14s   exit status 1
+1060/1995 math+ldouble - glibc-test:test-ldouble-atanh_ilp32             FAIL              1.96s   exit status 1
+1061/1995 math+ldouble - glibc-test:test-ldouble-atan2_lp64_space        FAIL              3.28s   exit status 1
+1062/1995 math+ldouble - glibc-test:test-ldouble-atanh_ilp32_space       FAIL              1.84s   exit status 1
+1063/1995 math+double - glibc-test:test-double-scalb                     TIMEOUT          30.49s   killed by signal 15 SIGTERM
+1064/1995 math+ldouble - glibc-test:test-ldouble-atanh_space             FAIL              2.55s   exit status 1
+1065/1995 math+ldouble - glibc-test:test-ldouble-cabs_ilp32              FAIL              1.89s   exit status 1
+1066/1995 math+ldouble - glibc-test:test-ldouble-cabs_space              FAIL              1.71s   exit status 1
+1067/1995 math+ldouble - glibc-test:test-ldouble-cabs_lp64_space         FAIL              1.47s   exit status 1
+1068/1995 math+double - glibc-test:test-double-scalbn                    TIMEOUT          30.37s   killed by signal 15 SIGTERM
+1069/1995 math+ldouble - glibc-test:test-ldouble-atanh_lp64_space        FAIL              3.29s   exit status 1
+1070/1995 math+ldouble - glibc-test:test-ldouble-cabs_ilp32_space        FAIL              1.84s   exit status 1
+1071/1995 math+ldouble - glibc-test:test-ldouble-cbrt_ilp32              FAIL              1.68s   exit status 1
+1072/1995 math+double - glibc-test:test-double-scalbln                   TIMEOUT          30.46s   killed by signal 15 SIGTERM
+1073/1995 math+ldouble - glibc-test:test-ldouble-cbrt_ilp32_space        FAIL              1.60s   exit status 1
+1074/1995 math+ldouble - glibc-test:test-ldouble-cbrt_lp64_space         FAIL              2.00s   exit status 1
+1075/1995 math+ldouble - glibc-test:test-ldouble-cbrt_space              FAIL              2.70s   exit status 1
+1078/1995 math+double - glibc-test:test-double-signbit                   TIMEOUT          30.51s   killed by signal 15 SIGTERM
+1081/1995 math+double - glibc-test:test-double-significand               TIMEOUT          30.11s   killed by signal 15 SIGTERM
+1086/1995 math+ldouble - glibc-test:test-ldouble-cos_lp64_space          FAIL              1.54s   exit status 1
+1087/1995 math+double - glibc-test:test-double-sin                       TIMEOUT          30.15s   killed by signal 15 SIGTERM
+1088/1995 math+ldouble - glibc-test:test-ldouble-cos_ilp32               FAIL              2.21s   exit status 1
+1089/1995 math+ldouble - glibc-test:test-ldouble-cos_space               FAIL              2.41s   exit status 1
+1090/1995 math+ldouble - glibc-test:test-ldouble-cos_ilp32_space         FAIL              2.43s   exit status 1
+1091/1995 math+double - glibc-test:test-double-sincos                    TIMEOUT          30.17s   killed by signal 15 SIGTERM
+1092/1995 math+ldouble - glibc-test:test-ldouble-cosh_ilp32              FAIL              2.76s   exit status 1
+1093/1995 math+ldouble - glibc-test:test-ldouble-erf_ilp32               FAIL              1.40s   exit status 1
+1094/1995 math+ldouble - glibc-test:test-ldouble-cosh_space              FAIL              2.43s   exit status 1
+1095/1995 math+ldouble - glibc-test:test-ldouble-erf_space               FAIL              1.60s   exit status 1
+1096/1995 math+double - glibc-test:test-double-sinh                      TIMEOUT          30.25s   killed by signal 15 SIGTERM
+1097/1995 math+ldouble - glibc-test:test-ldouble-cosh_lp64_space         FAIL              3.21s   exit status 1
+1098/1995 math+ldouble - glibc-test:test-ldouble-cosh_ilp32_space        FAIL              3.16s   exit status 1
+1099/1995 math+ldouble - glibc-test:test-ldouble-erf_lp64_space          FAIL              2.68s   exit status 1
+1100/1995 math+double - glibc-test:test-double-sqrt                      TIMEOUT          30.39s   killed by signal 15 SIGTERM
+1101/1995 math+ldouble - glibc-test:test-ldouble-erf_ilp32_space         FAIL              2.85s   exit status 1
+1102/1995 math+ldouble - glibc-test:test-ldouble-erfc_lp64_space         FAIL              1.98s   exit status 1
+1103/1995 math+ldouble - glibc-test:test-ldouble-erfc_ilp32              FAIL              2.66s   exit status 1
+1104/1995 math+ldouble - glibc-test:test-ldouble-erfc_space              FAIL              2.66s   exit status 1
+1105/1995 math+double - glibc-test:test-double-tan                       TIMEOUT          30.17s   killed by signal 15 SIGTERM
+1106/1995 math+ldouble - glibc-test:test-ldouble-erfc_ilp32_space        FAIL              2.89s   exit status 1
+1107/1995 math+ldouble - glibc-test:test-ldouble-exp_ilp32               FAIL              2.32s   exit status 1
+1108/1995 math+ldouble - glibc-test:test-ldouble-exp_ilp32_space         FAIL              1.85s   exit status 1
+1109/1995 math+ldouble - glibc-test:test-ldouble-exp10_space             FAIL              1.86s   exit status 1
+1110/1995 math+ldouble - glibc-test:test-ldouble-exp_lp64_space          FAIL              2.51s   exit status 1
+1111/1995 math+double - glibc-test:test-double-tanh                      TIMEOUT          30.29s   killed by signal 15 SIGTERM
+1112/1995 math+ldouble - glibc-test:test-ldouble-exp_space               FAIL              3.00s   exit status 1
+1113/1995 math+ldouble - glibc-test:test-ldouble-exp10_ilp32_space       FAIL              1.53s   exit status 1
+1114/1995 math+ldouble - glibc-test:test-ldouble-exp10_ilp32             FAIL              2.66s   exit status 1
+1115/1995 math+ldouble - glibc-test:test-ldouble-exp10_lp64_space        FAIL              2.27s   exit status 1
+1116/1995 math+ldouble - glibc-test:test-ldouble-exp2_ilp32              FAIL              1.27s   exit status 1
+1117/1995 math+double - glibc-test:test-double-trunc                     TIMEOUT          30.27s   killed by signal 15 SIGTERM
+1118/1995 math+ldouble - glibc-test:test-ldouble-exp2_space              FAIL              1.59s   exit status 1
+1119/1995 math+double - glibc-test:test-double-nexttoward                TIMEOUT          30.23s   killed by signal 15 SIGTERM
+1120/1995 math+ldouble - glibc-test:test-ldouble-expm1_ilp32             FAIL              1.95s   exit status 1
+1121/1995 math+ldouble - glibc-test:test-ldouble-exp2_ilp32_space        FAIL              2.63s   exit status 1
+1122/1995 math+ldouble - glibc-test:test-ldouble-exp2_lp64_space         FAIL              2.81s   exit status 1
+1123/1995 math+ldouble - glibc-test:test-ldouble-expm1_ilp32_space       FAIL              2.22s   exit status 1
+1124/1995 math+ldouble - glibc-test:test-ldouble-expm1_lp64_space        FAIL              2.44s   exit status 1
+1125/1995 math+ldouble - glibc-test:test-ldouble-expm1_space             FAIL              2.76s   exit status 1
+1127/1995 math+double - glibc-test:test-double-j0                        TIMEOUT          30.43s   killed by signal 15 SIGTERM
+1132/1995 math+double - glibc-test:test-double-j1                        TIMEOUT          30.26s   killed by signal 15 SIGTERM
+1138/1995 math+double - glibc-test:test-double-y0                        TIMEOUT          30.19s   killed by signal 15 SIGTERM
+1143/1995 math+double - glibc-test:test-double-y1                        TIMEOUT          30.10s   killed by signal 15 SIGTERM
+1150/1995 math+ldouble - glibc-test:test-ldouble-acos                    TIMEOUT          30.27s   killed by signal 15 SIGTERM
+1152/1995 math+ldouble - glibc-test:test-ldouble-acosh                   TIMEOUT          30.16s   killed by signal 15 SIGTERM
+1160/1995 math+ldouble - glibc-test:test-ldouble-asin                    TIMEOUT          30.43s   killed by signal 15 SIGTERM
+1167/1995 math+ldouble - glibc-test:test-ldouble-asinh                   TIMEOUT          30.28s   killed by signal 15 SIGTERM
+1169/1995 math+ldouble - glibc-test:test-ldouble-atan                    TIMEOUT          30.21s   killed by signal 15 SIGTERM
+1177/1995 math+ldouble - glibc-test:test-ldouble-atan2                   TIMEOUT          30.24s   killed by signal 15 SIGTERM
+1182/1995 math+ldouble - glibc-test:test-ldouble-atanh                   TIMEOUT          30.58s   killed by signal 15 SIGTERM
+1185/1995 math+ldouble - glibc-test:test-ldouble-cabs                    TIMEOUT          30.36s   killed by signal 15 SIGTERM
+1193/1995 math+ldouble - glibc-test:test-ldouble-cbrt                    TIMEOUT          30.30s   killed by signal 15 SIGTERM
+1197/1995 math+ldouble - glibc-test:test-ldouble-ceil                    TIMEOUT          30.17s   killed by signal 15 SIGTERM
+1202/1995 math+ldouble - glibc-test:test-ldouble-copysign                TIMEOUT          30.30s   killed by signal 15 SIGTERM
+1205/1995 math+ldouble - glibc-test:test-ldouble-cos                     TIMEOUT          30.26s   killed by signal 15 SIGTERM
+1206/1995 math+ldouble - glibc-test:test-ldouble-hypot_ilp32             FAIL              2.28s   exit status 1
+1207/1995 math+ldouble - glibc-test:test-ldouble-hypot_lp64_space        FAIL              1.91s   exit status 1
+1208/1995 math+ldouble - glibc-test:test-ldouble-cosh                    TIMEOUT          30.26s   killed by signal 15 SIGTERM
+1209/1995 math+ldouble - glibc-test:test-ldouble-hypot_space             FAIL              2.50s   exit status 1
+1212/1995 math+ldouble - glibc-test:test-ldouble-hypot_ilp32_space       FAIL              3.10s   exit status 1
+1214/1995 math+ldouble - glibc-test:test-ldouble-erf                     TIMEOUT          30.26s   killed by signal 15 SIGTERM
+1215/1995 math+ldouble - glibc-test:test-ldouble-log_lp64_space          FAIL              1.28s   exit status 1
+1217/1995 math+ldouble - glibc-test:test-ldouble-log_ilp32               FAIL              1.76s   exit status 1
+1218/1995 math+ldouble - glibc-test:test-ldouble-log_ilp32_space         FAIL              1.42s   exit status 1
+1219/1995 math+ldouble - glibc-test:test-ldouble-log_space               FAIL              2.01s   exit status 1
+1220/1995 math+ldouble - glibc-test:test-ldouble-erfc                    TIMEOUT          30.11s   killed by signal 15 SIGTERM
+1221/1995 math+ldouble - glibc-test:test-ldouble-log10_lp64_space        FAIL              1.83s   exit status 1
+1222/1995 math+ldouble - glibc-test:test-ldouble-log10_space             FAIL              2.04s   exit status 1
+1223/1995 math+ldouble - glibc-test:test-ldouble-log10_ilp32_space       FAIL              2.02s   exit status 1
+1224/1995 math+ldouble - glibc-test:test-ldouble-log1p_space             FAIL              1.58s   exit status 1
+1225/1995 math+ldouble - glibc-test:test-ldouble-log1p_ilp32             FAIL              1.96s   exit status 1
+1226/1995 math+ldouble - glibc-test:test-ldouble-log10_ilp32             FAIL              2.70s   exit status 1
+1227/1995 math+ldouble - glibc-test:test-ldouble-exp                     TIMEOUT          30.35s   killed by signal 15 SIGTERM
+1228/1995 math+ldouble - glibc-test:test-ldouble-log1p_lp64_space        FAIL              1.65s   exit status 1
+1229/1995 math+ldouble - glibc-test:test-ldouble-log2_space              FAIL              1.35s   exit status 1
+1230/1995 math+ldouble - glibc-test:test-ldouble-log1p_ilp32_space       FAIL              1.82s   exit status 1
+1232/1995 math+ldouble - glibc-test:test-ldouble-exp10                   TIMEOUT          30.17s   killed by signal 15 SIGTERM
+1233/1995 math+ldouble - glibc-test:test-ldouble-log2_ilp32_space        FAIL              1.68s   exit status 1
+1234/1995 math+ldouble - glibc-test:test-ldouble-log2_lp64_space         FAIL              1.90s   exit status 1
+1235/1995 math+ldouble - glibc-test:test-ldouble-log2_ilp32              FAIL              2.23s   exit status 1
+1237/1995 math+ldouble - glibc-test:test-ldouble-exp2                    TIMEOUT          30.28s   killed by signal 15 SIGTERM
+1243/1995 math+ldouble - glibc-test:test-ldouble-expm1                   TIMEOUT          30.41s   killed by signal 15 SIGTERM
+1246/1995 math+ldouble - glibc-test:test-ldouble-fabs                    TIMEOUT          30.40s   killed by signal 15 SIGTERM
+1252/1995 math+ldouble - glibc-test:test-ldouble-fdim                    TIMEOUT          30.11s   killed by signal 15 SIGTERM
+1257/1995 math+ldouble - glibc-test:test-ldouble-floor                   TIMEOUT          30.22s   killed by signal 15 SIGTERM
+1260/1995 math+ldouble - glibc-test:test-ldouble-fma                     TIMEOUT          30.17s   killed by signal 15 SIGTERM
+1265/1995 math+ldouble - glibc-test:test-ldouble-fmax                    TIMEOUT          30.19s   killed by signal 15 SIGTERM
+1266/1995 math+ldouble - glibc-test:test-ldouble-pow_ilp32               FAIL              2.46s   exit status 1
+1267/1995 math+ldouble - glibc-test:test-ldouble-fmin                    TIMEOUT          30.17s   killed by signal 15 SIGTERM
+1269/1995 math+ldouble - glibc-test:test-ldouble-pow_space               FAIL              2.94s   exit status 1
+1271/1995 math+ldouble - glibc-test:test-ldouble-pow_lp64_space          FAIL              2.74s   exit status 1
+1272/1995 math+ldouble - glibc-test:test-ldouble-pow_ilp32_space         FAIL              2.66s   exit status 1
+1275/1995 math+ldouble - glibc-test:test-ldouble-fmod                    TIMEOUT          30.25s   killed by signal 15 SIGTERM
+1280/1995 math+ldouble - glibc-test:test-ldouble-fpclassify              TIMEOUT          30.30s   killed by signal 15 SIGTERM
+1283/1995 math+ldouble - glibc-test:test-ldouble-frexp                   TIMEOUT          30.11s   killed by signal 15 SIGTERM
+1288/1995 math+ldouble - glibc-test:test-ldouble-getpayload              TIMEOUT          30.23s   killed by signal 15 SIGTERM
+1292/1995 math+ldouble - glibc-test:test-ldouble-isfinite                TIMEOUT          30.19s   killed by signal 15 SIGTERM
+1303/1995 math+ldouble - glibc-test:test-ldouble-isinf                   TIMEOUT          30.28s   killed by signal 15 SIGTERM
+1305/1995 math+ldouble - glibc-test:test-ldouble-isnan                   TIMEOUT          30.24s   killed by signal 15 SIGTERM
+1309/1995 math+ldouble - glibc-test:test-ldouble-isnormal                TIMEOUT          30.25s   killed by signal 15 SIGTERM
+1315/1995 math+ldouble - glibc-test:test-ldouble-sin_lp64_space          FAIL              1.21s   exit status 1
+1316/1995 math+ldouble - glibc-test:test-ldouble-issubnormal             TIMEOUT          30.41s   killed by signal 15 SIGTERM
+1317/1995 math+ldouble - glibc-test:test-ldouble-sin_ilp32               FAIL              2.01s   exit status 1
+1318/1995 math+ldouble - glibc-test:test-ldouble-sin_ilp32_space         FAIL              1.82s   exit status 1
+1319/1995 math+ldouble - glibc-test:test-ldouble-sin_space               FAIL              2.27s   exit status 1
+1320/1995 math+ldouble - glibc-test:test-ldouble-isunordered             TIMEOUT          30.25s   killed by signal 15 SIGTERM
+1321/1995 math+ldouble - glibc-test:test-ldouble-sincos_ilp32            FAIL              2.00s   exit status 1
+1322/1995 math+ldouble - glibc-test:test-ldouble-sincos_space            FAIL              2.04s   exit status 1
+1323/1995 math+ldouble - glibc-test:test-ldouble-sincos_lp64_space       FAIL              2.08s   exit status 1
+1324/1995 math+ldouble - glibc-test:test-ldouble-hypot                   TIMEOUT          30.44s   killed by signal 15 SIGTERM
+1325/1995 math+ldouble - glibc-test:test-ldouble-sincos_ilp32_space      FAIL              2.24s   exit status 1
+1326/1995 math+ldouble - glibc-test:test-ldouble-sinh_ilp32              FAIL              2.03s   exit status 1
+1328/1995 math+ldouble - glibc-test:test-ldouble-sinh_space              FAIL              2.25s   exit status 1
+1329/1995 math+ldouble - glibc-test:test-ldouble-ilogb                   TIMEOUT          30.21s   killed by signal 15 SIGTERM
+1330/1995 math+ldouble - glibc-test:test-ldouble-sinh_lp64_space         FAIL              2.43s   exit status 1
+1333/1995 math+ldouble - glibc-test:test-ldouble-sinh_ilp32_space        FAIL              2.52s   exit status 1
+1334/1995 math+ldouble - glibc-test:test-ldouble-tan_ilp32               FAIL              1.29s   exit status 1
+1336/1995 math+ldouble - glibc-test:test-ldouble-log                     TIMEOUT          30.19s   killed by signal 15 SIGTERM
+1337/1995 math+ldouble - glibc-test:test-ldouble-tan_space               FAIL              1.77s   exit status 1
+1338/1995 math+ldouble - glibc-test:test-ldouble-tanh_ilp32              FAIL              1.60s   exit status 1
+1339/1995 math+ldouble - glibc-test:test-ldouble-tan_ilp32_space         FAIL              2.60s   exit status 1
+1340/1995 math+ldouble - glibc-test:test-ldouble-log10                   TIMEOUT          30.19s   killed by signal 15 SIGTERM
+1341/1995 math+ldouble - glibc-test:test-ldouble-tan_lp64_space          FAIL              2.90s   exit status 1
+1342/1995 math+ldouble - glibc-test:test-ldouble-tanh_ilp32_space        FAIL              1.84s   exit status 1
+1343/1995 math+ldouble - glibc-test:test-ldouble-tanh_lp64_space         FAIL              2.21s   exit status 1
+1344/1995 math+ldouble - glibc-test:test-ldouble-log1p                   TIMEOUT          30.25s   killed by signal 15 SIGTERM
+1345/1995 math+ldouble - glibc-test:test-ldouble-tanh_space              FAIL              2.64s   exit status 1
+1350/1995 math+ldouble - glibc-test:test-ldouble-log2                    TIMEOUT          30.38s   killed by signal 15 SIGTERM
+1355/1995 math+ldouble - glibc-test:test-ldouble-logb                    TIMEOUT          30.28s   killed by signal 15 SIGTERM
+1360/1995 math+ldouble - glibc-test:test-ldouble-lrint                   TIMEOUT          30.31s   killed by signal 15 SIGTERM
+1368/1995 math+ldouble - glibc-test:test-ldouble-lround                  TIMEOUT          30.38s   killed by signal 15 SIGTERM
+1370/1995 math+ldouble - glibc-test:test-ldouble-modf                    TIMEOUT          30.24s   killed by signal 15 SIGTERM
+1378/1995 math+ldouble - glibc-test:test-ldouble-nearbyint               TIMEOUT          30.43s   killed by signal 15 SIGTERM
+1381/1995 math+ldouble - glibc-test:test-ldouble-nextafter               TIMEOUT          30.10s   killed by signal 15 SIGTERM
+1386/1995 math+ldouble - glibc-test:test-ldouble-pow                     TIMEOUT          30.18s   killed by signal 15 SIGTERM
+1393/1995 math+ldouble - glibc-test:test-ldouble-remainder               TIMEOUT          30.25s   killed by signal 15 SIGTERM
+1399/1995 math+ldouble - glibc-test:test-ldouble-remquo                  TIMEOUT          30.36s   killed by signal 15 SIGTERM
+1402/1995 math+ldouble - glibc-test:test-ldouble-rint                    TIMEOUT          30.19s   killed by signal 15 SIGTERM
+1406/1995 math+ldouble - glibc-test:test-ldouble-round                   TIMEOUT          30.32s   killed by signal 15 SIGTERM
+1411/1995 math+ldouble - glibc-test:test-ldouble-scalb                   TIMEOUT          30.27s   killed by signal 15 SIGTERM
+1415/1995 math+ldouble - glibc-test:test-ldouble-scalbn                  TIMEOUT          30.13s   killed by signal 15 SIGTERM
+1421/1995 math+ldouble - glibc-test:test-ldouble-scalbln                 TIMEOUT          30.13s   killed by signal 15 SIGTERM
+1427/1995 math+ldouble - glibc-test:test-ldouble-signbit                 TIMEOUT          30.52s   killed by signal 15 SIGTERM
+1430/1995 math+ldouble - glibc-test:test-ldouble-significand             TIMEOUT          30.55s   killed by signal 15 SIGTERM
+1433/1995 math+ldouble - glibc-test:test-ldouble-sin                     TIMEOUT          30.20s   killed by signal 15 SIGTERM
+1439/1995 math+ldouble - glibc-test:test-ldouble-sincos                  TIMEOUT          30.15s   killed by signal 15 SIGTERM
+1446/1995 math+ldouble - glibc-test:test-ldouble-sinh                    TIMEOUT          30.19s   killed by signal 15 SIGTERM
+1453/1995 math+ldouble - glibc-test:test-ldouble-sqrt                    TIMEOUT          30.42s   killed by signal 15 SIGTERM
+1454/1995 math+ldouble - glibc-test:test-ldouble-tan                     TIMEOUT          30.14s   killed by signal 15 SIGTERM
+1457/1995 math+ldouble - glibc-test:test-ldouble-tanh                    TIMEOUT          30.23s   killed by signal 15 SIGTERM
+1465/1995 math+ldouble - glibc-test:test-ldouble-trunc                   TIMEOUT          30.37s   killed by signal 15 SIGTERM
+1470/1995 math+ldouble - glibc-test:test-ldouble-nexttoward              TIMEOUT          30.13s   killed by signal 15 SIGTERM
+1475/1995 misc - glibc-test:tst-dbl-efgcvt                               TIMEOUT          30.26s   killed by signal 15 SIGTERM
+1481/1995 misc - glibc-test:tst-dirname                                  TIMEOUT          30.38s   killed by signal 15 SIGTERM
+1482/1995 misc - glibc-test:tst-hsearch                                  TIMEOUT          30.21s   killed by signal 15 SIGTERM
+1490/1995 setjmp - glibc-test:tst-setjmp                                 TIMEOUT          30.26s   killed by signal 15 SIGTERM
+1492/1995 setjmp - glibc-test:tst-setjmp-fp                              TIMEOUT          30.26s   killed by signal 15 SIGTERM
+1499/1995 setjmp - glibc-test:tst-setjmp-static                          TIMEOUT          30.25s   killed by signal 15 SIGTERM
+1503/1995 stdlib - glibc-test:test-a64l                                  TIMEOUT          30.59s   killed by signal 15 SIGTERM
+1507/1995 stdlib - glibc-test:testdiv                                    TIMEOUT          30.54s   killed by signal 15 SIGTERM
+1510/1995 stdlib - glibc-test:testmb                                     TIMEOUT          30.20s   killed by signal 15 SIGTERM
+1512/1995 stdlib - glibc-test:testrand                                   TIMEOUT          30.17s   killed by signal 15 SIGTERM
+1514/1995 stdlib - glibc-test:testsort                                   TIMEOUT          30.19s   killed by signal 15 SIGTERM
+1517/1995 stdlib - glibc-test:tst-atof1                                  TIMEOUT          30.16s   killed by signal 15 SIGTERM
+1520/1995 stdlib - glibc-test:tst-atof2                                  TIMEOUT          30.25s   killed by signal 15 SIGTERM
+1522/1995 stdlib - glibc-test:tst-bsearch                                TIMEOUT          30.24s   killed by signal 15 SIGTERM
+1526/1995 stdlib - glibc-test:tst-qsort                                  TIMEOUT          30.27s   killed by signal 15 SIGTERM
+1528/1995 stdlib - glibc-test:tst-rand48                                 TIMEOUT          30.11s   killed by signal 15 SIGTERM
+1535/1995 stdlib - glibc-test:tst-strfrom                                TIMEOUT          30.35s   killed by signal 15 SIGTERM
+1537/1995 stdlib - glibc-test:tst-strtod                                 TIMEOUT          30.14s   killed by signal 15 SIGTERM
+1541/1995 stdlib - glibc-test:tst-strtod-nan-sign                        TIMEOUT          30.43s   killed by signal 15 SIGTERM
+1548/1995 stdlib - glibc-test:tst-strtol                                 TIMEOUT          30.35s   killed by signal 15 SIGTERM
+1551/1995 stdlib - glibc-test:tst-strtoll                                TIMEOUT          30.29s   killed by signal 15 SIGTERM
+1558/1995 stdlib - glibc-test:tst-tininess                               TIMEOUT          30.26s   killed by signal 15 SIGTERM
+1563/1995 stdlib - glibc-test:tst-width                                  TIMEOUT          30.18s   killed by signal 15 SIGTERM
+1615/1995 benchmark - glibc-test:bench-memrchr                           INTERRUPT      1929.82s   killed by signal 15 SIGTERM
+1616/1995 benchmark - glibc-test:bench-memchr                            INTERRUPT      1930.43s   killed by signal 15 SIGTERM
+1617/1995 benchmark - glibc-test:bench-strcspn                           INTERRUPT      1926.88s   killed by signal 15 SIGTERM
+1618/1995 benchmark - glibc-test:bench-memccpy                           INTERRUPT      1930.52s   killed by signal 15 SIGTERM
+1619/1995 benchmark - glibc-test:bench-memcpy-random                     INTERRUPT      1930.18s   killed by signal 15 SIGTERM
+1620/1995 benchmark - glibc-test:bench-strnlen                           INTERRUPT      1924.86s   killed by signal 15 SIGTERM
+1621/1995 string - glibc-test:test-stpcpy                                INTERRUPT      1575.70s   killed by signal 15 SIGTERM
+1622/1995 string - glibc-test:test-strchr                                INTERRUPT      1567.41s   killed by signal 15 SIGTERM
+1623/1995 benchmark - glibc-test:bench-strcpy_chk                        INTERRUPT      1927.06s   killed by signal 15 SIGTERM
+1624/1995 string - glibc-test:test-strcat                                INTERRUPT      1570.80s   killed by signal 15 SIGTERM
+1625/1995 string - glibc-test:test-memset                                INTERRUPT      1577.56s   killed by signal 15 SIGTERM
+1626/1995 string - glibc-test:test-endian-file-scope                     INTERRUPT      1598.09s   killed by signal 15 SIGTERM
+1627/1995 string - glibc-test:test-strncmp_space                         INTERRUPT       332.77s   killed by signal 15 SIGTERM
+1628/1995 string - glibc-test:test-memchr                                INTERRUPT      1590.77s   killed by signal 15 SIGTERM
+1629/1995 string - glibc-test:test-mempcpy                               INTERRUPT      1581.09s   killed by signal 15 SIGTERM
+1630/1995 benchmark - glibc-test:bench-memset-large                      INTERRUPT      1929.56s   killed by signal 15 SIGTERM
+1631/1995 benchmark - glibc-test:bench-stpcpy_chk                        INTERRUPT      1929.05s   killed by signal 15 SIGTERM
+1632/1995 string - glibc-test:test-strcasecmp                            INTERRUPT      1573.70s   killed by signal 15 SIGTERM
+1633/1995 benchmark - glibc-test:bench-strsep                            INTERRUPT      1923.95s   killed by signal 15 SIGTERM
+1634/1995 benchmark - glibc-test:bench-strncmp                           INTERRUPT      1925.61s   killed by signal 15 SIGTERM
+1635/1995 string - glibc-test:test-strcpy                                INTERRUPT      1530.54s   killed by signal 15 SIGTERM
+1636/1995 string - glibc-test:test-explicit_bzero                        INTERRUPT      1594.76s   killed by signal 15 SIGTERM
+1637/1995 string - glibc-test:test-bcopy                                 INTERRUPT      1601.17s   killed by signal 15 SIGTERM
+1638/1995 string - glibc-test:test-strlen                                INTERRUPT      1470.33s   killed by signal 15 SIGTERM
+1639/1995 benchmark - glibc-test:bench-strncat                           INTERRUPT      1925.99s   killed by signal 15 SIGTERM
+1640/1995 benchmark - glibc-test:bench-strncasecmp                       INTERRUPT      1926.14s   killed by signal 15 SIGTERM
+1641/1995 benchmark - glibc-test:bench-strpbrk                           INTERRUPT      1924.50s   killed by signal 15 SIGTERM
+1642/1995 benchmark - glibc-test:bench-strcpy                            INTERRUPT      1927.47s   killed by signal 15 SIGTERM
+1643/1995 string - glibc-test:test-memmem                                INTERRUPT      1585.09s   killed by signal 15 SIGTERM
+1644/1995 benchmark - glibc-test:bench-strcasestr                        INTERRUPT      1928.76s   killed by signal 15 SIGTERM
+1645/1995 benchmark - glibc-test:bench-strlen                            INTERRUPT      1926.61s   killed by signal 15 SIGTERM
+1646/1995 string - glibc-test:test-memcmp                                INTERRUPT      1589.46s   killed by signal 15 SIGTERM
+1647/1995 benchmark - glibc-test:bench-strchr                            INTERRUPT      1927.76s   killed by signal 15 SIGTERM
+1648/1995 string - glibc-test:test-strchrnul                             INTERRUPT      1564.86s   killed by signal 15 SIGTERM
+1649/1995 benchmark - glibc-test:bench-memset                            INTERRUPT      1929.72s   killed by signal 15 SIGTERM
+1650/1995 string - glibc-test:test-rawmemchr                             INTERRUPT      1576.65s   killed by signal 15 SIGTERM
+1651/1995 string - glibc-test:test-memccpy                               INTERRUPT      1592.33s   killed by signal 15 SIGTERM
+1652/1995 string - glibc-test:test-strcspn                               INTERRUPT      1501.14s   killed by signal 15 SIGTERM
+1653/1995 string - glibc-test:test-memrchr                               INTERRUPT      1579.56s   killed by signal 15 SIGTERM
+1654/1995 string - glibc-test:test-memmove                               INTERRUPT      1582.44s   killed by signal 15 SIGTERM
+1655/1995 benchmark - glibc-test:bench-strrchr                           INTERRUPT      1924.24s   killed by signal 15 SIGTERM
+1656/1995 benchmark - glibc-test:bench-stpncpy                           INTERRUPT      1928.93s   killed by signal 15 SIGTERM
+1657/1995 benchmark - glibc-test:bench-strtod                            INTERRUPT      1922.92s   killed by signal 15 SIGTERM
+1658/1995 benchmark - glibc-test:bench-mempcpy                           INTERRUPT      1930.05s   killed by signal 15 SIGTERM
+1659/1995 string - glibc-test:test-stpncpy                               INTERRUPT      1574.27s   killed by signal 15 SIGTERM
+1660/1995 benchmark - glibc-test:bench-strstr                            INTERRUPT      1923.26s   killed by signal 15 SIGTERM
+1661/1995 benchmark - glibc-test:bench-stpcpy                            INTERRUPT      1929.24s   killed by signal 15 SIGTERM
+1662/1995 benchmark - glibc-test:bench-strncpy                           INTERRUPT      1925.39s   killed by signal 15 SIGTERM
+1663/1995 benchmark - glibc-test:bench-strtok                            INTERRUPT      1922.67s   killed by signal 15 SIGTERM
+1664/1995 string - glibc-test:test-endian-sign-conversion                INTERRUPT      1596.89s   killed by signal 15 SIGTERM
+1665/1995 string - glibc-test:test-strncasecmp                           INTERRUPT      1320.92s   killed by signal 15 SIGTERM
+1666/1995 string - glibc-test:test-endian-types                          INTERRUPT      1595.52s   killed by signal 15 SIGTERM
+1667/1995 benchmark - glibc-test:bench-rawmemchr                         INTERRUPT      1929.39s   killed by signal 15 SIGTERM
+1668/1995 string - glibc-test:test-bzero                                 INTERRUPT      1599.52s   killed by signal 15 SIGTERM
+1669/1995 benchmark - glibc-test:bench-strcat                            INTERRUPT      1927.87s   killed by signal 15 SIGTERM
+1670/1995 string - glibc-test:test-strcmp                                INTERRUPT      1562.19s   killed by signal 15 SIGTERM
+1671/1995 benchmark - glibc-test:bench-memcmp                            INTERRUPT      1930.38s   killed by signal 15 SIGTERM
+1672/1995 string - glibc-test:test-ffs                                   INTERRUPT      1593.59s   killed by signal 15 SIGTERM
+1673/1995 string - glibc-test:test-memcpy                                INTERRUPT      1587.61s   killed by signal 15 SIGTERM
+1674/1995 string - glibc-test:test-strcasestr                            INTERRUPT      1572.49s   killed by signal 15 SIGTERM
+1675/1995 string - glibc-test:test-strncat                               INTERRUPT      1224.48s   killed by signal 15 SIGTERM
+1676/1995 benchmark - glibc-test:bench-strcmp                            INTERRUPT      1927.66s   killed by signal 15 SIGTERM
+1677/1995 string - glibc-test:test-strncmp                               INTERRUPT      1167.77s   killed by signal 15 SIGTERM
+1678/1995 benchmark - glibc-test:bench-strspn                            INTERRUPT      1923.64s   killed by signal 15 SIGTERM

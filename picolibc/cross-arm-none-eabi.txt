@@ -48,6 +48,6 @@ link_args_thumb_v8_m_main_dp_softfp = [ '-Tpicolibc_mps3_an547.ld' ]
 link_args_thumb_v8_m_main_fp_hard = [ '-Tpicolibc_mps2_an505.ld' ]
 link_args_thumb_v8_m_main_fp_softfp = [ '-Tpicolibc_mps2_an505.ld' ]
 link_args_thumb_v8_m_main_nofp = [ '-Tpicolibc_mps2_an505.ld' ]
-c_link_args = [ '--specs=picolibc.specs', '-L/build/glibc/picolibc', '--oslib=semihost', '--crt0=semihost' ]
+c_link_args = [ '--specs=picolibc.specs', '-L/build/glibc/picolibc', '--oslib=semihost', '--crt0=semihost', '-u__lock___libc_recursive_mutex' ]
 needs_exe_wrapper = true
 skip_sanity_check = true
