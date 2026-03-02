@@ -38,4 +38,6 @@ __ram =        0x20000000;
 __ram_size   = 0x00400000;
 __stack_size = 512k;
 
+EXTERN(__lock___libc_recursive_mutex)
+
 INCLUDE  picolibc.ld

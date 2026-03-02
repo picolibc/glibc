@@ -72,7 +72,7 @@ mkdir(const char *a, __mode_t mode) {
 
 #define M_PERTURB -6
 
-struct rlimit { int rlim_cur, rlim_max; };
+//struct rlimit { int rlim_cur, rlim_max; };
 
 #define TIMEOUTFACTOR 1
 
@@ -92,6 +92,9 @@ extern char *program_invocation_name;
 #define fgetc_unlocked fgetc
 #define fgets_unlocked fgets
 #define fopen64 fopen
+#define off64_t off_t
+#define stat64 stat
+#define fstat64 fstat
 
 #define FILENAME_MAX	512
 #define P_tmpdir "/tmp"
