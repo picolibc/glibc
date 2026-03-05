@@ -1,0 +1,29 @@
+#!/bin/bash
+done=0
+input_file=""
+elf="$1"
+shift
+while [ "$done" != "1" ]; do
+    case "$1" in
+	--)
+	    shift
+	    done=1
+	    ;;
+	-i)
+	    input_file="$2"
+	    shift
+	    shift
+	    ;;
+	*)
+	    done=1
+	    ;;
+    esac
+done
+case "$input_file" in
+    "")
+	exec "$elf" "$@"
+	;;
+    *)
+	exec "$elf" "$@" < "$input_file"
+	;;
+esac

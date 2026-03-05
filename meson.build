@@ -52,7 +52,16 @@ multilib_list = get_option('multilib-list')
 
 ldbl_eq_dbl = cc.sizeof('double') == cc.sizeof('long double')
 
-inc_dirs = ['sysdeps/wordsize-32', 'support', '.', 'picolibc', 'sysdeps' / cpu_family, 'sysdeps/generic']
+inc_dirs = ['sysdeps/wordsize-32',
+            'support',
+            '.',
+            'picolibc',
+            'sysdeps' / cpu,
+            'sysdeps' / cpu / 'fpu',
+            'sysdeps' / cpu_family,
+            'sysdeps' / cpu_family / 'fpu',
+            'sysdeps/generic'
+           ]
 
 c_args = ['-include', '@0@/@1@'.format(meson.current_source_dir(), 'picolibc/hacks.h'), '-g']
 
@@ -148,10 +157,20 @@ else
     target_name = multi_dir.stdout().strip().split('\n')[0].underscorify()
     message('Target name computed as "' + target_name + '"')
   endif
+  _link_flags = meson.get_cross_property('link_args' + target_name, [])
+  _c_flags = meson.get_cross_property('c_args' + target_name, [])
+
+  _link_flags = c_args + _link_flags
+  _c_flags = c_args + _c_flags
+
   targets = [target_name]
   set_variable('target_' + target_name,
-	       ['.', c_args])
+	       ['.', _c_flags, _link_flags])
 endif
+
+test_env = environment()
+test_env.prepend('PATH', meson.current_source_dir() / 'picolibc')
+test_env.prepend('MESON_SOURCE_ROOT', meson.project_source_root())
 
 # support libraries
 subdir('picolibc/posix')

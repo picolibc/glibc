@@ -94,7 +94,7 @@ foreach test_name : tests
 		    link_with: [_lib_support, _lib_posix]
 		   ),
 	 args: _args,
-	 env: ['MESON_SOURCE_ROOT=' + meson.project_source_root()],
+	 env: test_env,
 	 suite: 'stdlib'
 	)
   endforeach

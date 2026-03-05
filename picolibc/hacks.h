@@ -30,9 +30,6 @@
 #define setrlimit(a,b)
 struct rlimit;
 static inline int getrlimit(int resource, struct rlimit *rlim) { (void) resource; (void) rlim; return 0; }
-#define sigsetjmp(a,b)	setjmp(a)
-#define siglongjmp(a,b) longjmp(a,b)
-#define sigjmp_buf jmp_buf
 
 extern void *check_malloc(unsigned long size);
 
@@ -156,13 +153,6 @@ static inline const char *strerrorname_np(int i) { return "ERROR"; }
 
 #ifndef LDBL_NO_EXCEPT
 #define LDBL_NO_EXCEPT 0
-#endif
-
-/* XXX arch-specific */
-#if defined(__riscv)
-#define TININESS_AFTER_ROUNDING 1
-#else
-#define TININESS_AFTER_ROUNDING 0
 #endif
 
 #define __atomic_store_n(loc, val, sem) (*(loc) = (val))

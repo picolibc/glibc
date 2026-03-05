@@ -106,7 +106,7 @@ foreach test_name : tests
 		   ),
 	 args: _args,
 	 timeout: 600,
-	 env: ['MESON_SOURCE_ROOT=' + meson.project_source_root()],
+	 env: test_env,
 	 suite: 'wcsmbs'
 	)
   endforeach

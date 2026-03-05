@@ -236,7 +236,7 @@ foreach test_name : bare_tests
 		    include_directories: inc,
 		    c_args: _c_args + math_c_args + _test_c_args,
 		    link_args: _link_args + math_c_args + _test_c_args),
-	 env: ['MESON_SOURCE_ROOT=' + meson.project_source_root()]
+	 env: test_env,
 	)
   endforeach
 endforeach
@@ -325,7 +325,7 @@ foreach type : types
 		      c_args: _c_args + math_c_args,
 		      link_args: _link_args + math_c_args,
 		      link_with: [_lib_argp, _lib_posix]),
-	   env: ['MESON_SOURCE_ROOT=' + meson.project_source_root()],
+	   env: test_env,
 	   suite: ['math', type]
 	  )
     endforeach

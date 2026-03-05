@@ -71,7 +71,7 @@ do_test (void)
      /proc/sys/vm/max_map_count exists.  For all known Linux versions
      the default limit is at most 65536.
    */
-  #if defined __linux__
+  #if defined __linux__ && !defined __PICOLIBC__
   if (xopen ("/proc/sys/vm/max_map_count", O_RDONLY, 0) >= 0)
     {
       /* Preparations.  */

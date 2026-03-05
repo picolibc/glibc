@@ -1,0 +1,22 @@
+[binaries]
+c = ['x86_64-linux-gnu-gcc']
+cpp = ['x86_64-linux-gnu-g++']
+ar = 'x86_64-linux-gnu-ar'
+as = 'x86_64-linux-gnu-as'
+nm = 'x86_64-linux-gnu-nm'
+strip = 'x86_64-linux-gnu-strip'
+objcopy = 'x86_64-linux-gnu-objcopy'
+exe_wrapper = ['env', 'run-x86']
+
+[host_machine]
+system='linux'
+cpu_family='x86'
+cpu='x86_64'
+endian='little'
+
+[properties]
+c_args = [ '--specs=picolibc.specs' ]
+c_link_args = [ '--specs=picolibc.specs', '-static', '-L/build/glibc/picolibc', '--oslib=linux', '--crt0=linux', '-u__lock___libc_recursive_mutex' ]
+link_args_ = [ '-Tpicolibc_linux.ld' ]
+skip_sanity_check = true
+needs_exe_wrapper = true

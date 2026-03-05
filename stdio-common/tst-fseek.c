@@ -314,7 +314,7 @@ do_test (void)
     }
   else
     {
-      sleep (1);
+      sleep (2);
 
       if (fseek (fp, -(2 + 2 * (sizeof (outstr) - 1)), SEEK_CUR) != 0)
 	{
@@ -327,7 +327,7 @@ do_test (void)
 
 	  time_t t;
 	  /* Make sure the timestamp actually can be different.  */
-	  sleep (1);
+	  sleep (2);
 	  t = time (NULL);
 
 	  if (fstat64 (fd, &st2) < 0)

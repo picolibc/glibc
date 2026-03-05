@@ -62,7 +62,7 @@ foreach test_name : tests
 		    link_args: _link_args,
 		    link_with: [_lib_support, _lib_posix]
 		   ),
-	 env: ['MESON_SOURCE_ROOT=' + meson.project_source_root()],
+	 env: test_env,
 	 suite: 'gnulib'
 	)
   endforeach
