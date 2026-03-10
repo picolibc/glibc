@@ -58,8 +58,10 @@ inc_dirs = ['sysdeps/wordsize-32',
             'picolibc',
             'sysdeps' / cpu,
             'sysdeps' / cpu / 'fpu',
+            'sysdeps' / cpu / 'include',
             'sysdeps' / cpu_family,
             'sysdeps' / cpu_family / 'fpu',
+            'sysdeps' / cpu_family / 'include',
             'sysdeps/generic'
            ]
 
@@ -75,7 +77,14 @@ if picolibc_buildtype != ''
   c_args += '--picolibc-buildtype=' + picolibc_buildtype
 endif
 
-inc = include_directories(inc_dirs)
+inc = []
+foreach inc_dir : inc_dirs
+  if fs.is_dir(inc_dir)
+       inc += include_directories(inc_dir)
+  endif
+endforeach
+
+#inc = include_directories(inc_dirs)
 
 targets = []
 

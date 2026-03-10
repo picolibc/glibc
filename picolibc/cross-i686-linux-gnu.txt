@@ -1,0 +1,22 @@
+[binaries]
+c = ['i686-linux-gnu-gcc', '-march=core2', '-mfpmath=sse', '-msse2']
+cpp = ['i686-linux-gnu-g++', '-march=core2', '-mfpmath=sse', '-msse2']
+ar = 'i686-linux-gnu-ar'
+as = 'i686-linux-gnu-as'
+nm = 'i686-linux-gnu-nm'
+strip = 'i686-linux-gnu-strip'
+objcopy = 'i686-linux-gnu-objcopy'
+exe_wrapper = ['env', 'run-x86']
+
+[host_machine]
+system='linux'
+cpu_family='x86'
+cpu='i386'
+endian='little'
+
+[properties]
+c_args = [ '--specs=picolibc.specs' ]
+c_link_args = [ '--specs=picolibc.specs', '-static', '-L/build/glibc/picolibc', '--oslib=linux', '--crt0=linux', '-u__lock___libc_recursive_mutex' ]
+link_args_ = [ '-Tpicolibc_linux.ld' ]
+skip_sanity_check = true
+needs_exe_wrapper = true

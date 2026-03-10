@@ -20,6 +20,7 @@
 #include <stdio.h>
 #include <math-tests.h>
 #include <math-barriers.h>
+#include <assert.h>
 
 static int
 do_test (void)
@@ -70,9 +71,9 @@ do_test (void)
      Also check if the function does not alter the exception mask.  */
   ret = fesetexceptflag (&saved, FE_ALL_EXCEPT);
 
-  _Static_assert (!(EXCEPTION_SET_FORCES_TRAP && !EXCEPTION_TESTS(float)),
-		  "EXCEPTION_SET_FORCES_TRAP only makes sense if the "
-		  "architecture suports exceptions");
+  assert (!(EXCEPTION_SET_FORCES_TRAP && !EXCEPTION_TESTS(float)));
+//	  "EXCEPTION_SET_FORCES_TRAP only makes sense if the "
+//	  "architecture suports exceptions");
   {
     int exc_before = fegetexcept ();
     ret = fesetexceptflag (&saved, FE_ALL_EXCEPT);

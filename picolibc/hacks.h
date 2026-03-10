@@ -166,6 +166,10 @@ static inline const char *strerrorname_np(int i) { return "ERROR"; }
 #define getpagesize() 2048
 #endif
 
+#include <cpu-features.h>
+extern struct cpu_features x86_cpu_features;
+#define _dl_x86_get_cpu_features() (&x86_cpu_features)
+
 struct argp_fmtstream;
 
 extern int argp_fmtstream_putc (struct argp_fmtstream * __fs, int __ch);

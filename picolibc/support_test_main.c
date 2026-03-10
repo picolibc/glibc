@@ -581,3 +581,15 @@ support_test_main (int argc, char **argv, const struct test_config *config)
     }
 #endif
 }
+
+#ifdef __i386__
+#include <assert.h>
+struct cpu_features x86_cpu_features;
+
+static void __attribute__((constructor))
+init_cpu_features(void)
+{
+	CPU_FEATURE_SET((&x86_cpu_features), SSE);
+	CPU_FEATURE_SET((&x86_cpu_features), SSE2);
+}
+#endif
